@@ -1,6 +1,7 @@
 package com.adaming.gestionvoitures.entities;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -36,7 +37,7 @@ public class Agence {
 	
 	//Associations
 	@OneToMany
-	private List<Facture> factures;
+	private List<Facture> factures = new ArrayList<Facture>();
 	
 	//Constructeur par défaut
 	public Agence() {
