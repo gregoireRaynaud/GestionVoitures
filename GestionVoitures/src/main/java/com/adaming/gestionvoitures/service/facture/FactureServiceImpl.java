@@ -12,7 +12,8 @@ import com.adaming.gestionvoitures.dao.facture.IFactureDao;
 import com.adaming.gestionvoitures.entities.Facture;
 
 @Transactional
-@Component
+//@Component
+@Service
 public class FactureServiceImpl implements IFactureService{
 	
 	@Autowired
