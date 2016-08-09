@@ -16,7 +16,7 @@ import com.adaming.gestionvoitures.entities.Client;
  * @author Grégoire RAYNAUD
  * Date de dernière modification : 09/08/2016
  */
-//@Service
+@Service
 @Component
 @Transactional
 public class ClientServiceImpl implements IClientService{
