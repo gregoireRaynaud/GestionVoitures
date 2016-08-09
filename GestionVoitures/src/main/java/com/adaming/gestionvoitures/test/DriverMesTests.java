@@ -31,17 +31,17 @@ public class DriverMesTests {
 		
 		
 		
-		Voiture v1 = new Voiture("Punto", "JK5HJK", 2300d, 15000d, "Fiat", "Essence", "bon état");
+		Voiture v1 = new Voiture("Punto", "JK5HJK", 2300d, 15000d, "Fiat", "Essence", "bon ï¿½tat");
 		Voiture v2 = new Voiture("Audi", "5465322", 0d, 20000d, "???", "Essence", "neuf");
-		Voiture v3 = new Voiture("Mercedes", "EDRTFG", 500d, 17000d, "???", "Essence", "bon état");
+		Voiture v3 = new Voiture("Mercedes", "EDRTFG", 500d, 17000d, "???", "Essence", "bon ï¿½tat");
 		Voiture v4 = new Voiture("Twingo", "UGYHJ", 2000d, 12000d, "???", "Essence", "bon");
-		Voiture v5 = new Voiture("Senic", "GY6T7YU", 900d, 14000d, "??", "Essence", "bon état");
+		Voiture v5 = new Voiture("Senic", "GY6T7YU", 900d, 14000d, "??", "Essence", "bon ï¿½tat");
 		
-//		serviceVoiture.addVoiture(v1);
-//		serviceVoiture.addVoiture(v2);
-//		serviceVoiture.addVoiture(v3);
-//		serviceVoiture.addVoiture(v4);
-//		serviceVoiture.addVoiture(v5);
+		serviceVoiture.addVoiture(v1);
+		serviceVoiture.addVoiture(v2);
+		serviceVoiture.addVoiture(v3);
+		serviceVoiture.addVoiture(v4);
+		serviceVoiture.addVoiture(v5);
 		
 //		Voiture v6 = serviceVoiture.getVoitureById(1L);
 //		System.out.println(v6.getImmatricule());
@@ -70,13 +70,13 @@ public class DriverMesTests {
 //		Date d4 = sf.parse("12/08/2016-12/00/00/00");
 //		
 //		try {
-//			Reservation r1 = serviceReservation.addReservation(new Reservation(150d, new Date(), d1, d2, 60, "bon état"), 5L, 1L);
+//			Reservation r1 = serviceReservation.addReservation(new Reservation(150d, new Date(), d1, d2, 60, "bon ï¿½tat"), 5L, 1L);
 //		} catch (VoitureDisponibleException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 		
-		serviceVoiture.deleteVoiture(5L);
+//		serviceVoiture.deleteVoiture(5L);
 		
 		context.close();
 
