@@ -3,7 +3,7 @@ package com.adaming.gestionvoitures.service.agence;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,10 +55,10 @@ public class AgenceServiceImpl implements IAgenceService{
 		return daoAgence.getAgences();
 	}
 
-	@Override
+	/*@Override
 	public Agence addFactureToAgence(Long idAgence, Long idFacture) {
 		// TODO Auto-generated method stub
 		return daoAgence.addFactureToAgence(idAgence, idFacture);
-	}
+	}*/
 
 }

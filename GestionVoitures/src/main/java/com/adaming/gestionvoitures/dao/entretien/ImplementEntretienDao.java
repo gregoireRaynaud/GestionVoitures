@@ -68,7 +68,8 @@ public class ImplementEntretienDao implements IEntretienDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ChaineDistribution> getChaineDistributions() {
-		Query query = em.createQuery("from Entretien e where e.DTYPE = 'CHAINE_DISTRIBUTION'");
+		Query query = em.createQuery("from Entretien e where DTYPE =:x");
+		query.setParameter("x", "CHAINE_DISTRIBUTION");
 		log.info("Il existe "+query.getResultList().size()+" entretien du type 'ChaineDistribution'");
 		return query.getResultList();
 	}
@@ -77,7 +78,8 @@ public class ImplementEntretienDao implements IEntretienDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<FiltreHuile> getFiltreHuiles() {
-		Query query = em.createQuery("from Entretien e where e.DTYPE = 'FILTRE_HUILE'");
+		Query query = em.createQuery("from Entretien e where DTYPE =:x");
+		query.setParameter("x", "FILTRE_HUILE");
 		log.info("Il existe "+query.getResultList().size()+" entretien du type 'FiltreHuile'");
 		return query.getResultList();
 	}
@@ -86,7 +88,8 @@ public class ImplementEntretienDao implements IEntretienDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Vidange> getVidanges() {
-		Query query = em.createQuery("from Entretien e where e.DTYPE = 'VIDANGE'");
+		Query query = em.createQuery("from Entretien e where DTYPE =:x");
+		query.setParameter("x", "VIDANGE");
 		log.info("Il existe "+query.getResultList().size()+" entretien du type 'Vidange'");
 		return query.getResultList();
 	}

@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.adaming.gestionvoitures.entities.Agence;
-import com.adaming.gestionvoitures.entities.Facture;
+//import com.adaming.gestionvoitures.entities.Facture;
 
 /**
  * Nom : ImplementAgenceDao
@@ -59,7 +59,7 @@ public class ImplementAgenceDao implements IAgenceDao {
 		return query.getResultList();
 	}
 
-	//Méthode pour ajouter une facture à la liste des factures d'une agence
+	/*//Méthode pour ajouter une facture à la liste des factures d'une agence
 	@Override
 	public Agence addFactureToAgence(Long idAgence, Long idFacture) {
 		Agence a = em.find(Agence.class, idAgence);
@@ -68,6 +68,6 @@ public class ImplementAgenceDao implements IAgenceDao {
 		em.merge(a);
 		log.info("La facture "+f.getIdFacture()+" a bien été ajoutée à l'agence "+a.getIdAgence());
 		return a;
-	}
+	}*/
 
 }
