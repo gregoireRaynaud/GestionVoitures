@@ -13,8 +13,7 @@ import com.adaming.gestionvoitures.dao.voiture.IVoitureDao;
 import com.adaming.gestionvoitures.entities.Voiture;
 import com.adaming.gestionvoitures.exception.VoitureDisponibleException;
 
-//@Service
-@Component
+@Service
 @Transactional
 public class VoitureServiceImpl implements IVoitureService{
 
