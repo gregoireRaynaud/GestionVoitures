@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.adaming.gestionvoitures.dao.facture.IFactureDao;
 import com.adaming.gestionvoitures.entities.Facture;
 
-
 @Transactional
 @Component
 public class FactureServiceImpl implements IFactureService{

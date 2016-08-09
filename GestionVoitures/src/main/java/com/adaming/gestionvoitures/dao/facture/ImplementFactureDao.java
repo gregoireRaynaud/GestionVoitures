@@ -15,7 +15,6 @@ import com.adaming.gestionvoitures.entities.Facture;
 import com.adaming.gestionvoitures.entities.Reservation;
 import com.adaming.gestionvoitures.entities.Voiture;
 
-
 public class ImplementFactureDao implements IFactureDao {
 	
 	@PersistenceContext
