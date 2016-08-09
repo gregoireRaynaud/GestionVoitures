@@ -3,6 +3,7 @@ package com.adaming.gestionvoitures.service.client;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +16,8 @@ import com.adaming.gestionvoitures.entities.Client;
  * @author Grégoire RAYNAUD
  * Date de dernière modification : 09/08/2016
  */
-@Service
+//@Service
+@Component
 @Transactional
 public class ClientServiceImpl implements IClientService{
 

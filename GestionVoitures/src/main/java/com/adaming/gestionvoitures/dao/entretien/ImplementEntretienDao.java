@@ -21,7 +21,7 @@ import com.adaming.gestionvoitures.entities.Voiture;
  * @author Grégoire RAYNAUD
  * Date de dernière modification : 09/08/2016
  */
-@Repository(value="daoEntretien")
+//@Repository(value="daoEntretien")
 public class ImplementEntretienDao implements IEntretienDao {
 	
 	@PersistenceContext
