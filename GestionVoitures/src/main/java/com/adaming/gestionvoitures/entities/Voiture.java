@@ -41,7 +41,6 @@ public class Voiture {
     /*Associations*/
     
     @OneToMany(mappedBy="voiture")
-    @JoinTable(name="Voiture_Reservation")
     private List<Reservation> tabReservations;
 
     /*Constructeurs*/
