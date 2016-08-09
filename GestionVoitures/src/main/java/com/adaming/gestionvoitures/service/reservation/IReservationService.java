@@ -1,8 +1,10 @@
 package com.adaming.gestionvoitures.service.reservation;
 
+import java.util.Date;
 import java.util.List;
 
 import com.adaming.gestionvoitures.entities.Reservation;
+import com.adaming.gestionvoitures.entities.Voiture;
 import com.adaming.gestionvoitures.exception.VoitureDisponibleException;
 
 public interface IReservationService {
@@ -13,5 +15,6 @@ public interface IReservationService {
 	public Reservation updateReservation(Reservation r) throws VoitureDisponibleException;
 	public Reservation deleteReservation(Long idReservation);
 	public List<Reservation> historiqueReservation();
+	public List<Voiture> disponibiliteVoiture(Date dDebut, Date dFin) throws VoitureDisponibleException;
 	
 }

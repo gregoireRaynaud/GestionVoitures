@@ -1,5 +1,6 @@
 package com.adaming.gestionvoitures.service.reservation;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -11,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.adaming.gestionvoitures.dao.reservation.IReservationDao;
 import com.adaming.gestionvoitures.dao.voiture.IVoitureDao;
 import com.adaming.gestionvoitures.entities.Reservation;
+import com.adaming.gestionvoitures.entities.Voiture;
 import com.adaming.gestionvoitures.exception.VoitureDisponibleException;
+import com.adaming.gestionvoitures.service.voiture.IVoitureService;
 
 @Service
 @Transactional
@@ -56,6 +59,12 @@ public class ReservationServiceImpl implements IReservationService{
 	@Override
 	public List<Reservation> historiqueReservation() {
 		return daoReservation.historiqueReservation();
+	}
+
+	@Override
+	public List<Voiture> disponibiliteVoiture(Date dDebut, Date dFin)
+			throws VoitureDisponibleException {
+		return daoReservation.disponibiliteVoiture(dDebut, dFin);
 	}
 
 }

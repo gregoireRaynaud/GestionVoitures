@@ -29,8 +29,7 @@ public class ImplementVoitureDao implements IVoitureDao {
 	
 	Logger log = Logger.getLogger("ImplementVoitureDao");
 	
-	@Autowired
-	IEntretienService serviceEntretien;
+	
 
 	@Override
 	public Voiture addVoiture(Voiture v) {
@@ -136,103 +135,6 @@ public class ImplementVoitureDao implements IVoitureDao {
 		}
 		log.info(rentreVoiture.size() + " voiture(s) rentre(nt) aujourd'hui");
 		return rentreVoiture;
-	}
-
-	@Override
-	public String alerteEntretien(Long idVoiture) {
-		Voiture v = getVoitureById(idVoiture);
-		String alerte = "Entretiens à faire :\n";
-		List<Vidange> tousVidange = serviceEntretien.getVidanges();
-		List<Vidange> voitureVidange = new ArrayList<Vidange>();
-		List<FiltreHuile> tousFiltreHuile = serviceEntretien.getFiltreHuiles();
-		List<FiltreHuile> voitureFiltreHuile = new ArrayList<FiltreHuile>();
-		List<ChaineDistribution> tousChaineDistribution = serviceEntretien.getChaineDistributions();
-		List<ChaineDistribution> voitureChaineDistribution = new ArrayList<ChaineDistribution>();
-		if(tousVidange != null){
-			for(Vidange vi : tousVidange){
-				if(vi.getVoiture().getIdvoiture() == idVoiture){
-					voitureVidange.add(vi);
-				}
-			}
-			Vidange viRecente = new Vidange();
-			for(Vidange vi : voitureVidange){
-				if(vi.getDateEntretien().getTime() > viRecente.getDateEntretien().getTime()){
-					viRecente = vi;
-				}
-			}
-			if(viRecente.getKilometrage() + v.getKilometrage() > 10000){
-				Double km = viRecente.getKilometrage() + v.getKilometrage() - 10000;
-				alerte = alerte + "- Vidange à faire rapidement (km dépassés : " +  km + ")\n";
-			}else{
-				Double km = 10000 - (viRecente.getKilometrage() + v.getKilometrage());
-				alerte = alerte + "- Vidange à faire dans : " +  km + "\n";
-			}
-		}else{
-			if(v.getKilometrage() > 10000){
-				Double km = v.getKilometrage() - 10000;
-				alerte = alerte + "- Vidange à faire rapidement (km dépassés : " +  km + ")\n";
-			}else{
-				Double km = 10000 - (v.getKilometrage());
-				alerte = alerte + "- Vidange à faire dans : " +  km + "\n";
-			}
-		}
-		if(tousChaineDistribution != null){
-			for(ChaineDistribution c : tousChaineDistribution){
-				if(c.getVoiture().getIdvoiture() == idVoiture){
-					voitureChaineDistribution.add(c);
-				}
-			}
-			ChaineDistribution cRecente = new ChaineDistribution();
-			for(ChaineDistribution c : voitureChaineDistribution){
-				if(c.getDateEntretien().getTime() > cRecente.getDateEntretien().getTime()){
-					cRecente = c;
-				}
-			}
-			if(cRecente.getKilometrage() + v.getKilometrage() > 10000){
-				Double km = cRecente.getKilometrage() + v.getKilometrage() - 10000;
-				alerte = alerte + "- Chaine de distribution à faire rapidement (km dépassés : " +  km + ")\n";
-			}else{
-				Double km = 10000 - (cRecente.getKilometrage() + v.getKilometrage());
-				alerte = alerte + "- Chaine de distribution à faire dans : " +  km + "\n";
-			}
-		}else{
-			if(v.getKilometrage() > 10000){
-				Double km = v.getKilometrage() - 10000;
-				alerte = alerte + "- Chaine de distribution à faire rapidement (km dépassés : " +  km + ")\n";
-			}else{
-				Double km = 10000 - (v.getKilometrage());
-				alerte = alerte + "- Chaine de distribution à faire dans : " +  km + "\n";
-			}
-		}
-		if(tousFiltreHuile != null){
-			for(FiltreHuile f : tousFiltreHuile){
-				if(f.getVoiture().getIdvoiture() == idVoiture){
-					voitureFiltreHuile.add(f);
-				}
-			}
-			FiltreHuile fRecente = new FiltreHuile();
-			for(FiltreHuile f : voitureFiltreHuile){
-				if(f.getDateEntretien().getTime() > fRecente.getDateEntretien().getTime()){
-					fRecente = f;
-				}
-			}
-			if(fRecente.getKilometrage() + v.getKilometrage() > 10000){
-				Double km = fRecente.getKilometrage() + v.getKilometrage() - 10000;
-				alerte = alerte + "- Filtre à huile à faire rapidement (km dépassés : " +  km + ")\n";
-			}else{
-				Double km = 10000 - (fRecente.getKilometrage() + v.getKilometrage());
-				alerte = alerte + "- Filtre à huile à faire dans : " +  km + "\n";
-			}
-		}else{
-			if(v.getKilometrage() > 10000){
-				Double km = v.getKilometrage() - 10000;
-				alerte = alerte + "- Filtre à huile à faire rapidement (km dépassés : " +  km + ")\n";
-			}else{
-				Double km = 10000 - (v.getKilometrage());
-				alerte = alerte + "- Filtre à huile à faire dans : " +  km + "\n";
-			}
-		}
-		return alerte;
 	}
 
 }

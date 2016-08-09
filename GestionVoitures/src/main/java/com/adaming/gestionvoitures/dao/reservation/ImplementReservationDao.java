@@ -24,8 +24,7 @@ public class ImplementReservationDao implements IReservationDao {
 	@PersistenceContext
 	private EntityManager em;
 	
-	@Autowired
-	IVoitureService serviceVoiture;
+	
 	
 	Logger log = Logger.getLogger("ImplementReservationDao");
 
@@ -34,7 +33,7 @@ public class ImplementReservationDao implements IReservationDao {
 			Long idClient) throws VoitureDisponibleException {
 		Voiture v = em.find(Voiture.class, idVoiture);
 		Client c = em.find(Client.class, idClient);
-		List<Voiture> voitureDispo = serviceVoiture.disponibiliteVoiture(r.getDateSortie(), r.getDateRetour());
+		List<Voiture> voitureDispo = disponibiliteVoiture(r.getDateSortie(), r.getDateRetour());
 		if(!voitureDispo.contains(v)){
 			throw new VoitureDisponibleException("La voiture n'est pas disponible pour cette réservation");
 		}
@@ -64,7 +63,7 @@ public class ImplementReservationDao implements IReservationDao {
 
 	@Override
 	public Reservation updateReservation(Reservation r) throws VoitureDisponibleException {
-		List<Voiture> voitureDispo = serviceVoiture.disponibiliteVoiture(r.getDateSortie(), r.getDateRetour());
+		List<Voiture> voitureDispo = disponibiliteVoiture(r.getDateSortie(), r.getDateRetour());
 		if(!voitureDispo.contains(r.getVoiture())){
 			throw new VoitureDisponibleException("La voiture n'est pas disponible pour cette réservation");
 		}
@@ -92,6 +91,30 @@ public class ImplementReservationDao implements IReservationDao {
 		}
 		log.info(historique.size() + " réservations ont été retournées dans l'historique");
 		return historique;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Voiture> disponibiliteVoiture(Date dDebut, Date dFin)
+			throws VoitureDisponibleException {
+		Query query = em.createQuery("from Voiture");
+		List<Voiture> toutesVoitures = query.getResultList();
+		List<Voiture> voituresDisponibles = query.getResultList();
+		for(Voiture v : toutesVoitures){
+			if(v.getTabReservations() != null){
+				for(Reservation r : v.getTabReservations()){
+					if(r.getDateSortie().before(dDebut) && r.getDateRetour().after(dDebut)
+							|| r.getDateSortie().after(dDebut) && r.getDateSortie().before(dFin)){
+						voituresDisponibles.remove(v);
+						if(voituresDisponibles.size() == 0){
+							throw new VoitureDisponibleException("Il n'y a aucune voiture disponible pour cette réservation");
+						}
+					}
+				}
+			}
+		}
+		log.info(voituresDisponibles.size() + " voiture(s) sont disponible(s)");
+		return voituresDisponibles;
 	}
 
 }

@@ -23,7 +23,7 @@ public abstract class Entretien {
 	protected String typeEntretien;
 	@Temporal(TemporalType.DATE)
 	protected Date dateEntretien;
-	protected  Double Kilometrage;
+	protected  Double Kilometrage;//tous les cb de km il faut faire l'entretien
 	protected Integer prixEntretien;
 	
 	@OneToOne
