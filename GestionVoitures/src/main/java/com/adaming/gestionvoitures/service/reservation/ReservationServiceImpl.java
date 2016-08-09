@@ -17,7 +17,6 @@ import com.adaming.gestionvoitures.exception.VoitureDisponibleException;
 @Transactional
 public class ReservationServiceImpl implements IReservationService{
 
-	@Autowired
 	private IReservationDao daoReservation;
 	
 	Logger log = Logger.getLogger("VoitureServiceImpl");

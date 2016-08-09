@@ -17,7 +17,6 @@ import com.adaming.gestionvoitures.exception.VoitureDisponibleException;
 @Transactional
 public class VoitureServiceImpl implements IVoitureService{
 
-	@Autowired
 	private IVoitureDao daoVoiture;
 	
 	Logger log = Logger.getLogger("VoitureServiceImpl");
