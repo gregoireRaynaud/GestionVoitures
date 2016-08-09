@@ -16,5 +16,4 @@ public interface IAgenceService {
 	public Agence updateAgence(Agence a);
 	public Agence getAgenceById(Long idAgence);
 	public List<Agence> getAgences();
-	//public Agence addFactureToAgence(Long idAgence, Long idFacture);
 }

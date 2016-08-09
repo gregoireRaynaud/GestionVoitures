@@ -59,15 +59,4 @@ public class ImplementAgenceDao implements IAgenceDao {
 		return query.getResultList();
 	}
 
-	/*//Méthode pour ajouter une facture à la liste des factures d'une agence
-	@Override
-	public Agence addFactureToAgence(Long idAgence, Long idFacture) {
-		Agence a = em.find(Agence.class, idAgence);
-		Facture f = em.find(Facture.class,idFacture);
-		a.getFactures().add(f);
-		em.merge(a);
-		log.info("La facture "+f.getIdFacture()+" a bien été ajoutée à l'agence "+a.getIdAgence());
-		return a;
-	}*/
-
 }

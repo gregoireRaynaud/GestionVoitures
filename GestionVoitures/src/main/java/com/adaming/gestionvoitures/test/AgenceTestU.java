@@ -88,13 +88,4 @@ public class AgenceTestU {
 		assertTrue(tabAgence.size()>0);
 	}
 
-	/*@Ignore
-	@Test
-	//Non testé (besoin de la facture id=1 dans la BD)
-	public void testAddFactureToAgence() throws ParseException {
-		serviceAgence.addFactureToAgence(1L, 1L);
-		Agence a = serviceAgence.getAgenceById(1L);
-		assertTrue(a.getFactures().size()>0);
-	}*/
-
 }

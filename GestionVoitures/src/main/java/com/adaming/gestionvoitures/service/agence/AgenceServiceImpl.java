@@ -55,10 +55,5 @@ public class AgenceServiceImpl implements IAgenceService{
 		return daoAgence.getAgences();
 	}
 
-	/*@Override
-	public Agence addFactureToAgence(Long idAgence, Long idFacture) {
-		// TODO Auto-generated method stub
-		return daoAgence.addFactureToAgence(idAgence, idFacture);
-	}*/
 
 }
