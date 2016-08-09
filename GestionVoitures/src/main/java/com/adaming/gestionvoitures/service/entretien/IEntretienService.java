@@ -2,7 +2,10 @@ package com.adaming.gestionvoitures.service.entretien;
 
 import java.util.List;
 
+import com.adaming.gestionvoitures.entities.ChaineDistribution;
 import com.adaming.gestionvoitures.entities.Entretien;
+import com.adaming.gestionvoitures.entities.FiltreHuile;
+import com.adaming.gestionvoitures.entities.Vidange;
 
 /**
  * Nom : IEntretienService
@@ -16,7 +19,7 @@ public interface IEntretienService {
 	public Entretien updateEntretien(Entretien e);
 	public Entretien getEntretienById(Long idEntretien);
 	public List<Entretien> getEntretiens();
-	public List<Entretien> getChaineDistributions();
-	public List<Entretien> getFiltreHuiles();
-	public List<Entretien> getVidanges();
+	public List<ChaineDistribution> getChaineDistributions();
+	public List<FiltreHuile> getFiltreHuiles();
+	public List<Vidange> getVidanges();
 }

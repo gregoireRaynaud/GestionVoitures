@@ -9,7 +9,10 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
+import com.adaming.gestionvoitures.entities.ChaineDistribution;
 import com.adaming.gestionvoitures.entities.Entretien;
+import com.adaming.gestionvoitures.entities.FiltreHuile;
+import com.adaming.gestionvoitures.entities.Vidange;
 import com.adaming.gestionvoitures.entities.Voiture;
 
 /**
@@ -64,7 +67,7 @@ public class ImplementEntretienDao implements IEntretienDao {
 	//Read
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Entretien> getChaineDistributions() {
+	public List<ChaineDistribution> getChaineDistributions() {
 		Query query = em.createQuery("from Entretien e where e.DTYPE = 'CHAINE_DISTRIBUTION'");
 		log.info("Il existe "+query.getResultList().size()+" entretien du type 'ChaineDistribution'");
 		return query.getResultList();
@@ -73,7 +76,7 @@ public class ImplementEntretienDao implements IEntretienDao {
 	//Read
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Entretien> getFiltreHuiles() {
+	public List<FiltreHuile> getFiltreHuiles() {
 		Query query = em.createQuery("from Entretien e where e.DTYPE = 'FILTRE_HUILE'");
 		log.info("Il existe "+query.getResultList().size()+" entretien du type 'FiltreHuile'");
 		return query.getResultList();
@@ -82,7 +85,7 @@ public class ImplementEntretienDao implements IEntretienDao {
 	//Read
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Entretien> getVidanges() {
+	public List<Vidange> getVidanges() {
 		Query query = em.createQuery("from Entretien e where e.DTYPE = 'VIDANGE'");
 		log.info("Il existe "+query.getResultList().size()+" entretien du type 'Vidange'");
 		return query.getResultList();

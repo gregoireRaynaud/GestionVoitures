@@ -1,7 +1,7 @@
 package com.adaming.gestionvoitures.entities;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -53,7 +53,7 @@ public class Agence {
 	public Agence(String addrespostal, String numerotel, String denomination,
 			String formJuridique, String activite, String adressSiege,
 			Date dateCommencement, String ville, String deuxiemTel, Double tva,
-			String choixMonnais, List<Facture> factures) {
+			String choixMonnais) {
 		super();
 		this.addrespostal = addrespostal;
 		this.numerotel = numerotel;
@@ -66,7 +66,6 @@ public class Agence {
 		this.deuxiemTel = deuxiemTel;
 		this.tva = tva;
 		this.choixMonnais = choixMonnais;
-		this.factures = factures;
 	}
 	
 	//Getters et setters

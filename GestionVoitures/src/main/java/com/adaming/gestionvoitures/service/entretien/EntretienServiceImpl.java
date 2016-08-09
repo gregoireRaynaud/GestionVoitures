@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.adaming.gestionvoitures.dao.entretien.IEntretienDao;
+import com.adaming.gestionvoitures.entities.ChaineDistribution;
 import com.adaming.gestionvoitures.entities.Entretien;
+import com.adaming.gestionvoitures.entities.FiltreHuile;
+import com.adaming.gestionvoitures.entities.Vidange;
 
 /**
  * Nom : EntretienServiceImpl
@@ -54,19 +57,19 @@ public class EntretienServiceImpl implements IEntretienService{
 	}
 
 	@Override
-	public List<Entretien> getChaineDistributions() {
+	public List<ChaineDistribution> getChaineDistributions() {
 		// TODO Auto-generated method stub
 		return dao.getChaineDistributions();
 	}
 
 	@Override
-	public List<Entretien> getFiltreHuiles() {
+	public List<FiltreHuile> getFiltreHuiles() {
 		// TODO Auto-generated method stub
 		return dao.getFiltreHuiles();
 	}
 
 	@Override
-	public List<Entretien> getVidanges() {
+	public List<Vidange> getVidanges() {
 		// TODO Auto-generated method stub
 		return dao.getVidanges();
 	}
