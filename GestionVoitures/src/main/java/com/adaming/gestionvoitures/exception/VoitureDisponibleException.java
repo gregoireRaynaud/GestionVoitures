@@ -1,5 +1,13 @@
 package com.adaming.gestionvoitures.exception;
 
-public class VoitureDisponibleException {
+@SuppressWarnings("serial")
+public class VoitureDisponibleException extends Exception{
+
+	public VoitureDisponibleException(String arg0) {
+		super(arg0);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 
 }
