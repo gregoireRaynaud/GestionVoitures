@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 /**
@@ -37,6 +38,7 @@ public class Agence {
 	
 	//Associations
 	@OneToMany
+	@JoinTable(name="Agence_Facture")
 	private List<Facture> factures = new ArrayList<Facture>();
 	
 	//Constructeur par défaut

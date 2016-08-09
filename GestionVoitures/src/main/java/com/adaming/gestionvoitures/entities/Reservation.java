@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,10 +41,10 @@ public class Reservation {
 	
 	/*Association*/
 	
-	@OneToMany(mappedBy="tabReservations")
+	@ManyToOne
 	@JoinColumn(name="idVoiture")
 	private Voiture voiture;
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name="idClient")
 	private Client client;
 

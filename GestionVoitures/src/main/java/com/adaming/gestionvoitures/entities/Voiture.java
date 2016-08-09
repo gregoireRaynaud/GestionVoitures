@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.context.annotation.Lazy;
 
@@ -39,7 +40,7 @@ public class Voiture {
     
     /*Associations*/
     
-    @ManyToOne
+    @OneToMany(mappedBy="voiture")
     @JoinTable(name="Voiture_Reservation")
     private List<Reservation> tabReservations;
 
