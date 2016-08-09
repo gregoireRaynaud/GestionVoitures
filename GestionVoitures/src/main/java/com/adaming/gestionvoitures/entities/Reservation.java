@@ -43,6 +43,9 @@ public class Reservation {
 	@OneToMany(mappedBy="tabReservations")
 	@JoinColumn(name="idVoiture")
 	private Voiture voiture;
+	@OneToMany
+	@JoinColumn(name="idClient")
+	private Client client;
 
 	/*Constructeurs*/
 	
@@ -127,6 +130,14 @@ public class Reservation {
 
 	public void setVoiture(Voiture voiture) {
 		this.voiture = voiture;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 	
 	
