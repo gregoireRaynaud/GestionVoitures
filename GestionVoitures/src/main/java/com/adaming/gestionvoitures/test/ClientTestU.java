@@ -37,7 +37,7 @@ public class ClientTestU {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	//Testé
 	public void testAddClient() throws ParseException {
@@ -91,7 +91,7 @@ public class ClientTestU {
 		assertTrue(tabClient.size()>0);
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	//Testé
 	public void testGetClients() {
