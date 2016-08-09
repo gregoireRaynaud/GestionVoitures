@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.adaming.gestionvoitures.entities.Agence;
@@ -14,7 +15,7 @@ import com.adaming.gestionvoitures.entities.Facture;
 import com.adaming.gestionvoitures.entities.Reservation;
 import com.adaming.gestionvoitures.entities.Voiture;
 
-@Repository(value="dao")
+@Repository(value="daoFacture")
 public class ImplementFactureDao implements IFactureDao {
 	
 	@PersistenceContext
