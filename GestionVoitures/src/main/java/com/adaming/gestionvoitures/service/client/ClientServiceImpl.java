@@ -19,44 +19,44 @@ import com.adaming.gestionvoitures.entities.Client;
 @Transactional
 public class ClientServiceImpl implements IClientService{
 
-	private IClientDao dao;
+	private IClientDao daoClient;
 	
 	Logger log = Logger.getLogger("ClientServiceImpl");
 	
 	
-	public void setDao(IClientDao dao) {
-		this.dao = dao;
+	public void setDao(IClientDao daoClient) {
+		this.daoClient = daoClient;
 		log.info("<------------ daoClient injected ------------>");
 	}
 
 	@Override
 	public Client addClient(Client c) {
 		// TODO Auto-generated method stub
-		return dao.addClient(c);
+		return daoClient.addClient(c);
 	}
 
 	@Override
 	public Client updateClient(Client c) {
 		// TODO Auto-generated method stub
-		return dao.updateClient(c);
+		return daoClient.updateClient(c);
 	}
 
 	@Override
 	public Client getClientById(Long idClient) {
 		// TODO Auto-generated method stub
-		return dao.getClientById(idClient);
+		return daoClient.getClientById(idClient);
 	}
 
 	@Override
 	public List<Client> getClientByMc(String mc) {
 		// TODO Auto-generated method stub
-		return dao.getClientByMc(mc);
+		return daoClient.getClientByMc(mc);
 	}
 
 	@Override
 	public List<Client> getClients() {
 		// TODO Auto-generated method stub
-		return dao.getClients();
+		return daoClient.getClients();
 	}
 
 }

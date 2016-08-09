@@ -21,7 +21,7 @@ import com.adaming.gestionvoitures.entities.Client;
  * @author Grégoire RAYNAUD
  * Date de dernière modification : 09/08/2016
  */
-@Repository(value="dao")
+@Repository(value="daoClient")
 public class ImplementClientDao implements IClientDao {
 	
 	@PersistenceContext

@@ -18,7 +18,7 @@ import com.adaming.gestionvoitures.entities.Facture;
  * @author Grégoire RAYNAUD
  * Date de dernière modification : 09/08/2016
  */
-@Repository(value="dao")
+@Repository(value="daoAgence")
 public class ImplementAgenceDao implements IAgenceDao {
 	
 	@PersistenceContext

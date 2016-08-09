@@ -22,56 +22,56 @@ import com.adaming.gestionvoitures.entities.Vidange;
 @Transactional
 public class EntretienServiceImpl implements IEntretienService{
 
-	private IEntretienDao dao;
+	private IEntretienDao daoEntretien;
 	
 	Logger log = Logger.getLogger("EntretienServiceImpl");
 	
 	
-	public void setDao(IEntretienDao dao) {
-		this.dao = dao;
+	public void setDao(IEntretienDao daoEntretien) {
+		this.daoEntretien = daoEntretien;
 		log.info("<------------- daoEntretien injected ------------>");
 	}
 
 	@Override
 	public Entretien addEntretient(Entretien e, Long idVoiture) {
 		// TODO Auto-generated method stub
-		return dao.addEntretient(e, idVoiture);
+		return daoEntretien.addEntretient(e, idVoiture);
 	}
 
 	@Override
 	public Entretien updateEntretien(Entretien e) {
 		// TODO Auto-generated method stub
-		return dao.updateEntretien(e);
+		return daoEntretien.updateEntretien(e);
 	}
 
 	@Override
 	public Entretien getEntretienById(Long idEntretien) {
 		// TODO Auto-generated method stub
-		return dao.getEntretienById(idEntretien);
+		return daoEntretien.getEntretienById(idEntretien);
 	}
 
 	@Override
 	public List<Entretien> getEntretiens() {
 		// TODO Auto-generated method stub
-		return dao.getEntretiens();
+		return daoEntretien.getEntretiens();
 	}
 
 	@Override
 	public List<ChaineDistribution> getChaineDistributions() {
 		// TODO Auto-generated method stub
-		return dao.getChaineDistributions();
+		return daoEntretien.getChaineDistributions();
 	}
 
 	@Override
 	public List<FiltreHuile> getFiltreHuiles() {
 		// TODO Auto-generated method stub
-		return dao.getFiltreHuiles();
+		return daoEntretien.getFiltreHuiles();
 	}
 
 	@Override
 	public List<Vidange> getVidanges() {
 		// TODO Auto-generated method stub
-		return dao.getVidanges();
+		return daoEntretien.getVidanges();
 	}
 
 }

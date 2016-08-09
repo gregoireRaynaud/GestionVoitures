@@ -19,44 +19,44 @@ import com.adaming.gestionvoitures.entities.Agence;
 @Transactional
 public class AgenceServiceImpl implements IAgenceService{
 
-	private IAgenceDao dao;
+	private IAgenceDao daoAgence;
 	
 	Logger log = Logger.getLogger("AgenceServiceImpl");
 	
 	
-	public void setDao(IAgenceDao dao) {
-		this.dao = dao;
+	public void setDao(IAgenceDao daoAgence) {
+		this.daoAgence = daoAgence;
 		log.info("<------------ daoAgence injected ------------>");
 	}
 
 	@Override
 	public Agence addAgence(Agence a) {
 		// TODO Auto-generated method stub
-		return dao.addAgence(a);
+		return daoAgence.addAgence(a);
 	}
 
 	@Override
 	public Agence updateAgence(Agence a) {
 		// TODO Auto-generated method stub
-		return dao.updateAgence(a);
+		return daoAgence.updateAgence(a);
 	}
 
 	@Override
 	public Agence getAgenceById(Long idAgence) {
 		// TODO Auto-generated method stub
-		return dao.getAgenceById(idAgence);
+		return daoAgence.getAgenceById(idAgence);
 	}
 
 	@Override
 	public List<Agence> getAgences() {
 		// TODO Auto-generated method stub
-		return dao.getAgences();
+		return daoAgence.getAgences();
 	}
 
 	@Override
 	public Agence addFactureToAgence(Long idAgence, Long idFacture) {
 		// TODO Auto-generated method stub
-		return dao.addFactureToAgence(idAgence, idFacture);
+		return daoAgence.addFactureToAgence(idAgence, idFacture);
 	}
 
 }
