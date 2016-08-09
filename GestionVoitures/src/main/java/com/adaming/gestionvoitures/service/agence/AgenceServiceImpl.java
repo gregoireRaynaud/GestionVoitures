@@ -16,8 +16,8 @@ import com.adaming.gestionvoitures.entities.Agence;
  * @author Grégoire RAYNAUD
  * Date de dernière modification : 09/08/2016
  */
-@Service
-@Transactional
+//@Service
+@Component
 public class AgenceServiceImpl implements IAgenceService{
 
 	private IAgenceDao daoAgence;
