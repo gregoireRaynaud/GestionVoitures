@@ -24,6 +24,7 @@ public class FactureServiceImpl implements IFactureService{
 	
 	public void setDaoFacture(IFactureDao daoFacture) {
 		this.daoFacture = daoFacture;
+		log.info("<------------- dao facture injected ---------------->");
 	}
 
 	@Override
