@@ -11,14 +11,49 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 		http://www.springframework.org/schema/mvc
-		http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
-		"
-		>
+		http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 		
 	
 	
 	<context:component-scan base-package="com.adaming.gestionvoitures" />
 	<!-- configuration jpa -->
+	
+	<!-- injection Facture -->
+	<bean id="factureDao" class="com.adaming.gestionvoitures.dao.facture.ImplementFactureDao"></bean>
+	<bean id="factureService" class="com.adaming.gestionvoitures.service.facture.FactureServiceImpl">
+		<property name="daoFacture" ref="factureDao"></property>
+	</bean>
+	
+	<!-- injection Agence -->
+	<bean id="agenceDao" class="com.adaming.gestionvoitures.dao.agence.ImplementAgenceDao"></bean>
+	<bean id="agenceService" class="com.adaming.gestionvoitures.service.agence.AgenceServiceImpl">
+		<property name="daoAgence" ref="agenceDao"></property>
+	</bean>
+	
+	<!-- injection Client -->
+	<bean id="clientDao" class="com.adaming.gestionvoitures.dao.client.ImplementClientDao"></bean>
+	<bean id="clientService" class="com.adaming.gestionvoitures.service.client.ClientServiceImpl">
+		<property name="daoClient" ref="clientDao"></property>
+	</bean>
+	
+	<!-- injection Entretien -->
+	<bean id="entretienDao" class="com.adaming.gestionvoitures.dao.entretien.ImplementEntretienDao"></bean>
+	<bean id="entretienService"	class="com.adaming.gestionvoitures.service.entretien.EntretienServiceImpl">
+		<property name="daoEntretien" ref="entretienDao"></property>
+	</bean>
+	
+	<!-- injection Reservation -->
+	<bean id="reservationDao" class="com.adaming.gestionvoitures.dao.reservation.ImplementReservationDao"></bean>
+	<bean id="reservationService" class="com.adaming.gestionvoitures.service.reservation.ReservationServiceImpl">
+		<property name="daoReservation" ref="reservationDao"></property>
+	</bean>
+	
+	<!-- injection Voiture -->
+	<bean id="voitureDao" class="com.adaming.gestionvoitures.dao.voiture.ImplementVoitureDao"></bean>
+	<bean id="voitureService"
+		class="com.adaming.gestionvoitures.service.voiture.VoitureServiceImpl">
+		<property name="daoVoiture" ref="voitureDao"></property>
+	</bean>
 	
 	<bean id="datasource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">

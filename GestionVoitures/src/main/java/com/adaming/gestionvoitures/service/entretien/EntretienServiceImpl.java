@@ -29,7 +29,7 @@ public class EntretienServiceImpl implements IEntretienService{
 	Logger log = Logger.getLogger("EntretienServiceImpl");
 	
 	
-	public void setDao(IEntretienDao daoEntretien) {
+	public void setDaoEntretien(IEntretienDao daoEntretien) {
 		this.daoEntretien = daoEntretien;
 		log.info("<------------- daoEntretien injected ------------>");
 	}

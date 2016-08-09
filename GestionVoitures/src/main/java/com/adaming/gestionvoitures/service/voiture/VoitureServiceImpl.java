@@ -22,7 +22,7 @@ public class VoitureServiceImpl implements IVoitureService{
 	
 	Logger log = Logger.getLogger("VoitureServiceImpl");
 	
-	public void setDao(IVoitureDao dao) {
+	public void setDaoVoiture(IVoitureDao dao) {
 		this.daoVoiture = dao;
 		log.info("<------------- dao voiture injected ---------------->");
 	}

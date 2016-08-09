@@ -26,7 +26,7 @@ public class ClientServiceImpl implements IClientService{
 	Logger log = Logger.getLogger("ClientServiceImpl");
 	
 	
-	public void setDao(IClientDao daoClient) {
+	public void setDaoClient(IClientDao daoClient) {
 		this.daoClient = daoClient;
 		log.info("<------------ daoClient injected ------------>");
 	}

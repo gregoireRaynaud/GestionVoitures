@@ -25,7 +25,7 @@ public class AgenceServiceImpl implements IAgenceService{
 	Logger log = Logger.getLogger("AgenceServiceImpl");
 	
 	
-	public void setDao(IAgenceDao daoAgence) {
+	public void setDaoAgence(IAgenceDao daoAgence) {
 		this.daoAgence = daoAgence;
 		log.info("<------------ daoAgence injected ------------>");
 	}

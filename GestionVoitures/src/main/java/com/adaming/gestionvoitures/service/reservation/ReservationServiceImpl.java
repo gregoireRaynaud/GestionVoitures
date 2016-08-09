@@ -22,7 +22,7 @@ public class ReservationServiceImpl implements IReservationService{
 	
 	Logger log = Logger.getLogger("VoitureServiceImpl");
 	
-	public void setDao(IReservationDao daoReservation) {
+	public void setDaoReservation(IReservationDao daoReservation) {
 		this.daoReservation = daoReservation;
 		log.info("<------------- dao reservation injected ---------------->");
 	}
