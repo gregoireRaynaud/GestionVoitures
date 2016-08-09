@@ -75,6 +75,10 @@ public class ImplementReservationDao implements IReservationDao {
 	@Override
 	public Reservation deleteReservation(Long idReservation) {
 		Reservation r  = em.find(Reservation.class, idReservation);
+		r.getVoiture().getTabReservations().remove(r);
+		em.merge(r.getVoiture());
+		r.setVoiture(null);
+		em.merge(r);
 		em.remove(r);
 		log.info("La réservation " + r.getIdreservation() + " a bien été supprimée");
 		return null;
