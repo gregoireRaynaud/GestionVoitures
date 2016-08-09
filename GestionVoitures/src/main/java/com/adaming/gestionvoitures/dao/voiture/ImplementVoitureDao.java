@@ -21,7 +21,7 @@ import com.adaming.gestionvoitures.entities.Voiture;
 import com.adaming.gestionvoitures.exception.VoitureDisponibleException;
 import com.adaming.gestionvoitures.service.entretien.IEntretienService;
 
-@Repository(value="daoVoiture")
+//@Repository(value="daoVoiture")
 public class ImplementVoitureDao implements IVoitureDao {
 	
 	@PersistenceContext

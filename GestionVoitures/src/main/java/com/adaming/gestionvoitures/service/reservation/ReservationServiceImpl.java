@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +13,8 @@ import com.adaming.gestionvoitures.dao.voiture.IVoitureDao;
 import com.adaming.gestionvoitures.entities.Reservation;
 import com.adaming.gestionvoitures.exception.VoitureDisponibleException;
 
-@Service
+//@Service
+@Component
 @Transactional
 public class ReservationServiceImpl implements IReservationService{
 
