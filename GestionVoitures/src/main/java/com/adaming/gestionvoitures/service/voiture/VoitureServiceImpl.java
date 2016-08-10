@@ -92,18 +92,30 @@ public class VoitureServiceImpl implements IVoitureService{
 					voitureVidange.add(vi);
 				}
 			}
-			Vidange viRecente = new Vidange();
-			for(Vidange vi : voitureVidange){
-				if(vi.getDateEntretien().getTime() > viRecente.getDateEntretien().getTime()){
-					viRecente = vi;
+			if(!voitureVidange.isEmpty()){
+				Vidange viRecente = new Vidange();
+				for(Vidange vi : voitureVidange){
+					if(viRecente.getDateEntretien() == null){
+						viRecente = vi;
+					}else if(vi.getDateEntretien().getTime() > viRecente.getDateEntretien().getTime()){
+						viRecente = vi;
+					}
 				}
-			}
-			if(v.getKilometrage() - viRecente.getVoiture().getKilometrage() > viRecente.getKilometrage()){
-				Double km = (v.getKilometrage() - viRecente.getVoiture().getKilometrage() - viRecente.getKilometrage());
-				alerte = alerte + "- Vidange à faire rapidement (km dépassés : " +  km + ")\n";
+				if(v.getKilometrage() - viRecente.getKilometrage() > viRecente.getKilometrage()){
+					Double km = (v.getKilometrage() - viRecente.getVoiture().getKilometrage() - viRecente.getKilometrage());
+					alerte = alerte + "- Vidange à faire rapidement (km dépassés : " +  km + ")\n";
+				}else{
+					Double km = 10000 - (viRecente.getKilometrage() + v.getKilometrage());
+					alerte = alerte + "- Vidange à faire dans : " +  km + "\n";
+				}
 			}else{
-				Double km = 10000 - (viRecente.getKilometrage() + v.getKilometrage());
-				alerte = alerte + "- Vidange à faire dans : " +  km + "\n";
+				if(v.getKilometrage() > 10000){
+					Double km = v.getKilometrage() - 10000d;
+					alerte = alerte + "- Vidange à faire rapidement (km dépassés : " +  km + ")\n";
+				}else{
+					Double km = - v.getKilometrage() + 10000d;
+					alerte = alerte + "- Vidange à faire dans : " +  km + "\n";
+				}
 			}
 		}else{
 			if(v.getKilometrage() > 10000){
@@ -120,18 +132,34 @@ public class VoitureServiceImpl implements IVoitureService{
 					voitureChaineDistribution.add(c);
 				}
 			}
-			ChaineDistribution cRecente = new ChaineDistribution();
-			for(ChaineDistribution c : voitureChaineDistribution){
-				if(c.getDateEntretien().getTime() > cRecente.getDateEntretien().getTime()){
-					cRecente = c;
+			if(!voitureChaineDistribution.isEmpty()){
+				ChaineDistribution cRecente = new ChaineDistribution();
+				for(ChaineDistribution c : voitureChaineDistribution){
+					if(cRecente.getDateEntretien() == null){
+						cRecente = c;
+					}else if(c.getDateEntretien().getTime() > cRecente.getDateEntretien().getTime()){
+						cRecente = c;
+					}
+				}
+				System.out.println(v.getKilometrage());
+				System.out.println(cRecente.getVoiture().getKilometrage());
+				System.out.println(cRecente.getKilometrage());
+				if(v.getKilometrage() - cRecente.getKilometrage() > cRecente.getKilometrage()){
+					Double km = (v.getKilometrage() - cRecente.getVoiture().getKilometrage() - cRecente.getKilometrage());
+					alerte = alerte + "- Chaine de distribution à faire rapidement (km dépassés : " +  km + ")\n";
+				}else{
+					Double km = 30000 - (cRecente.getKilometrage() + v.getKilometrage());
+					alerte = alerte + "- Chaine de distribution à faire dans : " +  km + "\n";
 				}
 			}
-			if(v.getKilometrage() - cRecente.getVoiture().getKilometrage() > cRecente.getKilometrage()){
-				Double km = (v.getKilometrage() - cRecente.getVoiture().getKilometrage() - cRecente.getKilometrage());
-				alerte = alerte + "- Vidange à faire rapidement (km dépassés : " +  km + ")\n";
-			}else{
-				Double km = 30000 - (cRecente.getKilometrage() + v.getKilometrage());
-				alerte = alerte + "- Vidange à faire dans : " +  km + "\n";
+			else{
+				if(v.getKilometrage() > 30000){
+					Double km = v.getKilometrage() - 30000d;
+					alerte = alerte + "- Chaine de distribution à faire rapidement (km dépassés : " +  km + ")\n";
+				}else{
+					Double km = - v.getKilometrage() + 30000d;
+					alerte = alerte + "- Chaine de distribution à faire dans : " +  km + "\n";
+				}
 			}
 		}else{
 			if(v.getKilometrage() > 30000){
@@ -148,18 +176,31 @@ public class VoitureServiceImpl implements IVoitureService{
 					voitureFiltreHuile.add(f);
 				}
 			}
-			FiltreHuile fRecente = new FiltreHuile();
-			for(FiltreHuile f : voitureFiltreHuile){
-				if(f.getDateEntretien().getTime() > fRecente.getDateEntretien().getTime()){
-					fRecente = f;
+			if(!voitureFiltreHuile.isEmpty()){
+				FiltreHuile fRecente = new FiltreHuile();
+				for(FiltreHuile f : voitureFiltreHuile){
+					if(fRecente.getDateEntretien() == null){
+						fRecente = f;
+					}else if(f.getDateEntretien().getTime() > fRecente.getDateEntretien().getTime()){
+						fRecente = f;
+					}
+				}
+				if(v.getKilometrage() - fRecente.getKilometrage() > fRecente.getKilometrage()){
+					Double km = (v.getKilometrage() - fRecente.getVoiture().getKilometrage() - fRecente.getKilometrage());
+					alerte = alerte + "- Filtre à huile à faire rapidement (km dépassés : " +  km + ")\n";
+				}else{
+					Double km = 10000 - (fRecente.getKilometrage() + v.getKilometrage());
+					alerte = alerte + "- Filtre à huile à faire dans : " +  km + "\n";
 				}
 			}
-			if(v.getKilometrage() - fRecente.getVoiture().getKilometrage() > fRecente.getKilometrage()){
-				Double km = (v.getKilometrage() - fRecente.getVoiture().getKilometrage() - fRecente.getKilometrage());
-				alerte = alerte + "- Vidange à faire rapidement (km dépassés : " +  km + ")\n";
-			}else{
-				Double km = 10000 - (fRecente.getKilometrage() + v.getKilometrage());
-				alerte = alerte + "- Vidange à faire dans : " +  km + "\n";
+			else{
+				if(v.getKilometrage() > 10000){
+					Double km = v.getKilometrage() - 10000d;
+					alerte = alerte + "- Filtre à huile à faire rapidement (km dépassés : " +  km + ")\n";
+				}else{
+					Double km = - v.getKilometrage() + 10000d;
+					alerte = alerte + "- Filtre à huile à faire dans : " +  km + "\n";
+				}
 			}
 		}else{
 			if(v.getKilometrage() > 10000){

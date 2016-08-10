@@ -63,6 +63,16 @@ public class ImplementVoitureDao implements IVoitureDao {
 	@Override
 	public Voiture deleteVoiture(Long idVoiture) {
 		Voiture v = em.find(Voiture.class, idVoiture);
+		if(v.getTabReservations() != null){
+			for(Reservation r : v.getTabReservations()){
+				if(r.getDateSortie().getTime() < new Date().getTime()){
+					r.setVoiture(null);
+					em.merge(r);
+					v.getTabReservations().remove(r);
+					em.merge(v);
+				}
+			}
+		}
 		em.remove(v);
 		log.info("La voiture " + v.getImmatricule() + " a bien été supprimée");
 		return v;
@@ -72,9 +82,21 @@ public class ImplementVoitureDao implements IVoitureDao {
 	public List<Voiture> disponibiliteVoiture() throws VoitureDisponibleException {
 		List<Voiture> toutesVoitures = getVoitures();
 		List<Voiture> voituresDisponibles = getVoitures();
+		System.out.println("<------------------test");
 		for(Voiture v : toutesVoitures){
-			if(v.getTabReservations() != null){
+			System.out.println("<------------------v : " + v.getIdvoiture());
+			System.out.println("<------------------v, tabR : " + v.getTabReservations().size());
+			if(!v.getTabReservations().isEmpty()){
+				System.out.println("<------------------v, not empty : OK");
 				for(Reservation r : v.getTabReservations()){
+					System.out.println("<------------------v, r : " + r.getIdreservation());
+					System.out.println("r.getDateSortie().getTime() : " + r.getDateSortie().getTime());
+					System.out.println("<");
+					System.out.println("new Date().getTime() : " + new Date().getTime());
+					System.out.println("&&");
+					System.out.println("r.getDateRetour().getTime() : " + r.getDateRetour().getTime());
+					System.out.println(">");
+					System.out.println("new Date().getTime() : " + new Date().getTime());
 					if(r.getDateSortie().getTime() < new Date().getTime() 
 							&& r.getDateRetour().getTime() > new Date().getTime()){
 						voituresDisponibles.remove(v);
@@ -124,11 +146,13 @@ public class ImplementVoitureDao implements IVoitureDao {
 				for(Reservation r : v.getTabReservations()){
 					Calendar calR = Calendar.getInstance();
 					calR.setTime(r.getDateRetour());
-					int dayR = calDay.get(Calendar.DAY_OF_MONTH);
-					int monthR = calDay.get(Calendar.MONTH);
-					int yearR = calDay.get(Calendar.YEAR);
+					int dayR = calR.get(Calendar.DAY_OF_MONTH);
+					int monthR = calR.get(Calendar.MONTH);
+					int yearR = calR.get(Calendar.YEAR);
 					if(dayDay == dayR && monthDay == monthR && yearDay == yearR){
-						rentreVoiture.add(v);
+						if(!rentreVoiture.contains(v)){
+							rentreVoiture.add(v);
+						}
 					}
 				}
 			}
