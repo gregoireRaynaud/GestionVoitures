@@ -32,7 +32,7 @@ public class Reservation {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idreservation;
 	private double prixReservation;
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.DATE)
 	private Date dateReservation;//juste date
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateRetour;//date + heure

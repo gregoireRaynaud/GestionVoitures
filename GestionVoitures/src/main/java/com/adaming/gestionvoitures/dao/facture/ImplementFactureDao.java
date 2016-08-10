@@ -30,6 +30,7 @@ public class ImplementFactureDao implements IFactureDao {
 		em.persist(f);
 		Agence a = em.find(Agence.class, idAgence);
 		a.getFactures().add(f);
+		em.merge(a);
 		log.info("La facture "+f.getIdFacture()+" a été ajoutée.");
 		return f;
 	}
