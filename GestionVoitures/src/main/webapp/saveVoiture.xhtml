@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Ajouter une voiture</title>
+<h:link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
+</h:head>
+<h:body>
+
+<h:form>
+	 <p:growl id="msgs" showDetail="true" />
+	 
+	 <p:panel header="Ajouter une voiture" style="margin-bottom:5px;">
+	 <h:panelGrid columns="1" cellpadding="3">
+		
+		<p:outputLabel value="Model : " />
+		<p:inputText id="model" requiredMessage="model obligatoire" required="true" value="#{VoitureBean.modelVoiture}" style="width:500px"/>
+		<p:message for="model" style="color: red"/>
+		
+		<p:outputLabel value="Immatricule :"/>
+		<p:inputText id="immatricule" requiredMessage="immatricule obligatoire" required="true" value="#{VoitureBean.immatricule}" style="width:500px"/>
+		<p:message for="immatricule" style="color: red"/>
+
+		<p:outputLabel value="Kilometrage :"/>
+		<p:inputText id="kilometrage" requiredMessage="kilometrage obligatoire" required="true" value="#{VoitureBean.kilometrage}" style="width:500px"/>
+		<p:message for="kilometrage" style="color: red"/>
+
+		<p:outputLabel value="Prix :"/>
+		<p:inputText id="prix" requiredMessage="prix obligatoire" required="true" value="#{VoitureBean.prixVoiture}" style="width:500px"/>
+		<p:message for="prix" style="color: red"></p:message>
+
+		<p:outputLabel value="Type :"/>
+		<p:inputText id="type" requiredMessage="type obligatoire" required="true" value="#{VoitureBean.typeVoiture}" style="width:500px"/>
+		<p:message for="type" style="color: red"></p:message>
+		
+		<p:outputLabel value="Type de carburant :"/>
+		<p:inputText id="typeC" requiredMessage="type obligatoire" required="true" value="#{VoitureBean.typeCarburant}" style="width:500px"/>
+		<p:message for="typeC" style="color: red"></p:message>
+
+		<p:outputLabel value="Etat :"/>
+		<p:inputText id="etat" requiredMessage="etat obligatoire" required="true" value="#{VoitureBean.etatVoiture}" style="width:500px"/>
+		<p:message for="etat" style="color: red"></p:message>
+
+		</h:panelGrid>
+		
+		<p:separator />
+		
+		<p:commandButton value="Ajouter" update="msgs" icon="ui-icon-check" action="#{VoitureBean.addVoiture()}"/>
+		
+	</p:panel>
+</h:form>
+
+
+</h:body>
+</html>
