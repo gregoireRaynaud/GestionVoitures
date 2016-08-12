@@ -6,38 +6,36 @@ xmlns:p="http://primefaces.org/ui"
 xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Ajouter une voiture</title>
-<h:link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
+<title>Modifier une voiture</title>
 </h:head>
 <h:body>
 
 <h:form>
 	 
-	 <p:panel header="Ajouter une voiture" style="margin-bottom:5px;">
+	 <p:panel header="Modifier la voiture #{VoitureGetBean.voiture.idvoiture}" style="margin-bottom:5px;">
 	 <h:panelGrid columns="1" cellpadding="3">
-
-		<h:outputLabel for="model" value="Model : " />
-		<p:inputText id="model" value="#{VoitureBean.modelVoiture}" style="width:500px"/>
+		
+		<p:inputText id="model" value="#{VoitureGetBean.modelVoiture}" style="width:500px" placeholder="#{VoitureGetBean.voiture.modelVoiture}"/>
 		<p:message for="model" style="color: red"/>
-		<h:outputText value="#{VoitureBean.modelVoiture}" />
+		<h:outputText value="#{VoitureGetBean.modelVoiture}" />
 		
 		<p:outputLabel value="Immatricule :"/>
-		<p:inputText id="immatricule" value="#{VoitureBean.immatricule}" style="width:500px"/>
+		<p:inputText id="immatricule" value="#{VoitureGetBean.immatricule}" style="width:500px" placeholder="#{VoitureGetBean.voiture.immatricule}"/>
 		<p:message for="immatricule" style="color: red"/>
-		<h:outputText value="#{VoitureBean.immatricule}" />
+		<h:outputText value="#{VoitureGetBean.immatricule}" />
 
 		<p:outputLabel value="Kilometrage :"/>
-		<p:inputText id="kilometrage" value="#{VoitureBean.kilometrage}" style="width:500px"/>
+		<p:inputText id="kilometrage" value="#{VoitureGetBean.kilometrage}" style="width:500px" placeholder="#{VoitureGetBean.voiture.kilometrage}"/>
 		<p:message for="kilometrage" style="color: red"/>
-		<h:outputText value="#{VoitureBean.kilometrage}" />
+		<h:outputText value="#{VoitureGetBean.kilometrage}" />
 
 		<p:outputLabel value="Prix :"/>
-		<p:inputText id="prix" value="#{VoitureBean.prixVoiture}" style="width:500px"/>
+		<p:inputText id="prix" value="#{VoitureGetBean.prixVoiture}" style="width:500px" placeholder="#{VoitureGetBean.voiture.prixVoiture}"/>
 		<p:message for="prix" style="color: red"></p:message>
-		<h:outputText value="#{VoitureBean.prixVoiture}" />
+		<h:outputText value="#{VoitureGetBean.prixVoiture}" />
 
 		<p:outputLabel value="Type :"/>
-		<p:selectOneMenu id="type" value="#{VoitureBean.typeVoiture}" style="width:500px">
+		<p:selectOneMenu id="type" value="#{VoitureGetBean.typeVoiture}" style="width:500px" placeholder="#{VoitureGetBean.voiture.typeVoiture}">
         	<f:selectItem itemLabel="Choisir" itemValue="" />
             <f:selectItem itemLabel="Citadine" itemValue="Citadine" />
             <f:selectItem itemLabel="Compact" itemValue="Compact" />
@@ -46,11 +44,11 @@ xmlns:f="http://java.sun.com/jsf/core">
             <f:selectItem itemLabel="Break" itemValue="Break" />
             <f:selectItem itemLabel="4x4" itemValue="4x4" />
         </p:selectOneMenu>
-        <h:outputText value="#{VoitureBean.typeVoiture}" />
+        <h:outputText value="#{VoitureGetBean.typeVoiture}" />
 		<p:message for="type" style="color: red"></p:message>
 		
 		<p:outputLabel value="Type de carburant :"/>
-		<p:selectOneMenu id="typeC" value="#{VoitureBean.typeCarburant}" style="width:500px">
+		<p:selectOneMenu id="typeC" value="#{VoitureGetBean.typeCarburant}" style="width:500px" placeholder="#{VoitureGetBean.voiture.typeCarburant}">
         	<f:selectItem itemLabel="Choisir" itemValue="" />
             <f:selectItem itemLabel="Essence" itemValue="Essence" />
             <f:selectItem itemLabel="Diesel" itemValue="Diesel" />
@@ -58,10 +56,10 @@ xmlns:f="http://java.sun.com/jsf/core">
             <f:selectItem itemLabel="Hybride" itemValue="Hybride" />
         </p:selectOneMenu>
 		<p:message for="typeC" style="color: red"></p:message>
-		<h:outputText value="#{VoitureBean.typeCarburant}" />
+		<h:outputText value="#{VoitureGetBean.typeCarburant}" />
 
 		<p:outputLabel value="Etat :"/>
-		<p:selectOneMenu id="etat" value="#{VoitureBean.etatVoiture}" style="width:500px">
+		<p:selectOneMenu id="etat" value="#{VoitureGetBean.etatVoiture}" style="width:500px" placeholder="#{VoitureGetBean.voiture.etatVoiture}">
         	<f:selectItem itemLabel="Choisir" itemValue="" />
             <f:selectItem itemLabel="Neuf" itemValue="Neuf" />
             <f:selectItem itemLabel="Très bon état" itemValue="Très bon état" />
@@ -70,17 +68,17 @@ xmlns:f="http://java.sun.com/jsf/core">
             <f:selectItem itemLabel="Mauvais état" itemValue="Mauvais état" />
         </p:selectOneMenu>
 		<p:message for="etat" style="color: red"></p:message>
-		<h:outputText value="#{VoitureBean.etatVoiture}" />
+		<h:outputText value="#{VoitureGetBean.etatVoiture}" />
 
 		</h:panelGrid>
 		
 		<p:separator />
 		
-		<p:commandButton value="Ajouter" ajax="false" icon="ui-icon-disk" action="#{VoitureBean.addVoiture()}"/>
+		<p:commandButton value="Modifier" ajax="false" icon="ui-icon-pencil" action="#{VoitureGetBean.updateVoiture}">
+		</p:commandButton>
 		
 	</p:panel>
 </h:form>
-
 
 </h:body>
 </html>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Liste des voitures qui reviennent aujourd'huit</title>
+<h:link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
+</h:head>
+<h:body>
+
+<h:form>
+<p:dataTable var="v" value="#{VoitureRetourBean.tabVoiture}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         emptyMessage="Aucune voiture trouvée pour les critères donnés"
+                         widgetVar="carsTable">
+
+	<f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Rechercher dans le tableau :" />
+                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter un mot clé"/>
+            </p:outputPanel>
+    </f:facet>
+	
+	<p:column headerText="Id" filterBy="#{v.idvoiture}" filterMatchMode="exact" sortBy="#{v.idvoiture}">
+        <h:outputText value="#{v.idvoiture}" />
+    </p:column>
+    <p:column headerText="Model" filterBy="#{v.modelVoiture}" filterMatchMode="contains" sortBy="#{v.modelVoiture}">
+        <h:outputText value="#{v.modelVoiture}" />
+    </p:column>
+    <p:column headerText="Immatricule" filterBy="#{v.immatricule}" filterMatchMode="contains" sortBy="#{v.immatricule}">
+        <h:outputText value="#{v.immatricule}" />
+    </p:column>
+    <p:column headerText="Kilometrage" filterBy="#{v.kilometrage}" filterMatchMode="contains" sortBy="#{v.kilometrage}">
+        <h:outputText value="#{v.kilometrage}" />
+    </p:column>
+    <p:column headerText="Prix" filterBy="#{v.prixVoiture}" filterMatchMode="contains" sortBy="#{v.prixVoiture}">
+        <h:outputText value="#{v.prixVoiture}" />
+    </p:column>
+    <p:column headerText="Type" filterBy="#{v.typeVoiture}" filterMatchMode="exact" sortBy="#{v.typeVoiture}">
+        <f:facet name="filter">
+        	<p:selectOneMenu onchange="PF('carsTable').filter()" style="width:85%">
+	        	<f:selectItem itemLabel="Choisir" itemValue="" noSelectionOption="true"/>
+	            <f:selectItem itemLabel="Citadine" itemValue="Citadine" />
+            	<f:selectItem itemLabel="Compact" itemValue="Compact" />
+            	<f:selectItem itemLabel="Familiale" itemValue="Familiale" />
+            	<f:selectItem itemLabel="Cabriolet" itemValue="Cabriolet" />
+            	<f:selectItem itemLabel="Break" itemValue="Break" />
+            	<f:selectItem itemLabel="4x4" itemValue="4x4" />
+        </p:selectOneMenu>
+        </f:facet>
+        <h:outputText value="#{v.typeVoiture}" />
+    </p:column>
+    
+    <p:column headerText="Carburant" filterBy="#{v.typeCarburant}" filterMatchMode="exact" sortBy="#{v.typeCarburant}">
+        <f:facet name="filter">
+        	<p:selectOneMenu onchange="PF('carsTable').filter()" style="width:85%">
+	        	<f:selectItem itemLabel="Choisir" itemValue="" noSelectionOption="true"/>
+	            <f:selectItem itemLabel="Essence" itemValue="Essence" />
+            	<f:selectItem itemLabel="Diesel" itemValue="Diesel" />
+            	<f:selectItem itemLabel="Electrique" itemValue="Electrique" />
+            	<f:selectItem itemLabel="Hybride" itemValue="Hybride" />
+        </p:selectOneMenu>
+        </f:facet>
+        <h:outputText value="#{v.typeCarburant}" />
+    </p:column>
+    <p:column headerText="Etat" filterBy="#{v.etatVoiture}" filterMatchMode="exact" sortBy="#{v.etatVoiture}">
+        <f:facet name="filter">
+        	<p:selectOneMenu onchange="PF('carsTable').filter()" style="width:85%">
+	        	<f:selectItem itemLabel="Choisir" itemValue="" noSelectionOption="true"/>
+	            <f:selectItem itemLabel="Neuf" itemValue="Neuf" />
+            	<f:selectItem itemLabel="Très bon état" itemValue="Très bon état" />
+            	<f:selectItem itemLabel="Bon état" itemValue="Bon état" />
+            	<f:selectItem itemLabel="Etat moyen" itemValue="Etat moyen" />
+            	<f:selectItem itemLabel="Mauvais état" itemValue="Mauvais état" />
+        </p:selectOneMenu>
+        </f:facet>
+        <h:outputText value="#{v.etatVoiture}" />
+    </p:column>
+</p:dataTable>
+</h:form>
+
+<h:outputText rendered="#{empty VoitureRetourBean.tabVoiture}" value="Aucune voiture rentre aujourd'hui" style="color: red"></h:outputText>
+
+</h:body>
+</html>

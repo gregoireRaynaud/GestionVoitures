@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Retour d'une voiture</title>
+</h:head>
+<h:body>
+
+<h:form>
+
+<p:panel header="Retour d'une voiture" style="margin-bottom:5px;">
+	 <h:panelGrid columns="1" cellpadding="3">
+	 
+	 <p:outputLabel value="Selectionnez la voiture qui rentre :"/>
+		<p:selectOneMenu id="id" value="#{VoitureUpdateBean.idVoiture}" style="width:500px">
+        	<f:selectItem itemLabel="Choisir" itemValue="" />
+            <f:selectItems value="#{VoitureUpdateBean.tabVoiture}" var="v" itemValue="#{v.idvoiture}"
+            	itemLabel="#{v.immatricule}" />
+        </p:selectOneMenu>
+        <h:outputText rendered="#{VoitureUpdateBean.idVoiture} eq #{'Veuillez choisir une voiture'}" value="#{VoitureUpdateBean.idVoiture}" />
+		<p:message for="id" style="color: red"></p:message>
+	 
+	 </h:panelGrid>
+	 
+	 <p:separator />
+	 
+	 <p:commandButton value="Choisir" ajax="false" icon="ui-icon-check" action="#{VoitureUpdateBean.getVoitureById}"/>
+	 
+</p:panel>
+
+</h:form>
+
+<h:form>
+
+<p:panel header="Retour d'une voiture" style="margin-bottom:5px;" rendered="#{not empty VoitureUpdateBean.voiture}">
+	 <h:panelGrid columns="1" cellpadding="3">
+	 
+	 <p:outputLabel value="Nouveau kilometrage :"/>
+		<p:inputText id="kilometrage" value="#{VoitureUpdateBean.kilometrage}" style="width:500px" placeholder="#{VoitureUpdateBean.voiture.kilometrage}"/>
+		<p:message for="kilometrage" style="color: red"/>
+		<h:outputText value="#{VoitureGetBean.kilometrage}" />
+	 
+	 </h:panelGrid>
+	 
+	 <p:separator />
+	 
+	 <p:commandButton value="Modifier" ajax="false" icon="ui-icon-pencil" action="#{VoitureUpdateBean.updateVoiture}">
+	 </p:commandButton>
+	 
+</p:panel>
+
+</h:form>
+
+</h:body>
+</html>

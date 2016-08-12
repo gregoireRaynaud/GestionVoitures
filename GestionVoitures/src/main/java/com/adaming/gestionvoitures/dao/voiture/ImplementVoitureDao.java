@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.adaming.gestionvoitures.entities.ChaineDistribution;
+import com.adaming.gestionvoitures.entities.Entretien;
 import com.adaming.gestionvoitures.entities.FiltreHuile;
 import com.adaming.gestionvoitures.entities.Reservation;
 import com.adaming.gestionvoitures.entities.Vidange;
@@ -60,6 +61,7 @@ public class ImplementVoitureDao implements IVoitureDao {
 		return v;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Voiture deleteVoiture(Long idVoiture) {
 		Voiture v = em.find(Voiture.class, idVoiture);
@@ -68,10 +70,23 @@ public class ImplementVoitureDao implements IVoitureDao {
 				if(r.getDateSortie().getTime() < new Date().getTime()){
 					r.setVoiture(null);
 					em.merge(r);
-					v.getTabReservations().remove(r);
+					//v.getTabReservations().remove(r);
 					em.merge(v);
 				}
 			}
+		}
+		Query query = em.createQuery("from Entretien");
+		List<Entretien> tabE = new ArrayList<Entretien>();
+		for(Entretien e : (List<Entretien>) query.getResultList()){
+			if(e.getVoiture() != null){
+				if(e.getVoiture().getIdvoiture() == idVoiture){
+					tabE.add(e);
+				}
+			}
+		}
+		for(Entretien e : tabE){
+			e.setVoiture(null);
+			em.merge(e);
 		}
 		em.remove(v);
 		log.info("La voiture " + v.getImmatricule() + " a bien été supprimée");

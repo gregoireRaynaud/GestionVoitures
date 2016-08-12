@@ -88,8 +88,10 @@ public class VoitureServiceImpl implements IVoitureService{
 		List<ChaineDistribution> voitureChaineDistribution = new ArrayList<ChaineDistribution>();
 		if(tousVidange != null){
 			for(Vidange vi : tousVidange){
-				if(vi.getVoiture().getIdvoiture() == idVoiture){
-					voitureVidange.add(vi);
+				if(vi.getVoiture() != null){
+					if(vi.getVoiture().getIdvoiture() == idVoiture){
+						voitureVidange.add(vi);
+					}
 				}
 			}
 			if(!voitureVidange.isEmpty()){
@@ -101,11 +103,11 @@ public class VoitureServiceImpl implements IVoitureService{
 						viRecente = vi;
 					}
 				}
-				if(v.getKilometrage() - viRecente.getKilometrage() > viRecente.getKilometrage()){
-					Double km = (v.getKilometrage() - viRecente.getVoiture().getKilometrage() - viRecente.getKilometrage());
+				if(v.getKilometrage() - viRecente.getKilometrage() > 10000){
+					Double km = (v.getKilometrage() - viRecente.getKilometrage() - 10000);
 					alerte = alerte + "- Vidange à faire rapidement (km dépassés : " +  km + ")\n";
 				}else{
-					Double km = 10000 - (viRecente.getKilometrage() + v.getKilometrage());
+					Double km = 10000 - (v.getKilometrage() - viRecente.getKilometrage());
 					alerte = alerte + "- Vidange à faire dans : " +  km + "\n";
 				}
 			}else{
@@ -113,7 +115,7 @@ public class VoitureServiceImpl implements IVoitureService{
 					Double km = v.getKilometrage() - 10000d;
 					alerte = alerte + "- Vidange à faire rapidement (km dépassés : " +  km + ")\n";
 				}else{
-					Double km = - v.getKilometrage() + 10000d;
+					Double km = 10000d - v.getKilometrage();
 					alerte = alerte + "- Vidange à faire dans : " +  km + "\n";
 				}
 			}
@@ -122,14 +124,16 @@ public class VoitureServiceImpl implements IVoitureService{
 				Double km = v.getKilometrage() - 10000;
 				alerte = alerte + "- Vidange à faire rapidement (km dépassés : " +  km + ")\n";
 			}else{
-				Double km = 10000 - (v.getKilometrage());
+				Double km = 10000 - v.getKilometrage();
 				alerte = alerte + "- Vidange à faire dans : " +  km + "\n";
 			}
 		}
 		if(tousChaineDistribution != null){
 			for(ChaineDistribution c : tousChaineDistribution){
-				if(c.getVoiture().getIdvoiture() == idVoiture){
-					voitureChaineDistribution.add(c);
+				if(c.getVoiture() != null){
+					if(c.getVoiture().getIdvoiture() == idVoiture){
+						voitureChaineDistribution.add(c);
+					}
 				}
 			}
 			if(!voitureChaineDistribution.isEmpty()){
@@ -141,23 +145,19 @@ public class VoitureServiceImpl implements IVoitureService{
 						cRecente = c;
 					}
 				}
-				System.out.println(v.getKilometrage());
-				System.out.println(cRecente.getVoiture().getKilometrage());
-				System.out.println(cRecente.getKilometrage());
-				if(v.getKilometrage() - cRecente.getKilometrage() > cRecente.getKilometrage()){
-					Double km = (v.getKilometrage() - cRecente.getVoiture().getKilometrage() - cRecente.getKilometrage());
+				if(v.getKilometrage() - cRecente.getKilometrage() > 30000){
+					Double km = (v.getKilometrage() - cRecente.getKilometrage() - 30000);
 					alerte = alerte + "- Chaine de distribution à faire rapidement (km dépassés : " +  km + ")\n";
 				}else{
-					Double km = 30000 - (cRecente.getKilometrage() + v.getKilometrage());
+					Double km = 30000 - (v.getKilometrage() - cRecente.getKilometrage());
 					alerte = alerte + "- Chaine de distribution à faire dans : " +  km + "\n";
 				}
-			}
-			else{
+			}else{
 				if(v.getKilometrage() > 30000){
 					Double km = v.getKilometrage() - 30000d;
 					alerte = alerte + "- Chaine de distribution à faire rapidement (km dépassés : " +  km + ")\n";
 				}else{
-					Double km = - v.getKilometrage() + 30000d;
+					Double km = 30000d - v.getKilometrage();
 					alerte = alerte + "- Chaine de distribution à faire dans : " +  km + "\n";
 				}
 			}
@@ -166,14 +166,16 @@ public class VoitureServiceImpl implements IVoitureService{
 				Double km = v.getKilometrage() - 30000;
 				alerte = alerte + "- Chaine de distribution à faire rapidement (km dépassés : " +  km + ")\n";
 			}else{
-				Double km = 30000 - (v.getKilometrage());
+				Double km = 30000 - v.getKilometrage();
 				alerte = alerte + "- Chaine de distribution à faire dans : " +  km + "\n";
 			}
 		}
 		if(tousFiltreHuile != null){
 			for(FiltreHuile f : tousFiltreHuile){
-				if(f.getVoiture().getIdvoiture() == idVoiture){
-					voitureFiltreHuile.add(f);
+				if(f.getVoiture() != null){
+					if(f.getVoiture().getIdvoiture() == idVoiture){
+						voitureFiltreHuile.add(f);
+					}
 				}
 			}
 			if(!voitureFiltreHuile.isEmpty()){
@@ -185,20 +187,19 @@ public class VoitureServiceImpl implements IVoitureService{
 						fRecente = f;
 					}
 				}
-				if(v.getKilometrage() - fRecente.getKilometrage() > fRecente.getKilometrage()){
-					Double km = (v.getKilometrage() - fRecente.getVoiture().getKilometrage() - fRecente.getKilometrage());
+				if(v.getKilometrage() - fRecente.getKilometrage() > 10000){
+					Double km = (v.getKilometrage() - fRecente.getKilometrage() - 10000);
 					alerte = alerte + "- Filtre à huile à faire rapidement (km dépassés : " +  km + ")\n";
 				}else{
-					Double km = 10000 - (fRecente.getKilometrage() + v.getKilometrage());
+					Double km = 10000 - (v.getKilometrage() - fRecente.getKilometrage());
 					alerte = alerte + "- Filtre à huile à faire dans : " +  km + "\n";
 				}
-			}
-			else{
+			}else{
 				if(v.getKilometrage() > 10000){
 					Double km = v.getKilometrage() - 10000d;
 					alerte = alerte + "- Filtre à huile à faire rapidement (km dépassés : " +  km + ")\n";
 				}else{
-					Double km = - v.getKilometrage() + 10000d;
+					Double km = 10000d - v.getKilometrage();
 					alerte = alerte + "- Filtre à huile à faire dans : " +  km + "\n";
 				}
 			}
@@ -207,7 +208,7 @@ public class VoitureServiceImpl implements IVoitureService{
 				Double km = v.getKilometrage() - 10000;
 				alerte = alerte + "- Filtre à huile à faire rapidement (km dépassés : " +  km + ")\n";
 			}else{
-				Double km = 10000 - (v.getKilometrage());
+				Double km = 10000 - v.getKilometrage();
 				alerte = alerte + "- Filtre à huile à faire dans : " +  km + "\n";
 			}
 		}
