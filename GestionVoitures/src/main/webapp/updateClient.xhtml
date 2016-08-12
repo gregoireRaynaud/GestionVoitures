@@ -3,13 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:h="http://xmlns.jcp.org/jsf/html"
 xmlns:p="http://primefaces.org/ui"
-xmlns:f="http://java.sun.com/jsf/core">
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Modifier un client</title>
 <h:link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
 </h:head>
 <h:body>
+
+	<ui:include src="navbar.xhtml"></ui:include>
 
 	<h:form>
 		<p:panel header="Modifier un client" style="margin-bottom:5px;">
@@ -53,12 +56,7 @@ xmlns:f="http://java.sun.com/jsf/core">
 				<p:message for="prenom" style="color: red" />
 
 				<p:outputLabel value="Date de naissance : " />
-				<p:inputText id="dateDeNaissance" placeholder="#{ClientBean.client.dateDeNaissance}"
-					requiredMessage="date de naissance obligatoire" required="true"
-					value="#{ClientBean.dateDeNaissance}" style="width:500px">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</p:inputText>
-				<p:message for="dateDeNaissance" style="color: red" />
+				<p:calendar id="inline" value="#{ClientBean.dateDeNaissance}" mode="inline" />
 
 				<p:outputLabel value="Numéro de téléphone : " />
 				<p:inputText id="numeroTel" placeholder="#{ClientBean.client.numeroTel}"
@@ -89,13 +87,7 @@ xmlns:f="http://java.sun.com/jsf/core">
 				<p:message for="pays" style="color: red" />
 
 				<p:outputLabel value="Date de délivrance du permis : " />
-				<p:inputText id="dateDeDelivrance" placeholder="#{ClientBean.client.dateDeDelivrance}"
-					requiredMessage="Date de délivrance du permis obligatoire"
-					required="true" value="#{ClientBean.dateDeDelivrance}"
-					style="width:500px">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</p:inputText>
-				<p:message for="dateDeDelivrance" style="color: red" />
+				<p:calendar id="inline" value="#{ClientBean.dateDeDelivrance}" mode="inline" />
 
 				<p:outputLabel value="Lieu de naissance : " />
 				<p:inputText id="lieuDeNaissance" placeholder="#{ClientBean.client.lieuDeNaissance}"

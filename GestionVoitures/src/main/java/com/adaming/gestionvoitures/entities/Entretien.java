@@ -94,5 +94,19 @@ public abstract class Entretien {
 	public void setVoiture(Voiture voiture) {
 		this.voiture = voiture;
 	}
+	
+	//Autres méthodes
+	public String getType(){
+		if(this instanceof ChaineDistribution){
+			return "CHAINE_DISTRIBUTION";
+		}
+		if(this instanceof FiltreHuile){
+			return "FILTRE_HUILE";
+		}
+		if(this instanceof Vidange){
+			return "VIDANGE";
+		}
+		return "ENTRETIEN";
+	}
 
 }

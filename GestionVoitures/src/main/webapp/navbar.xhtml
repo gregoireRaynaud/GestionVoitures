@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>navbar</title>
+	<h:link type="text/css" rel="stylesheet"
+		href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
+</h:head>
+<h:body>
+
+	<p:megaMenu orientation="horizontal" style="margin-top:20px">
+		
+		<p:submenu label="Agence">
+			<p:column>
+				<p:submenu label="Agence">
+					<p:menuitem value="Ajouter une agence" url="#" />
+					<p:menuitem value="Modifier une agence" url="#" />
+					<p:menuitem value="Afficher les agences" url="#" />
+				</p:submenu>
+			</p:column>
+		</p:submenu>
+		
+		<p:submenu label="Client">
+			<p:column>
+				<p:submenu label="Client">
+					<p:menuitem value="Ajouter un client" url="saveClient.xhtml" />
+					<p:menuitem value="Modifier un client" url="updateClient.xhtml" />
+					<p:menuitem value="Afficher les clients" url="getClients.xhtml" />
+				</p:submenu>
+			</p:column>
+		</p:submenu>
+		
+		<p:submenu label="Entretien">
+			<p:column>
+				<p:submenu label="Entretien">
+					<p:menuitem value="Ajouter un entretien" url="saveEntretien.xhtml" />
+					<p:menuitem value="Modifier un entretien" url="updateEntretien.xhtml" />
+					<p:menuitem value="Afficher les entretiens" url="getEntretiens.xhtml" />
+				</p:submenu>
+			</p:column>
+		</p:submenu>
+		
+		<p:submenu label="Facture">
+			<p:column>
+				<p:submenu label="Facture">
+					<p:menuitem value="Ajouter une facture" url="#" />
+					<p:menuitem value="Afficher une facture" url="#" />
+				</p:submenu>
+			</p:column>
+		</p:submenu>
+		
+		<p:submenu label="Réservation">
+			<p:column>
+				<p:submenu label="Réservation">
+					<p:menuitem value="Ajouter une réservation" url="#" />
+					<p:menuitem value="Historique" url="#" />
+					<p:menuitem value="Afficher les réservations" url="#" />
+				</p:submenu>
+			</p:column>
+		</p:submenu>
+		
+		<p:submenu label="Voiture">
+			<p:column>
+				<p:submenu label="Voiture">
+					<p:menuitem value="Ajouter une voiture" url="#" />
+					<p:menuitem value="Modifier un entretien" url="#" />
+					<p:menuitem value="Afficher les entretiens" url="#" />
+				</p:submenu>
+			</p:column>
+		</p:submenu>
+		
+	</p:megaMenu>
+
+</h:body>
+</html>

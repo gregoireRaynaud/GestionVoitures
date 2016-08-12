@@ -8,11 +8,13 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.adaming.gestionvoitures.entities.Client;
 import com.adaming.gestionvoitures.service.client.IClientService;
+import com.adaming.gestionvoitures.service.facture.IFactureService;
 
 /**
  * Nom :ClientBean
@@ -46,6 +48,7 @@ public class ClientBean {
 	private List<Client> clientsByMc;
 	private Client client;
 	private String mc;
+	private List<Double> listeCouts;
 	
 	
 	//Constructeur par défaut
@@ -166,6 +169,14 @@ public class ClientBean {
 		this.client = client;
 	}
 
+	public List<Double> getListeCouts() {
+		return listeCouts;
+	}
+
+	public void setListeCouts(List<Double> listeCouts) {
+		this.listeCouts = listeCouts;
+	}
+
 	//Autres méthodes
 	//Ajouter un client
 	public String addClient(){
@@ -209,9 +220,8 @@ public class ClientBean {
 	
 	//Get Clients par mot-clef
 	@PostConstruct
-	public String getCByMc(){
+	public void getCByMc(){
 		clientsByMc = clientService.getClientByMc(mc);
-		return "getClientsByMc.xhtml";
 	}
 	
 	//Get Client By Id

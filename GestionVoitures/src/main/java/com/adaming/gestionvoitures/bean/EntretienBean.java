@@ -262,7 +262,7 @@ public class EntretienBean {
 	
 	//Update Entretien
 	public String updateEntretien(){
-		Entretien e = entretienService.getEntretienById(idEntretien);
+		Entretien e = entretien;
 		e.setTypeEntretien(typeEntretien);
 		e.setDateEntretien(dateEntretien);
 		e.setPrixEntretien(prixEntretien);

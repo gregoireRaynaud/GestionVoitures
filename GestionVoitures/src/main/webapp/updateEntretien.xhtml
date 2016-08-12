@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Modifier un entretien</title>
@@ -11,6 +12,9 @@
 		href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
 </h:head>
 <h:body>
+
+	<ui:include src="navbar.xhtml"></ui:include>
+
 	<h:form>
 		<p:panel header="Modifier un entretien" style="margin-bottom:5px;">
 			<h:panelGrid columns="1" cellpadding="3">
@@ -19,7 +23,8 @@
 					style="width:150px">
 					<f:selectItem itemLabel="Choisissez un entretien" itemValue=""
 						noSelectionOption="true" />
-					<f:selectItems value="#{EntretienBean.getEntretiensId()}" />
+					<f:selectItems value="#{EntretienBean.entretiens}" var="e"
+					itemValue="#{e.idEntretien}" itemLabel="#{e.idEntretien}"/>
 				</p:selectOneMenu>
 				<h:outputText
 					rendered="#{EntretienBean.idEntretien} eq #{'Veuillez choisir un entretien'}"
@@ -42,13 +47,7 @@
 				<p:message for="typeEntretien" style="color: red" />
 
 				<p:outputLabel value="Date: " />
-				<p:inputText id="date" requiredMessage="date obligatoire"
-					placeholder="#{EntretienBean.entretien.dateEntretien}"
-					required="true" value="#{EntretienBean.dateEntretien}"
-					style="width:500px">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</p:inputText>
-				<p:message for="date" style="color: red" />
+				<p:calendar id="inline" value="#{EntretienBean.dateEntretien}" mode="inline" />
 
 				<!-- On ne peut pas modifier le kilométrage -->
 
