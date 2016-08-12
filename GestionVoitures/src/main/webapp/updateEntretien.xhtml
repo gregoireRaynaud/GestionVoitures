@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Modifier un entretien</title>
+	<h:link type="text/css" rel="stylesheet"
+		href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Modifier un entretien" style="margin-bottom:5px;">
+			<h:panelGrid columns="1" cellpadding="3">
+				<p:outputLabel value="Selectionnez un entretien: " />
+				<p:selectOneMenu id="id" value="#{EntretienBean.idEntretien}"
+					style="width:150px">
+					<f:selectItem itemLabel="Choisissez un entretien" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{EntretienBean.getEntretiensId()}" />
+				</p:selectOneMenu>
+				<h:outputText
+					rendered="#{EntretienBean.idEntretien} eq #{'Veuillez choisir un entretien'}"
+					value="#{EntretienBean.idEntretien}" />
+				<p:message for="id" style="color: red"></p:message>
+			</h:panelGrid>
+			<p:separator />
+			<p:commandButton ajax="false" value="Sélectionner" icon="ui-icon-check"
+				action="#{EntretienBean.getEntretienById()}" />
+		</p:panel>
+	</h:form>
+	<h:form>
+		<p:panel header="Modifier un entretien" style="margin-bottom:5px;">
+			<h:panelGrid columns="1" cellpadding="3">
+				<p:outputLabel value="TypeEntretien : " />
+				<p:inputText id="typeEntretien"
+					placeholder="#{EntretienBean.entretien.typeEntretien}"
+					requiredMessage="type d'entretien obligatoire" required="true"
+					value="#{EntretienBean.typeEntretien}" style="width:500px" />
+				<p:message for="typeEntretien" style="color: red" />
+
+				<p:outputLabel value="Date: " />
+				<p:inputText id="date" requiredMessage="date obligatoire"
+					placeholder="#{EntretienBean.entretien.dateEntretien}"
+					required="true" value="#{EntretienBean.dateEntretien}"
+					style="width:500px">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputText>
+				<p:message for="date" style="color: red" />
+
+				<!-- On ne peut pas modifier le kilométrage -->
+
+				<p:outputLabel value="prix : " />
+				<p:inputText id="prix"
+					placeholder="#{EntretienBean.entretien.prixEntretien}"
+					requiredMessage="prix obligatoire" required="true"
+					value="#{EntretienBean.prixEntretien}" style="width:500px" />
+				<p:message for="prix" style="color: red" />
+
+			</h:panelGrid>
+
+			<p:separator />
+
+			<p:commandButton value="Modifier" icon="ui-icon-check"
+				action="#{EntretienBean.updateEntretien()}" />
+
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

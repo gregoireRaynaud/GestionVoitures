@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Liste des clients</title>
+<h:link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
+</h:head>
+<h:body>
+
+<p:dataTable var="client" value="#{ClientBean.clients}">
+    <p:column headerText="Id">
+        <h:outputText value="#{client.idClient}" />
+    </p:column>
+ 
+    <p:column headerText="Nom">
+        <h:outputText value="#{client.nomClient}" />
+    </p:column>
+ 
+    <p:column headerText="Prénom">
+        <h:outputText value="#{client.prenomClient}" />
+    </p:column>
+ 
+    <p:column headerText="Date de naissance">
+        <h:outputText value="#{client.dateDeNaissance}" />
+    </p:column>
+    
+    <p:column headerText="Num. de Tel.">
+        <h:outputText value="#{client.numeroTel}" />
+    </p:column>
+ 
+    <p:column headerText="Num. de permis">
+        <h:outputText value="#{client.numeroPermis}" />
+    </p:column>
+ 
+    <p:column headerText="Adresse postale">
+        <h:outputText value="#{client.adressePostale}" />
+    </p:column>
+ 
+    <p:column headerText="Mail">
+        <h:outputText value="#{client.mail}" />
+    </p:column>
+    
+    <p:column headerText="Pays">
+        <h:outputText value="#{client.pays}" />
+    </p:column>
+ 
+    <p:column headerText="Date de délivrance">
+        <h:outputText value="#{client.dateDeDelivrance}" />
+    </p:column>
+ 
+    <p:column headerText="Lieu de naissance">
+        <h:outputText value="#{client.lieuDeNaissance}" />
+    </p:column>
+ 
+    <p:column headerText="Permis délivré par">
+        <h:outputText value="#{client.delivrerPar}" />
+    </p:column>
+</p:dataTable>
+
+</h:body>
+</html>

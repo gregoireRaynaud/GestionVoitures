@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Ajouter un entretien</title>
+	<h:link type="text/css" rel="stylesheet"
+		href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
+</h:head>
+<h:body>
+<h:form>
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:panel header="Ajouter un entretien" style="margin-bottom:5px;">
+			<h:panelGrid columns="1" cellpadding="3">
+				
+				<p:outputLabel for="Voiture" value="Voiture : " />
+				<p:selectOneMenu id="Voiture" value="#{EntretienBean.idVoiture}"
+					style="width:150px">
+					<f:selectItem itemLabel="Choisissez une voiture" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{EntretienBean.voitures}" var="v"
+						itemLabel="#{v.immatricule}" itemValue="#{v.idvoiture}" />
+				</p:selectOneMenu>
+				
+
+				<h:outputLabel for="type" value="Type: *" />
+				<h:selectOneMenu id="type" value="#{EntretienBean.type}"
+					required="true" label="Type">
+					<f:selectItem itemLabel="Séléctionner un type" itemValue=""	noSelectionOption="true" />
+					<f:selectItem itemLabel="Chaine distribution"	itemValue="CHAINE_DISTRIBUTION" />
+					<f:selectItem itemLabel="Filtre huile" itemValue="FILTRE_HUILE" />
+					<f:selectItem itemLabel="Vidange" itemValue="VIDANGE" />
+				</h:selectOneMenu>
+				<p:message for="type" />
+				<h:outputText value="#{EntretienBean.type}" />
+ 				 
+
+				<p:outputLabel value="TypeEntretien : " />
+				<p:inputText id="typeEntretien"
+					requiredMessage="type d'entretien obligatoire" required="true"
+					value="#{EntretienBean.typeEntretien}" style="width:500px" />
+				<p:message for="typeEntretien" style="color: red" />
+				
+				<p:outputLabel value="Date: " />
+				<p:inputText id="date"
+					requiredMessage="date obligatoire" required="true"
+					value="#{EntretienBean.dateEntretien}" style="width:500px">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputText>
+				<p:message for="date" style="color: red" />
+				
+				<!-- On ne peut pas saisir le kilométrage -->
+				
+				<p:outputLabel value="prix : " />
+				<p:inputText id="prix" requiredMessage="prix obligatoire"
+					required="true" value="#{EntretienBean.prixEntretien}" style="width:500px" />
+				<p:message for="prix" style="color: red" />		
+
+			</h:panelGrid>
+
+			<p:separator />
+
+			<p:commandButton value="Ajouter" update="msgs" icon="ui-icon-check"
+				 action="#{EntretienBean.addEntretien()}" />
+
+		</p:panel>
+	</h:form>
+
+</h:body>
+</html>
