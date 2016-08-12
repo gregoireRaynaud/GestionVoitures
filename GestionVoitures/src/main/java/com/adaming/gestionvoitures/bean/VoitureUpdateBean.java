@@ -49,7 +49,7 @@ public class VoitureUpdateBean {
 	
 	public String updateVoiture(){
 		Voiture v = voiture;
-		v.setKilometrage(kilometrage);
+		v.setKilometrage(voiture.getKilometrage());
 		voitureService.updateVoiture(v);
 		alerte = voitureService.alerteEntretien(idVoiture);
 		return "succesRetour.xhtml";

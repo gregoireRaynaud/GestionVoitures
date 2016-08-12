@@ -13,18 +13,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.adaming.gestionvoitures.entities.Voiture;
 import com.adaming.gestionvoitures.service.voiture.IVoitureService;
 
 @Component("VoitureGetBean")
-@ViewScoped
+@Scope("session")
 public class VoitureGetBean {
 
 	@Autowired
 	IVoitureService voitureService;
 	
+	private Voiture v;
 	private List<Voiture> tabVoiture;
 	private List<Voiture> filteredCars;
 	private Voiture voiture;
@@ -48,15 +50,9 @@ public class VoitureGetBean {
     private String etatVoiture;
 	private Long idVoiture;
 	
-	@PostConstruct
-	public String init(){
-		getVoitures();
-		return "redirect:getVoitures.xhtml";
-	}
-	
 	public String updateVoiture(){
-		Voiture v = new Voiture(modelVoiture, immatricule, kilometrage, prixVoiture, typeVoiture, typeCarburant, etatVoiture);
-		v.setIdvoiture(voiture.getIdvoiture());
+		//Voiture v = new Voiture(voiture.getModelVoiture(), immatricule, kilometrage, prixVoiture, typeVoiture, typeCarburant, etatVoiture);
+		//v.setIdvoiture(voiture.getIdvoiture());
 		voitureService.updateVoiture(v);
 		getVoitures();
 		return "getVoitures.xhtml";
@@ -73,13 +69,16 @@ public class VoitureGetBean {
 	 }
 	
 	@PostConstruct
-	public void getVoitures(){
+	public String getVoitures(){
 		tabVoiture = voitureService.getVoitures();
+		return "redirect:getVoitures.xhtml";
 	}
 	
 	public String RedirectUpdateVoiture(){
 		//voitureService.updateVoiture(voiture);
 		//return "updateVoiture.xhtml";
+		v = voitureService.getVoitureById(voiture.getIdvoiture());
+		System.out.println(v.getModelVoiture());
 		return "updateVoiture.xhtml";
 	}
 	
@@ -98,6 +97,14 @@ public class VoitureGetBean {
 	
 	
 	
+	public Voiture getV() {
+		return v;
+	}
+
+	public void setV(Voiture v) {
+		this.v = v;
+	}
+
 	public List<Voiture> getTabVoiture() {
 		return tabVoiture;
 	}

@@ -15,27 +15,24 @@ xmlns:f="http://java.sun.com/jsf/core">
 	 <p:panel header="Modifier la voiture #{VoitureGetBean.voiture.idvoiture}" style="margin-bottom:5px;">
 	 <h:panelGrid columns="1" cellpadding="3">
 		
-		<p:inputText id="model" value="#{VoitureGetBean.modelVoiture}" style="width:500px" placeholder="#{VoitureGetBean.voiture.modelVoiture}"/>
-		<p:message for="model" style="color: red"/>
-		<h:outputText value="#{VoitureGetBean.modelVoiture}" />
+		<p:outputLabel value="Model :"/>
+		<p:inputText id="model" value="#{VoitureGetBean.v.modelVoiture}" style="width:500px" required="true" requiredMessage="Veuillez remplir le champ"/>
+		<p:message for="model"></p:message>
 		
 		<p:outputLabel value="Immatricule :"/>
-		<p:inputText id="immatricule" value="#{VoitureGetBean.immatricule}" style="width:500px" placeholder="#{VoitureGetBean.voiture.immatricule}"/>
-		<p:message for="immatricule" style="color: red"/>
-		<h:outputText value="#{VoitureGetBean.immatricule}" />
+		<p:inputText id="immatricule" value="#{VoitureGetBean.v.immatricule}" style="width:500px" required="true" requiredMessage="Veuillez remplir le champ"/>
+		<p:message for="immatricule"></p:message>
 
 		<p:outputLabel value="Kilometrage :"/>
-		<p:inputText id="kilometrage" value="#{VoitureGetBean.kilometrage}" style="width:500px" placeholder="#{VoitureGetBean.voiture.kilometrage}"/>
-		<p:message for="kilometrage" style="color: red"/>
-		<h:outputText value="#{VoitureGetBean.kilometrage}" />
+		<p:inputText id="kilometrage" value="#{VoitureGetBean.v.kilometrage}" style="width:500px" required="true" requiredMessage="Veuillez remplir le champ"/>
+		<p:message for="kilometrage"></p:message>
 
 		<p:outputLabel value="Prix :"/>
-		<p:inputText id="prix" value="#{VoitureGetBean.prixVoiture}" style="width:500px" placeholder="#{VoitureGetBean.voiture.prixVoiture}"/>
-		<p:message for="prix" style="color: red"></p:message>
-		<h:outputText value="#{VoitureGetBean.prixVoiture}" />
+		<p:inputText id="prix" value="#{VoitureGetBean.v.prixVoiture}" style="width:500px" required="true" requiredMessage="Veuillez remplir le champ"/>
+		<p:message for="prix"></p:message>
 
 		<p:outputLabel value="Type :"/>
-		<p:selectOneMenu id="type" value="#{VoitureGetBean.typeVoiture}" style="width:500px" placeholder="#{VoitureGetBean.voiture.typeVoiture}">
+		<p:selectOneMenu id="type" value="#{VoitureGetBean.v.typeVoiture}" style="width:500px" required="true" requiredMessage="Veuillez remplir le champ">
         	<f:selectItem itemLabel="Choisir" itemValue="" />
             <f:selectItem itemLabel="Citadine" itemValue="Citadine" />
             <f:selectItem itemLabel="Compact" itemValue="Compact" />
@@ -44,22 +41,20 @@ xmlns:f="http://java.sun.com/jsf/core">
             <f:selectItem itemLabel="Break" itemValue="Break" />
             <f:selectItem itemLabel="4x4" itemValue="4x4" />
         </p:selectOneMenu>
-        <h:outputText value="#{VoitureGetBean.typeVoiture}" />
-		<p:message for="type" style="color: red"></p:message>
+        <p:message for="type"></p:message>
 		
 		<p:outputLabel value="Type de carburant :"/>
-		<p:selectOneMenu id="typeC" value="#{VoitureGetBean.typeCarburant}" style="width:500px" placeholder="#{VoitureGetBean.voiture.typeCarburant}">
+		<p:selectOneMenu id="typeC" value="#{VoitureGetBean.v.typeCarburant}" style="width:500px" required="true" requiredMessage="Veuillez remplir le champ">
         	<f:selectItem itemLabel="Choisir" itemValue="" />
             <f:selectItem itemLabel="Essence" itemValue="Essence" />
             <f:selectItem itemLabel="Diesel" itemValue="Diesel" />
             <f:selectItem itemLabel="Electrique" itemValue="Electrique" />
             <f:selectItem itemLabel="Hybride" itemValue="Hybride" />
         </p:selectOneMenu>
-		<p:message for="typeC" style="color: red"></p:message>
-		<h:outputText value="#{VoitureGetBean.typeCarburant}" />
+        <p:message for="typeC"></p:message>
 
 		<p:outputLabel value="Etat :"/>
-		<p:selectOneMenu id="etat" value="#{VoitureGetBean.etatVoiture}" style="width:500px" placeholder="#{VoitureGetBean.voiture.etatVoiture}">
+		<p:selectOneMenu id="etat" value="#{VoitureGetBean.v.etatVoiture}" style="width:500px" required="true" requiredMessage="Veuillez remplir le champ">
         	<f:selectItem itemLabel="Choisir" itemValue="" />
             <f:selectItem itemLabel="Neuf" itemValue="Neuf" />
             <f:selectItem itemLabel="Très bon état" itemValue="Très bon état" />
@@ -67,8 +62,7 @@ xmlns:f="http://java.sun.com/jsf/core">
             <f:selectItem itemLabel="Etat moyen" itemValue="Etat moyen" />
             <f:selectItem itemLabel="Mauvais état" itemValue="Mauvais état" />
         </p:selectOneMenu>
-		<p:message for="etat" style="color: red"></p:message>
-		<h:outputText value="#{VoitureGetBean.etatVoiture}" />
+        <p:message for="etat"></p:message>
 
 		</h:panelGrid>
 		

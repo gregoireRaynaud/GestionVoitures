@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Liste des réservations</title>
+</h:head>
+<h:body>
+
+<h:form>
+<p:dataTable var="r" value="#{ReservationGetBean.tabR}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         emptyMessage="Aucune réservation trouvée pour les critères données"
+                         widgetVar="carsTable"
+                         style="text-align: center">
+
+	<f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Rechercher dans le tableau :" />
+                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter un mot clé"/>
+            </p:outputPanel>
+    </f:facet>
+	
+	<p:column headerText="Id" filterBy="#{r.idreservation}" filterMatchMode="exact" sortBy="#{r.idreservation}">
+        <h:outputText value="#{r.idreservation}" />
+    </p:column>
+    <p:column headerText="Prix" filterBy="#{r.prixReservation}" filterMatchMode="contains" sortBy="#{r.prixReservation}">
+        <h:outputText value="#{r.prixReservation}" />
+    </p:column>
+    <p:column headerText="Date de réservation" sortBy="#{r.dateReservation}">
+			<h:outputText value="#{r.dateReservation}">
+					<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+			</h:outputText>
+	</p:column>
+    <p:column headerText="Date de départ" sortBy="#{r.dateSortie}">
+		<h:outputText value="#{r.dateSortie}">
+			<f:convertDateTime type="date" pattern="dd-MM-yyyy, HH:mm" />
+		</h:outputText>
+    </p:column>
+    <p:column headerText="Date de retour" sortBy="#{r.dateRetour}">
+		<h:outputText value="#{r.dateRetour}">
+			<f:convertDateTime type="date" pattern="dd-MM-yyyy, HH:mm" />
+		</h:outputText>
+    </p:column>
+    <p:column headerText="Nombre de jours" filterBy="#{r.nombresDeJours}" filterMatchMode="exact" sortBy="#{r.nombresDeJours}">
+		<h:outputText value="#{r.nombresDeJours}" />
+    </p:column>
+    <p:column headerText="Etat de la voiture" filterBy="#{r.etatReservation}" filterMatchMode="exact" sortBy="#{r.etatReservation}">
+		 <f:facet name="filter">
+        	<p:selectOneMenu onchange="PF('carsTable').filter()" style="width:85%">
+	        	<f:selectItem itemLabel="Choisir" itemValue="" noSelectionOption="true"/>
+	            <f:selectItem itemLabel="Neuf" itemValue="Neuf" />
+            	<f:selectItem itemLabel="Très bon état" itemValue="Très bon état" />
+            	<f:selectItem itemLabel="Bon état" itemValue="Bon état" />
+            	<f:selectItem itemLabel="Etat moyen" itemValue="Etat moyen" />
+            	<f:selectItem itemLabel="Mauvais état" itemValue="Mauvais état" />
+        </p:selectOneMenu>
+        </f:facet>
+		<h:outputText value="#{r.etatReservation}" />
+    </p:column>
+    <p:column headerText="Voiture" filterBy="#{r.voiture.immatricule}" filterMatchMode="contains" sortBy="#{r.voiture.immatricule}">
+		<h:outputText value="#{r.voiture.immatricule}" />
+    </p:column>
+    <p:column headerText="Client" filterBy="#{r.client.nomClient}" filterMatchMode="contains" sortBy="#{r.client.nomClient}">
+		<h:outputText value="#{r.client.nomClient}" />
+    </p:column>
+    <p:column headerText="Modification" style="text-align: center">
+    	<p:commandButton ajax="false" actionListener="#{ReservationGetBean.attrListener}" action="#{ReservationGetBean.RedirectUpdateReservation}" icon="ui-icon-pencil" style="border: 1px solid #acdd4a; background: #6eac2c">
+    		<f:attribute name="r" value="#{r}" />
+    	</p:commandButton>
+        <p:commandButton ajax="false" actionListener="#{ReservationGetBean.attrListener}" action="#{ReservationGetBean.deleteVoiture}" icon="ui-icon-close" style="border: 1px solid #cc0000; background: #ff3333">
+        	<f:attribute name="r" value="#{r}" />
+        </p:commandButton>
+    </p:column>
+</p:dataTable>
+</h:form>
+
+</h:body>
+</html>
