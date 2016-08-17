@@ -72,7 +72,7 @@ public class ReservationBean {
 		client = clientService.getClientById(idClient);
 	}
 	
-	public void saveReservation(){
+	public String saveReservation(){
 		etatReservation = voiture.getEtatVoiture();
 		nombresDeJours = nbJours(dateSortie, dateRetour);
 		dateReservation = new Date();
@@ -82,6 +82,7 @@ public class ReservationBean {
 		} catch (VoitureDisponibleException e) {
 			excpetionDispo = e.getMessage();
 		}
+		return "redirect:successSaveReservation.xhtml";
 	}
 	
 	

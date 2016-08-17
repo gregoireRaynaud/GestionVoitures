@@ -55,13 +55,13 @@ public class VoitureGetBean {
 		//v.setIdvoiture(voiture.getIdvoiture());
 		voitureService.updateVoiture(v);
 		getVoitures();
-		return "getVoitures.xhtml";
+		return "redirect:successUpdateVoiture.xhtml";
 	}
 	
 	public String deleteVoiture(){
 		voitureService.deleteVoiture(voiture.getIdvoiture());
 		getVoitures();
-		return "redirect:getVoitures.xhtml";
+		return "redirect:successDeleteVoiture.xhtml";
 	}
 	
 	 public void attrListener(ActionEvent event){

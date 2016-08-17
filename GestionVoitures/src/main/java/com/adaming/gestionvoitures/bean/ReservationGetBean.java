@@ -52,7 +52,7 @@ public class ReservationGetBean {
 		} catch (VoitureDisponibleException e) {
 			exceptionVoiture = e.getMessage();
 		}
-		return "getReservations.xhtml";
+		return "successUpdateReservation.xhtml";
 	}
 	
 	public String deleteReservation(){

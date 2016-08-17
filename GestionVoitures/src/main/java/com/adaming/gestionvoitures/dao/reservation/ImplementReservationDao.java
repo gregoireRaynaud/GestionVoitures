@@ -63,6 +63,9 @@ public class ImplementReservationDao implements IReservationDao {
 
 	@Override
 	public Reservation updateReservation(Reservation r) throws VoitureDisponibleException {
+		Voiture vR = r.getVoiture();
+		vR.getTabReservations().remove(r);
+		em.merge(vR);
 		List<Voiture> voitureDispo = disponibiliteVoiture(r.getDateSortie(), r.getDateRetour());
 		List<Long> tabId = new ArrayList<Long>();
 		for(Voiture v3 : voitureDispo){
@@ -73,6 +76,7 @@ public class ImplementReservationDao implements IReservationDao {
 		if(!tabId.contains(r.getVoiture().getIdvoiture())){
 			throw new VoitureDisponibleException("La voiture n'est pas disponible pour cette réservation");
 		}
+		vR.getTabReservations().add(r);
 		em.merge(r);
 		log.info("La réservation " + r.getIdreservation() + " a bien été modifiée");
 		return r;
