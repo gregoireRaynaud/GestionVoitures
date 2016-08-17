@@ -8,16 +8,16 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Liste des réservations</title>
+<title>Historique des réservations</title>
 </h:head>
 <h:body>
 
 <ui:include src="navbar.xhtml"></ui:include>
 
-<b:panel title="Liste des réservations" look="primary">
+<b:panel title="Historique des réservations" look="primary">
 
 <h:form>
-<p:dataTable var="r" value="#{ReservationGetBean.tabR}" rows="10"
+<p:dataTable var="r" value="#{ReservationGetHistoriqueBean.tabR}" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15"
@@ -74,20 +74,6 @@ xmlns:b="http://bootsfaces.net/ui">
     </p:column>
     <p:column headerText="Client" filterBy="#{r.client.nomClient}" filterMatchMode="contains" sortBy="#{r.client.nomClient}">
 		<h:outputText value="#{r.client.nomClient}" />
-    </p:column>
-    <p:column headerText="Modification" style="text-align: center">
-    	<p:commandButton ajax="false" actionListener="#{ReservationGetBean.attrListener}" action="#{ReservationGetBean.RedirectUpdateReservation}" icon="ui-icon-pencil" style="border: 1px solid #acdd4a; background: #6eac2c">
-    		<f:attribute name="r" value="#{r}" />
-    	</p:commandButton>
-        <p:commandButton actionListener="#{ReservationGetBean.attrListener}" action="#{ReservationGetBean.deleteReservation}" icon="ui-icon-close" style="border: 1px solid #cc0000; background: #ff3333">
-        	<p:confirm header="Confirmation" message="Etes-vous sûr de vouloir supprimer cette voiture ?" icon="ui-icon-alert" />
-        	<f:attribute name="r" value="#{r}" />
-        </p:commandButton>
-        
-         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-    </p:confirmDialog>
     </p:column>
 </p:dataTable>
 </h:form>

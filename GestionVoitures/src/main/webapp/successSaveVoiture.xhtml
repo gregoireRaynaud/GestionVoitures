@@ -3,16 +3,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:h="http://xmlns.jcp.org/jsf/html"
 xmlns:p="http://primefaces.org/ui"
-xmlns:f="http://java.sun.com/jsf/core">
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:b="http://bootsfaces.net/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Succès</title>
 </head>
 <body>
 
+<ui:include src="navbar.xhtml"></ui:include>
+
 <div style="text-align: center; color: #3a87ad; background-color: #d9edf7; border-color: #bce8f1;
 border: 1px solid; padding: 10px 10px 10px 10px; border-radius: 5px; font-size: 90%; 
-font-family: Verdana,Arial,sans-serif; width: 98.4%;">
+font-family: Verdana,Arial,sans-serif; width: 100%;">
 <p>La voiture de model #{VoitureBean.modelVoiture}</p>
 <p>a bien été enregistrée.</p>
 </div>

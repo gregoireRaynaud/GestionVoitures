@@ -25,11 +25,13 @@ public class ReservationGetBean {
 	private List<Reservation> filteredCars;
 	private Reservation reservation;
 	private Reservation r;
+	private String exceptionVoiture;
 
 	
 	@PostConstruct
-	public void getRe(){
+	public String getRe(){
 		tabR = reservationService.getReservations();
+		return "redirect:getReservations";
 	}
 	
 
@@ -45,13 +47,18 @@ public class ReservationGetBean {
 	public String updateReservation(){
 		try {
 			reservationService.updateReservation(r);
+			exceptionVoiture = "";
+			return "getReservations.xhtml";
 		} catch (VoitureDisponibleException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			exceptionVoiture = e.getMessage();
 		}
-		return "redirect:getReservations.xhtml";
+		return "getReservations.xhtml";
 	}
 	
+	public String deleteReservation(){
+		reservationService.deleteReservation(reservation.getIdreservation());
+		return "redirect:getReservations";
+	}
 	
 	
 	
@@ -98,6 +105,16 @@ public class ReservationGetBean {
 
 	public void setR(Reservation r) {
 		this.r = r;
+	}
+
+
+	public String getExceptionVoiture() {
+		return exceptionVoiture;
+	}
+
+
+	public void setExceptionVoiture(String exceptionVoiture) {
+		this.exceptionVoiture = exceptionVoiture;
 	}
 
 

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>navbar</title>
@@ -12,7 +13,7 @@
 </h:head>
 <h:body>
 
-	<p:megaMenu orientation="horizontal" style="margin-top:20px">
+	<!-- <p:megaMenu orientation="horizontal" style="margin-top:20px">
 		
 		<p:submenu label="Agence">
 			<p:column>
@@ -73,7 +74,42 @@
 			</p:column>
 		</p:submenu>
 		
-	</p:megaMenu>
+	</p:megaMenu> -->
+	
+	<b:navBar brand="Location de Voiture" >       
+     <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
+       <b:navbarLinks pull="right" styleClass="hidden-xs">
+         <b:dropMenu value="Agence" iconAwesome="home">
+             <b:navLink value="Ajouter une agence" href="#" iconAwesome="plus"></b:navLink>
+             <b:navLink value="Modifier une agence" href="#" iconAwesome="pencil"></b:navLink>
+             <b:navLink value="Liste des agences" href="#" iconAwesome="list"></b:navLink>
+         </b:dropMenu>
+         <b:dropMenu value="Client" iconAwesome="user">
+             <b:navLink value="Ajouter un client" href="#" iconAwesome="plus"></b:navLink>
+             <b:navLink value="Modifier un client" href="#" iconAwesome="pencil"></b:navLink>
+             <b:navLink value="Liste des clients" href="#" iconAwesome="list"></b:navLink>
+         </b:dropMenu>
+         <b:dropMenu value="Voiture" iconAwesome="car">
+             <b:navLink value="Ajouter une voiture" href="saveVoiture.xhtml" iconAwesome="plus"></b:navLink>
+             <b:navLink value="Liste des voitures" href="getVoitures.xhtml" iconAwesome="list"></b:navLink>
+             <b:navLink value="Retourner une voiture" href="updateKmVoiture.xhtml" iconAwesome="car"></b:navLink>
+         </b:dropMenu>
+         <b:dropMenu value="Entretien" iconAwesome="wrench">
+             <b:navLink value="Ajouter un entretien" href="#" iconAwesome="plus"></b:navLink>
+             <b:navLink value="Modifier un entretien" href="#" iconAwesome="pencil"></b:navLink>
+             <b:navLink value="Historique des entretiens" href="#" iconAwesome="list"></b:navLink>
+         </b:dropMenu>
+         <b:dropMenu value="Reservation" iconAwesome="calendar">
+             <b:navLink value="Ajouter une réservation" href="saveReservation.xhtml" iconAwesome="plus"></b:navLink>
+             <b:navLink value="Liste des réservations" href="getReservations.xhtml" iconAwesome="navicon"></b:navLink>
+             <b:navLink value="Historique des réservations" href="getHistoriqueReservation.xhtml" iconAwesome="list"></b:navLink>
+         </b:dropMenu>
+         <b:dropMenu value="Facture" iconAwesome="eur">
+             <b:navLink value="Ajouter une facture" href="#" iconAwesome="plus"></b:navLink>
+             <b:navLink value="Afficher une facture" href="#"  iconAwesome="file"></b:navLink>
+         </b:dropMenu>
+     </b:navbarLinks>
+ </b:navBar>
 
 </h:body>
 </html>

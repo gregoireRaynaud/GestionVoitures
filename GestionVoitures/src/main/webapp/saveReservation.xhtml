@@ -3,16 +3,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:h="http://xmlns.jcp.org/jsf/html"
 xmlns:p="http://primefaces.org/ui"
-xmlns:f="http://java.sun.com/jsf/core">
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Ajouter une réservation</title>
 </h:head>
 <h:body>
 
+<ui:include src="navbar.xhtml"></ui:include>
 
 <h:form>	 
-	 <p:panel header="Ajouter une réservation" style="margin-bottom:5px;">
+	 <b:panel title="Ajouter une réservation" look="primary" style="text-decoration:none;">
 	 
 	 <h:panelGrid columns="1" cellpadding="3">
 
@@ -22,7 +25,6 @@ xmlns:f="http://java.sun.com/jsf/core">
             <f:selectItems value="#{ReservationBean.tabVoiture}" var="v" itemValue="#{v.idvoiture}"
             	itemLabel="#{v.immatricule}" />
         </p:selectOneMenu>
-        <h:outputText rendered="#{ReservationBean.idVoiture} eq #{'Veuillez choisir une voiture'}" value="#{ReservationBean.idVoiture}" />
 		<p:message for="voiture" style="color: red"></p:message>
 		
 		<h:outputLabel for="client" value="Client : " />
@@ -31,14 +33,13 @@ xmlns:f="http://java.sun.com/jsf/core">
             <f:selectItems value="#{ReservationBean.tabClient}" var="c" itemValue="#{c.idClient}"
             	itemLabel="#{c.nomClient} #{c.prenomClient}" />
         </p:selectOneMenu>
-        <h:outputText rendered="#{ReservationBean.idClient} eq #{'Veuillez choisir un client'}" value="#{ReservationBean.idClient}" />
 		<p:message for="client" style="color: red"></p:message>
 
 		</h:panelGrid>
 		
 		<p:separator />
 		
-		<p:commandButton value="Choisir" ajax="false" icon="ui-icon-check" action="#{ReservationBean.choix}"/>
+		<b:commandButton look="primary" value="Choisir" ajax="false" icon="ui-icon-check" action="#{ReservationBean.choix}"/>
 		
 		<p:separator />
 	
@@ -50,17 +51,14 @@ xmlns:f="http://java.sun.com/jsf/core">
 		<p:outputLabel value="Prix :"/>
 		<p:inputText id="prix" value="#{ReservationBean.prixReservation}" style="width:500px"/>
 		<p:message for="prix" style="color: red"></p:message>
-		<h:outputText value="#{ReservationBean.prixReservation}" rendered="#{ReservationBean.prixReservation != 0}"/>
 		
 		<p:outputLabel value="Date de départ :"/>
 		<p:calendar id="dateD" value="#{ReservationBean.dateSortie}" pattern="MM/dd/yyyy HH:mm" />
 		<p:message for="dateD" style="color: red"></p:message>
-		<h:outputText value="#{ReservationBean.dateSortie}" />
 		
 		<p:outputLabel value="Date de retour :"/>
 		<p:calendar id="dateR" value="#{ReservationBean.dateRetour}" pattern="MM/dd/yyyy HH:mm" />
 		<p:message for="dateR" style="color: red"></p:message>
-		<h:outputText value="#{ReservationBean.dateRetour}" />
 		
 		<h:outputText value="#{ReservationBean.excpetionDispo}" style="color: red"></h:outputText>
 		
@@ -68,12 +66,9 @@ xmlns:f="http://java.sun.com/jsf/core">
 		
 		<p:separator rendered="#{not empty ReservationBean.voiture}"/>
 		
-		<p:commandButton rendered="#{not empty ReservationBean.voiture}" value="Ajouter" ajax="false" icon="ui-icon-disk" action="#{ReservationBean.saveReservation}"/>
+		<b:commandButton look="primary" rendered="#{not empty ReservationBean.voiture}" value="Ajouter" ajax="false" icon="ui-icon-disk" action="#{ReservationBean.saveReservation}"/>
 
-		<h:outputText value="#{ReservationBean.dateSortie}"></h:outputText>
-		<h:outputText value="ID : #{ReservationBean.r.idreservation}"></h:outputText>
-
-	</p:panel>
+	</b:panel>
 	
 </h:form>	
 
