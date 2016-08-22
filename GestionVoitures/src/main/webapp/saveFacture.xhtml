@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Ajouter une Facture</title>
+</h:head>
+<h:body>
+
+<ui:include src="navbar.xhtml"></ui:include>
+
+<h:form>
+    <p:panel id="panel" header="Ajouter une facture" style="margin-bottom:10px;">
+       
+ 		<p:growl id="growl" life="2000" />
+        <h:panelGrid columns="3" cellpadding="5">
+            <p:outputLabel for="txt1" value="Date de Facturation: *" />
+            <p:calendar id="txt1" value="#{FactureBean.deFacturation}" effect="fold" requiredMessage="Veuillez entrer une date de facturation" required="true" label="Date de Facturation"/>
+            <p:message for="txt1" />
+            
+            <p:outputLabel for="txt2" value="Reservation associée: *" />
+        	<p:selectOneMenu id="txt2" value="#{FactureBean.idReservation}" requiredMessage="Veuillez entrer un Id de Réservation" required="true"  label="Réservation: " effect="fold" editable="true" style="width:230px">
+            	<f:selectItem itemLabel="Selectionner une réservation" itemValue="" noSelectionOption="true" /> 
+            	<f:selectItems value="#{FactureBean.tabReservations}" var="resa" itemValue="#{resa.idreservation}" itemLabel="#{resa.idreservation}"/>
+        	</p:selectOneMenu>
+        	<p:message for="txt2"/>
+        	
+        	<p:outputLabel for="txt3" value="Agence associée: " />
+        	<p:selectOneMenu id="txt3" value="#{FactureBean.idAgence}" requiredMessage="Veuillez entrer un Id d'Agence" required="true" label="Agence: " effect="fold" editable="true" style="width:230px">
+            	<f:selectItem itemLabel="Selectionner une agence" itemValue="" noSelectionOption="true" /> 
+            	<f:selectItems value="#{FactureBean.tabAgences}" var="ag" itemValue="#{ag.idAgence}" itemLabel="#{ag.idAgence}"/>
+        	</p:selectOneMenu>
+        	<p:message for="txt3" />
+         
+        </h:panelGrid>
+        <p:commandButton value="Ajouter" actionListener="#{FactureBean.addFacture}" update="@(form) growl" styleClass="ui-priority-primary"/>
+    </p:panel>
+
+</h:form>
+
+</h:body>
+</html>

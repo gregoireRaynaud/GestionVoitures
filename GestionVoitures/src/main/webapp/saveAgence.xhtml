@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Ajouter une Agence</title>
+</h:head>
+<h:body>
+
+<ui:include src="navbar.xhtml"></ui:include>
+<h:form>
+    <p:panel id="panel" header="Ajouter une agence" style="margin-bottom:10px;">
+
+        <h:panelGrid columns="3" cellpadding="5">
+  
+            <p:outputLabel for="txt1" value="Addresse postale: "/>
+			<p:inputText id="txt1" requiredMessage="Veuillez entrer une adresse." required="true" value="#{AgenceBean.addrespostal}"/>
+			<p:message for="txt1" style="color: red"/>
+            
+            <p:outputLabel for="txt2" value="Numéro de téléphone: "/>
+			<p:inputText id="txt2" requiredMessage="Veuillez indiquer un N° de Téléphone." required="true" value="#{AgenceBean.numerotel}"/>
+			<p:message for="txt2" style="color: red"/>
+            
+            <p:outputLabel for="txt3" value="Dénomination: "/>
+			<p:inputText id="txt3" requiredMessage="Veuillez indiquer une dénomination." required="true" value="#{AgenceBean.denomination}"/>
+			<p:message for="txt3" style="color: red"/>
+            
+            <p:outputLabel for="txt4" value="Forme Juridique: "/>
+			<p:inputText id="txt4" requiredMessage="Veuillez indiquer une forme juridique." required="true" value="#{AgenceBean.formJuridique}"/>
+			<p:message for="txt4" style="color: red"/>
+            
+            <p:outputLabel for="txt5" value="Activité: "/>
+			<p:inputText id="txt5" requiredMessage="Veuillez indiquer une activité." required="true" value="#{AgenceBean.activite}"/>
+			<p:message for="txt5" style="color: red"/>
+
+            <p:outputLabel for="txt6" value="Adresse Siège: "/>
+			<p:inputText id="txt6" requiredMessage="Veuillez indiquer l'adresse du siège." required="true" value="#{AgenceBean.adressSiege}"/>
+			<p:message for="txt6" style="color: red"/>
+            
+            <p:outputLabel for="txt7" value="Ville: "/>
+			<p:inputText id="txt7" requiredMessage="Veuillez indiquer une ville." required="true" value="#{AgenceBean.ville}"/>
+			<p:message for="txt7" style="color: red"/>
+            
+            <p:outputLabel for="txt8" value="Numéro de téléphone secondaire: "/>
+			<p:inputText id="txt8" requiredMessage="Veuillez indiquer un N° de téléphone secondaire." required="true" value="#{AgenceBean.deuxiemTel}"/>
+			<p:message for="txt8" style="color: red"/>
+			
+            <p:outputLabel for="txt9" value="TVA: "/>
+			<p:inputText id="txt9" requiredMessage="Veuillez indiquer un taux de TVA." required="true" value="#{AgenceBean.tva}"/>
+			<p:message for="txt9" style="color: red"/>
+			
+			<p:outputLabel for="txt10" value="Devise locale: " />
+            <p:selectOneMenu id="txt10" value="#{AgenceBean.choixMonnais}" requiredMessage="Veuillez préciser la devise locale." required="true" style="width:235px">
+                <f:selectItem itemLabel="Selectionner une devise" itemValue="" noSelectionOption="true" />
+                <f:selectItem itemLabel="Dollar" itemValue="dollar"/>
+                <f:selectItem itemLabel="Euro" itemValue="euro"/>
+                <f:selectItem itemLabel="Livre Sterling" itemValue="livre"/>
+                <f:selectItem itemLabel="Dinar" itemValue="dinar"/>
+                <f:selectItem itemLabel="Yen" itemValue="yen"/>
+            </p:selectOneMenu>
+            <p:message for="txt10"/>
+            
+            <p:outputLabel for="txt11" value="Date de Création: *" />
+            <p:calendar id="txt11" value="#{AgenceBean.dateCommencement}" effect="fold" requiredMessage="Veuillez entrer une date de création" required="true" label="Date d'ouverture"/>
+            <p:message for="txt11" />
+
+        </h:panelGrid>
+        
+        <p:commandButton value="Ajouter" actionListener="#{AgenceBean.addAgence}" update="@(form)" styleClass="ui-priority-primary"/>
+    </p:panel>
+</h:form>
+
+</h:body>
+</html>

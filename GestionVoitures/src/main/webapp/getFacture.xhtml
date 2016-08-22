@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Consulter une Facture</title>
+</h:head>
+<h:body>
+
+<ui:include src="navbar.xhtml"></ui:include>
+
+<h:form id="form2">
+    <p:panel  header="Consulter une Facture" style="margin-bottom:10px;">
+        <h:panelGrid columns="3" cellpadding="5">
+            
+            <p:outputLabel for="txt3" value="Facture: *" />
+        	<p:selectOneMenu id="txt3" value="#{FactureBean.idFacture}" requiredMessage="Veuillez entrer un Id de Facture" required="true"  label="Facture: " effect="fold" editable="true">
+            	<f:selectItem itemLabel="Selectionner une facture" itemValue="" noSelectionOption="true" /> 
+            	<f:selectItems value="#{FactureBean.tabFactures}" var="fac" itemValue="#{fac.idFacture}" itemLabel="#{fac.idFacture}"/>
+        	</p:selectOneMenu>
+        	<p:message for="txt3"/>
+ 			
+        </h:panelGrid>        
+ 		<p:separator />
+        <p:commandButton value="Chercher" actionListener="#{FactureBean.getFactureById}" update=":form2" styleClass="ui-priority-primary" icon="ui-icon-extlink"/>
+
+    </p:panel>
+</h:form>
+
+<h:form id="form3">
+    <p:panel header="Calculer le coût d'une facture" style="margin-bottom:10px;">
+        <h:panelGrid columns="3" cellpadding="5">
+        	
+        	<h:outputText for="facture2" value="Facture a calculer: "/>
+			<p:inputText id="facture2" requiredMessage="Veuillez entrer une facture." required="true" value="#{FactureBean.idFacture1}"/>
+			<p:message for="facture2"/>
+ 			
+ 			<p:outputLabel value="Coût de la Facture: " />
+       		<h:outputText value="#{FactureBean.coutFacture}" />
+        
+        </h:panelGrid>
+        <p:separator />
+        <p:commandButton value="Calculer" actionListener="#{FactureBean.calculerCoutFacture}" update=":form3" styleClass="ui-priority-primary"/>
+    </p:panel>
+</h:form>
+
+
+<h:form id="form4">
+    <p:panel header="Calculer le coût des factures par client" style="margin-bottom:10px;">
+        <h:panelGrid columns="3" cellpadding="5">
+        	
+        	<h:outputText value="Client selectionné: "/>
+			<p:inputText id="facture3" requiredMessage="Veuillez entrer un client." required="true" value="#{FactureBean.idClient}"/>
+			<p:message for="facture3"/>
+ 			
+ 			<p:outputLabel value="Coût des Factures: " />
+       		<h:outputText value="#{FactureBean.coutFacturesByClient}" />
+        
+        </h:panelGrid>
+        <p:separator />
+        <p:commandButton value="Calculer" actionListener="#{FactureBean.calculerCoutFacturesByClient}" update=":form4" styleClass="ui-priority-primary"/>
+    </p:panel>
+</h:form>
+
+<h:form id="form5">
+    <p:panel header="Calculer le coût des factures par voiture" style="margin-bottom:10px;">
+        <h:panelGrid columns="3" cellpadding="5">
+        	
+        	<h:outputText value="Voiture selectionnée: "/>
+			<p:inputText id="facture3" requiredMessage="Veuillez entrer une voiture." required="true" value="#{FactureBean.idVoiture}"/>
+			<p:message for="facture3"/>
+ 			
+ 			<p:outputLabel value="Coût des Factures: " />
+       		<h:outputText value="#{FactureBean.coutFacturesByVoiture}" />
+        
+        </h:panelGrid>
+        <p:separator />
+        <p:commandButton value="Calculer" actionListener="#{FactureBean.calculerCoutFacturesByVoiture}" update=":form5" styleClass="ui-priority-primary"/>
+    </p:panel>
+</h:form>
+
+</h:body>
+</html>

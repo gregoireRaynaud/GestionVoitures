@@ -2,8 +2,9 @@ package com.adaming.gestionvoitures.bean;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import java.util.List;
+
+
 
 
 import javax.annotation.PostConstruct;
@@ -11,12 +12,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 
+import javax.faces.event.ActionEvent;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.adaming.gestionvoitures.entities.Agence;
-
 import com.adaming.gestionvoitures.service.agence.IAgenceService;
 
 
@@ -42,6 +44,7 @@ public class AgenceBean {
 	private List<String> listMonnaie = new ArrayList<String>();
 	
 	private Agence agence;
+	private Agence age;
 	
 	private List<Agence> tabAgences;
 	private List<Agence> tabAgencesFiltered;
@@ -80,6 +83,14 @@ public class AgenceBean {
 		deuxiemTel = agence.getDeuxiemTel();
 		tva = agence.getTva();
 		choixMonnais = agence.getChoixMonnais();			
+	}
+	public void attrListener(ActionEvent event){
+		/*Sélectionne une ligne du tableau*/
+		agence = (Agence) event.getComponent().getAttributes().get("age");
+	}
+	public String redirectUpdateAgence(){
+		age = agenceService.getAgenceById(agence.getIdAgence());
+		return "updateAgence.xhtml";
 	}
 	public void updateAgence(){
 		Agence a = new Agence(addrespostal, numerotel, denomination, formJuridique, activite, adressSiege, dateCommencement, ville, deuxiemTel, tva, choixMonnais);
@@ -219,7 +230,17 @@ public class AgenceBean {
 
 	public void setListMonnaie(List<String> listMonnaie) {
 		this.listMonnaie = listMonnaie;
-	}	
-	
+	}
 
+	public Agence getAge() {
+		return age;
+	}
+
+	public void setAge(Agence age) {
+		this.age = age;
+	}
+
+	
+	
+	
 }
