@@ -19,91 +19,68 @@ xmlns:b="http://bootsfaces.net/ui">
 
 <h:form>
 
-<p:dataTable var="v" value="#{VoitureGetBean.tabVoiture}" rows="10"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15"
-                         emptyMessage="Pas de voiture trouvée avec les critères donnés"
-                         widgetVar="carsTable">
+<b:dataTable styleClass="table table-striped" var="v" value="#{VoitureGetBean.tabVoiture}" rows="10"
+                         widgetVar="carsTable"
+						  page-length="10"
+						  page-length-menu="5,10,25,50"
+						  lang="fr">
 
-	<f:facet name="header">
-            <p:outputPanel>
-                <h:outputText value="Rechercher dans le tableau :" />
-                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter un mot clé"/>
-            </p:outputPanel>
-    </f:facet>
+	<b:dataTableColumn label="Id">
+		<h:outputText value="#{v.idvoiture}" />
+	</b:dataTableColumn>
 	
-	<p:column headerText="Id" filterBy="#{v.idvoiture}" filterMatchMode="exact" sortBy="#{v.idvoiture}">
-        <h:outputText value="#{v.idvoiture}" />
-    </p:column>
-    <p:column headerText="Model" filterBy="#{v.modelVoiture}" filterMatchMode="contains" sortBy="#{v.modelVoiture}">
-        <h:outputText value="#{v.modelVoiture}" />
-    </p:column>
-    <p:column headerText="Immatricule" filterBy="#{v.immatricule}" filterMatchMode="contains" sortBy="#{v.immatricule}">
-        <h:outputText value="#{v.immatricule}" />
-    </p:column>
-    <p:column headerText="Kilometrage" filterBy="#{v.kilometrage}" filterMatchMode="contains" sortBy="#{v.kilometrage}">
-        <h:outputText value="#{v.kilometrage}" />
-    </p:column>
-    <p:column headerText="Prix" filterBy="#{v.prixVoiture}" filterMatchMode="contains" sortBy="#{v.prixVoiture}">
-        <h:outputText value="#{v.prixVoiture}" />
-    </p:column>
-    <p:column headerText="Type" filterBy="#{v.typeVoiture}" filterMatchMode="exact" sortBy="#{v.typeVoiture}">
-        <f:facet name="filter">
-        	<p:selectOneMenu onchange="PF('carsTable').filter()" style="width:85%">
-	        	<f:selectItem itemLabel="Choisir" itemValue="" noSelectionOption="true"/>
-	            <f:selectItem itemLabel="Citadine" itemValue="Citadine" />
-            	<f:selectItem itemLabel="Compact" itemValue="Compact" />
-            	<f:selectItem itemLabel="Familiale" itemValue="Familiale" />
-            	<f:selectItem itemLabel="Cabriolet" itemValue="Cabriolet" />
-            	<f:selectItem itemLabel="Break" itemValue="Break" />
-            	<f:selectItem itemLabel="4x4" itemValue="4x4" />
-        </p:selectOneMenu>
-        </f:facet>
-        <h:outputText value="#{v.typeVoiture}" />
-    </p:column>
-    
-    <p:column headerText="Carburant" filterBy="#{v.typeCarburant}" filterMatchMode="exact" sortBy="#{v.typeCarburant}">
-        <f:facet name="filter">
-        	<p:selectOneMenu onchange="PF('carsTable').filter()" style="width:85%">
-	        	<f:selectItem itemLabel="Choisir" itemValue="" noSelectionOption="true"/>
-	            <f:selectItem itemLabel="Essence" itemValue="Essence" />
-            	<f:selectItem itemLabel="Diesel" itemValue="Diesel" />
-            	<f:selectItem itemLabel="Electrique" itemValue="Electrique" />
-            	<f:selectItem itemLabel="Hybride" itemValue="Hybride" />
-        </p:selectOneMenu>
-        </f:facet>
-        <h:outputText value="#{v.typeCarburant}" />
-    </p:column>
-    <p:column headerText="Etat" filterBy="#{v.etatVoiture}" filterMatchMode="exact" sortBy="#{v.etatVoiture}">
-        <f:facet name="filter">
-        	<p:selectOneMenu onchange="PF('carsTable').filter()" style="width:85%">
-	        	<f:selectItem itemLabel="Choisir" itemValue="" noSelectionOption="true"/>
-	            <f:selectItem itemLabel="Neuf" itemValue="Neuf" />
-            	<f:selectItem itemLabel="Très bon état" itemValue="Très bon état" />
-            	<f:selectItem itemLabel="Bon état" itemValue="Bon état" />
-            	<f:selectItem itemLabel="Etat moyen" itemValue="Etat moyen" />
-            	<f:selectItem itemLabel="Mauvais état" itemValue="Mauvais état" />
-        </p:selectOneMenu>
-        </f:facet>
-        <h:outputText value="#{v.etatVoiture}" />
-    </p:column>
-    <p:column headerText="Modification" style="text-align: center">
-    	<p:commandButton ajax="false" actionListener="#{VoitureGetBean.attrListener}" action="#{VoitureGetBean.RedirectUpdateVoiture}" icon="ui-icon-pencil" style="border: 1px solid #acdd4a; background: #6eac2c">
+	<b:dataTableColumn label="Model">
+		<h:outputText value="#{v.modelVoiture}" />
+	</b:dataTableColumn>
+	
+	<b:dataTableColumn label="Immatricule">
+		<h:outputText value="#{v.immatricule}" />
+	</b:dataTableColumn>
+	
+	<b:dataTableColumn label="Kilometrage">
+		<h:outputText value="#{v.kilometrage}" />
+	</b:dataTableColumn>
+	
+	<b:dataTableColumn label="Prix">
+		<h:outputText value="#{v.prixVoiture}" />
+	</b:dataTableColumn>
+	
+	<b:dataTableColumn label="Voiture">
+		<h:outputText value="#{v.typeVoiture}" />
+	</b:dataTableColumn>
+	
+	<b:dataTableColumn label="Carburant">
+		<h:outputText value="#{v.typeCarburant}" />
+	</b:dataTableColumn>
+	
+	<b:dataTableColumn label="Etat">
+		<h:outputText value="#{v.etatVoiture}" />
+	</b:dataTableColumn>
+	
+	<b:dataTableColumn label="Modification">
+		<b:commandButton iconAwesome="pencil" look="success"
+						actionListener="#{VoitureGetBean.attrListener}"
+						action="#{VoitureGetBean.RedirectUpdateVoiture}">
     		<f:attribute name="v" value="#{v}" />
-    	</p:commandButton>
-        <p:commandButton actionListener="#{VoitureGetBean.attrListener}" action="#{VoitureGetBean.deleteVoiture}" icon="ui-icon-close" style="border: 1px solid #cc0000; background: #ff3333">
-        	<p:confirm header="Confirmation" message="Etes-vous sûr de vouloir supprimer cette voiture ?" icon="ui-icon-alert" />
-        	<f:attribute name="v" value="#{v}" />
-        </p:commandButton>
-        
-        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-    </p:confirmDialog>
-        
-    </p:column>
-</p:dataTable>
+		</b:commandButton>
+		<p:commandButton actionListener="#{VoitureGetBean.attrListener}"
+						action="#{VoitureGetBean.deleteVoiture}" icon="ui-icon-close"
+						style="border: 1px solid #cc0000; background: #ff3333">
+			<p:confirm header="Confirmation"
+							message="Etes-vous sûr de vouloir supprimer cette voiture ?"
+							icon="ui-icon-alert" />
+			<f:attribute name="v" value="#{v}" />
+		</p:commandButton>
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Oui" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="Non" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+	</b:dataTableColumn>
+
+</b:dataTable>
 </h:form>
 
 </b:panel>
