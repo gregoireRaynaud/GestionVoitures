@@ -4,7 +4,8 @@
 xmlns:h="http://java.sun.com/jsf/html"
 xmlns:p="http://primefaces.org/ui"
 xmlns:f="http://java.sun.com/jsf/core"
-xmlns:ui="http://java.sun.com/jsf/facelets">
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Ajouter une Facture</title>
@@ -14,31 +15,33 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:include src="navbar.xhtml"></ui:include>
 
 <h:form>
-    <p:panel id="panel" header="Ajouter une facture" style="margin-bottom:10px;">
+    <b:panel title="Ajouter une facture" look="primary" style="text-decoration:none;">
        
- 		<p:growl id="growl" life="2000" />
-        <h:panelGrid columns="3" cellpadding="5">
-            <p:outputLabel for="txt1" value="Date de Facturation: *" />
-            <p:calendar id="txt1" value="#{FactureBean.deFacturation}" effect="fold" requiredMessage="Veuillez entrer une date de facturation" required="true" label="Date de Facturation"/>
-            <p:message for="txt1" />
+        <h:panelGrid columns="1" cellpadding="3">
+            <p:outputLabel value="Date de Facturation: *" />
+            <p:calendar id="txt1" value="#{FactureBean.deFacturation}" effect="fold" label="Date de Facturation" style="width:500px"/>
+            <p:message for="txt1"/>
             
-            <p:outputLabel for="txt2" value="Reservation associée: *" />
-        	<p:selectOneMenu id="txt2" value="#{FactureBean.idReservation}" requiredMessage="Veuillez entrer un Id de Réservation" required="true"  label="Réservation: " effect="fold" editable="true" style="width:230px">
+            <p:outputLabel value="Reservation associée: *" />
+        	<p:selectOneMenu id="txt2" value="#{FactureBean.idReservation}"  label="Réservation: " effect="fold" editable="true" style="width:500px">
             	<f:selectItem itemLabel="Selectionner une réservation" itemValue="" noSelectionOption="true" /> 
             	<f:selectItems value="#{FactureBean.tabReservations}" var="resa" itemValue="#{resa.idreservation}" itemLabel="#{resa.idreservation}"/>
         	</p:selectOneMenu>
         	<p:message for="txt2"/>
         	
-        	<p:outputLabel for="txt3" value="Agence associée: " />
-        	<p:selectOneMenu id="txt3" value="#{FactureBean.idAgence}" requiredMessage="Veuillez entrer un Id d'Agence" required="true" label="Agence: " effect="fold" editable="true" style="width:230px">
+        	<p:outputLabel value="Agence associée: " />
+        	<p:selectOneMenu id="txt3" value="#{FactureBean.idAgence}" label="Agence: " effect="fold" editable="true" style="width:500px">
             	<f:selectItem itemLabel="Selectionner une agence" itemValue="" noSelectionOption="true" /> 
             	<f:selectItems value="#{FactureBean.tabAgences}" var="ag" itemValue="#{ag.idAgence}" itemLabel="#{ag.idAgence}"/>
         	</p:selectOneMenu>
         	<p:message for="txt3" />
          
         </h:panelGrid>
-        <p:commandButton value="Ajouter" actionListener="#{FactureBean.addFacture}" update="@(form) growl" styleClass="ui-priority-primary"/>
-    </p:panel>
+        <p:separator/>
+        <p:growl showDetail="true" globalOnly="true"/>
+        <b:commandButton look="primary" value="Ajouter" ajax="false" update="@(form) @(growl)" icon="ui-icon-disk" action="#{FactureBean.addFacture}"/>
+        	
+    </b:panel>
 
 </h:form>
 

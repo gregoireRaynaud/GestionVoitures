@@ -1,86 +1,95 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:h="http://java.sun.com/jsf/html"
 xmlns:p="http://primefaces.org/ui"
 xmlns:f="http://java.sun.com/jsf/core"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:b="http://bootsfaces.net/ui">
+xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Consulter/Modifier une agence</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Liste des Agences</title>
 </h:head>
 <h:body>
-
 <ui:include src="navbar.xhtml"></ui:include>
-
-
-
 <h:form>
-
-<b:panel title="Modifier l'agence #{AgenceBean.agence.idAgence}" look="primary" style="text-decoration:none;">
+    <p:dataTable id="table1" var="age" value="#{AgenceBean.tabAgences}" widgetVar="agenceTable"
+                 emptyMessage="Aucune agence trouvée avec ces critères." filteredValue="#{AgenceBean.tabAgencesFiltered}">
  
-        <h:panelGrid columns="3" cellpadding="5">
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('agenceTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+                <p:commandButton id="toggler" type="button" value="Columns" icon="ui-icon-calculator" />
+       			<p:columnToggler datasource="table1" trigger="toggler" />
+            </p:outputPanel>
             
-            
-            <p:outputLabel for="txt1_2" value="Adresse postale: "/>
-			<p:inputText id="txt1_2"  requiredMessage="Veuillez entrer une adresse." required="true" value="#{AgenceBean.age.addrespostal}"/>			
-			<p:message for="txt1_2"/>
-            
-            <p:outputLabel for="txt2_2" value="Numéro de téléphone: "/>
-			<p:inputText id="txt2_2"  requiredMessage="Veuillez indiquer un N° de Téléphone." required="true" value="#{AgenceBean.age.numerotel}"/>
-			<p:message for="txt2_2"/>
-            
-            <p:outputLabel for="txt3_2" value="Dénomination: "/>
-			<p:inputText id="txt3_2" requiredMessage="Veuillez indiquer une dénomination." required="true" value="#{AgenceBean.age.denomination}"/>
-			<p:message for="txt3_2"/>
-            
-            <p:outputLabel for="txt4_2" value="Forme Juridique: "/>
-			<p:inputText id="txt4_2" requiredMessage="Veuillez indiquer une forme juridique." required="true" value="#{AgenceBean.age.formJuridique}"/>
-			<p:message for="txt4_2"/>
-            
-            <p:outputLabel for="txt5_2" value="Activité: "/>
-			<p:inputText id="txt5_2" requiredMessage="Veuillez indiquer une activité." required="true" value="#{AgenceBean.age.activite}"/>
-			<p:message for="txt5_2"/>
-            
-            <p:outputLabel for="txt6_2" value="Adresse Siège: "/>
-			<p:inputText id="txt6_2" requiredMessage="Veuillez indiquer l'adresse du siège." required="true" value="#{AgenceBean.age.adressSiege}"/>
-			<p:message for="txt6_2"/>
-            
-            <p:outputLabel for="txt7_2" value="Ville: "/>
-			<p:inputText id="txt7_2" requiredMessage="Veuillez indiquer une ville." required="true" value="#{AgenceBean.age.ville}"/>
-			<p:message for="txt7_2"/>
-            
-            <p:outputLabel for="txt8_2" value="Numéro de téléphone secondaire: "/>
-			<p:inputText id="txt8_2" requiredMessage="Veuillez indiquer un N° de téléphone secondaire." required="true" value="#{AgenceBean.age.deuxiemTel}"/>
-			<p:message for="txt8_2"/>
-			
-            <p:outputLabel for="txt9_2" value="TVA: "/>
-			<p:inputText id="txt9_2" requiredMessage="Veuillez indiquer un taux de TVA." required="true" value="#{AgenceBean.age.tva}"/>
-			<p:message for="txt9_2"/>
-			
-			<p:outputLabel for="txt10_2" value="Devise locale: " />
-            <p:selectOneMenu id="txt10_2" value="#{AgenceBean.age.choixMonnais}" requiredMessage="Veuillez préciser la devise locale." required="true" style="width:230px">
-                <f:selectItem itemLabel="Selectionner une devise" itemValue="" noSelectionOption="true" />
-                <f:selectItem itemLabel="Dollar" itemValue="dollar"/>
-                <f:selectItem itemLabel="Euro" itemValue="euro"/>
-                <f:selectItem itemLabel="Livre Sterling" itemValue="livre"/>
-                <f:selectItem itemLabel="Dinar" itemValue="dinar"/>
-                <f:selectItem itemLabel="Yen" itemValue="yen"/>
-            </p:selectOneMenu>
-            <p:message for="txt10_2"/>
-            
-            <p:outputLabel for="txt11_2" value="Date de Création: *" />
-            <p:calendar id="txt11_2" value="#{AgenceBean.age.dateCommencement}" effect="fold" requiredMessage="Veuillez entrer une date de création" required="true" label="Date d'ouverture"/>
-            <p:message for="txt11_2" />
-         
-        </h:panelGrid>
-        <p:commandButton value="Ajouter" actionListener="#{AgenceBean.updateAgence}"  update="@(form)" styleClass="ui-priority-primary"/>
-
-</b:panel>    
-
+        </f:facet>
+ 
+        <p:column filterBy="#{age.idAgence}" headerText="Id" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{age.idAgence}" />
+        </p:column>
+ 
+        <p:column filterBy="#{age.addrespostal}" headerText="Adresse Postale" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{age.addrespostal}" />
+        </p:column>
+        
+        <p:column filterBy="#{age.numerotel}" headerText="N° téléphone" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{age.numerotel}" />
+        </p:column>
+        
+        <p:column filterBy="#{age.denomination}" headerText="Dénomination" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{age.denomination}" />
+        </p:column>
+        
+        <p:column filterBy="#{age.formJuridique}" headerText="Forme juridique" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{age.formJuridique}" />
+        </p:column>
+        
+        <p:column filterBy="#{age.activite}" headerText="Activité" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{age.activite}" />
+        </p:column>
+        
+        <p:column filterBy="#{age.adressSiege}" headerText="Adresse Siège" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{age.adressSiege}" />
+        </p:column>
+        
+        <p:column filterBy="#{age.dateCommencement}" headerText="Date de commencement" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{age.dateCommencement}" />
+        </p:column>
+        
+        <p:column filterBy="#{age.ville}" headerText="Ville" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{age.ville}" />
+        </p:column>
+        
+        <p:column filterBy="#{age.deuxiemTel}" headerText="Deuxième N° téléphone" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{age.deuxiemTel}" />
+        </p:column>
+        
+         <p:column filterBy="#{age.tva}" headerText="TVA" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{age.tva}" />
+        </p:column>
+ 
+        <p:column filterBy="#{age.choixMonnais}" headerText="Monnaie" footerText="in" filterMatchMode="in">
+            <f:facet name="filter">
+                <p:selectCheckboxMenu label="Monnaie" onchange="PF('agenceTable').filter()" panelStyle="width:125px" scrollHeight="150">
+                    <f:selectItems value="#{AgenceBean.listMonnaie}" />
+                </p:selectCheckboxMenu>
+            </f:facet>
+            <h:outputText value="#{age.choixMonnais}" />
+        </p:column>
+        
+        <p:column headerText="Modification" style="text-align: center">
+    	<p:commandButton ajax="false" actionListener="#{AgenceBean.attrListener}" action="#{AgenceBean.redirectUpdateAgence}" icon="ui-icon-pencil" style="border: 1px solid #acdd4a; background: #6eac2c">
+    		<f:attribute name="age" value="#{age}" />
+    	</p:commandButton>        
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    	</p:confirmDialog>
+    	</p:column>
+ 
+    </p:dataTable>
 </h:form>
-
 
 </h:body>
 </html>

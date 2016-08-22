@@ -13,7 +13,9 @@ import javax.faces.context.FacesContext;
 
 
 import javax.faces.event.ActionEvent;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -30,16 +32,26 @@ public class AgenceBean {
 	private IAgenceService agenceService;
 	
 	private Long idAgence;
+	@NotEmpty(message="Veuillez entrer une adresse postale")
 	private String addrespostal;
+	@NotNull(message="Veuillez entrer un numéro de téléphone")
 	private String numerotel;
+	@NotEmpty(message="Veuillez entrer une dénomination")
 	private String denomination;
+	@NotEmpty(message="Veuillez entrer une forme juridique")
 	private String formJuridique;
+	@NotEmpty(message="Veuillez entrer une activité")
 	private String activite;
+	@NotEmpty(message="Veuillez préciser l'adresse du siège")
 	private String adressSiege;
 	private Date dateCommencement;
+	@NotEmpty(message="Veuillez entrer une ville")
 	private String ville;
+	@NotNull(message="Veuillez entrer le numéro de téléphone secondaire")
 	private String deuxiemTel;
+	@NotNull(message="Veuillez préciser le taux de TVA")
 	private Double tva;
+	@NotEmpty(message="Veuillez préciser la monnaie locale")
 	private String choixMonnais;
 	private List<String> listMonnaie = new ArrayList<String>();
 	
@@ -63,6 +75,18 @@ public class AgenceBean {
 		Agence a = new Agence(addrespostal, numerotel, denomination, formJuridique, activite, adressSiege, dateCommencement, ville, deuxiemTel, tva, choixMonnais);
 		agenceService.addAgence(a);
 		addMessage("Agence enregistrée!");
+		
+		addrespostal = null;
+		numerotel = null;
+		denomination = null;
+		formJuridique = null;
+		activite = null;
+		adressSiege = null;
+		dateCommencement = null;
+		ville = null;
+		deuxiemTel = null;
+		tva = null;
+		choixMonnais = null;
 	}
 	public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
@@ -93,7 +117,17 @@ public class AgenceBean {
 		return "updateAgence.xhtml";
 	}
 	public void updateAgence(){
+		
 		Agence a = new Agence(addrespostal, numerotel, denomination, formJuridique, activite, adressSiege, dateCommencement, ville, deuxiemTel, tva, choixMonnais);
+		agence.setAddrespostal(addrespostal);
+		agence.setNumerotel(numerotel);
+		agence.setDenomination(denomination);
+		agence.setFormJuridique(formJuridique);
+		agence.setActivite(activite);
+		agence.setAdressSiege(adressSiege);
+		agence.setAdressSiege(adressSiege);
+		agence.setDateCommencement(dateCommencement);
+		
 		agenceService.updateAgence(a);
 		addMessage("Agence modifiée!");
 	}

@@ -46,7 +46,9 @@ public class FactureBean {
 	private Double coutFacturesByClient;
 	private Double coutFacturesByVoiture;
 	
+	@NotNull(message="Veuillez préciser la réservation.")
 	private Long idReservation;
+	@NotNull(message="Veuillez préciser l'agence.")
 	private Long idAgence;
 	private Long idClient;
 	private Long idVoiture;
@@ -60,6 +62,10 @@ public class FactureBean {
 		Facture f = new Facture(deFacturation);
 		factureService.addFacture(f, idReservation, idAgence);
 		addMessage("Facture enregistrée!");
+		
+		deFacturation = null;
+		idReservation = null;
+		idAgence = null;
 	}
 	public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
