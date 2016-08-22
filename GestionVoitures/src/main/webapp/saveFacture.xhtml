@@ -35,6 +35,8 @@ xmlns:b="http://bootsfaces.net/ui">
             	<f:selectItems value="#{FactureBean.tabAgences}" var="ag" itemValue="#{ag.idAgence}" itemLabel="#{ag.idAgence}"/>
         	</p:selectOneMenu>
         	<p:message for="txt3" />
+        	
+        	<h:outputText value="#{FactureBean.messageException}" style="color: red"></h:outputText>
          
         </h:panelGrid>
         <p:separator/>

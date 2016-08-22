@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.validation.constraints.NotNull;
 
 import org.primefaces.context.RequestContext;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 import com.adaming.gestionvoitures.entities.Agence;
 import com.adaming.gestionvoitures.entities.Facture;
 import com.adaming.gestionvoitures.entities.Reservation;
+import com.adaming.gestionvoitures.exception.ReservationDejaFacturee;
 import com.adaming.gestionvoitures.service.agence.IAgenceService;
 import com.adaming.gestionvoitures.service.facture.IFactureService;
 import com.adaming.gestionvoitures.service.reservation.IReservationService;
@@ -40,11 +42,14 @@ public class FactureBean {
 	@NotNull(message="Veuillez entrer une date de facturation.")
 	private Date deFacturation;
 	private List<Facture> tabFactures;
+	private List<Facture> tabFacturesFiltered;
 	private Facture facture;
 	
 	private Double coutFacture;
 	private Double coutFacturesByClient;
 	private Double coutFacturesByVoiture;
+	
+	private String messageException;
 	
 	@NotNull(message="Veuillez préciser la réservation.")
 	private Long idReservation;
@@ -60,22 +65,29 @@ public class FactureBean {
 	/*METHODES*/
 	public void addFacture() throws ObjectNotFoundException{
 		Facture f = new Facture(deFacturation);
-		factureService.addFacture(f, idReservation, idAgence);
-		addMessage("Facture enregistrée!");
-		
-		deFacturation = null;
-		idReservation = null;
-		idAgence = null;
+		try {
+			factureService.addFacture(f, idReservation, idAgence);
+			addMessage("Facture enregistrée!");
+			
+			deFacturation = null;
+			idReservation = null;
+			idAgence = null;
+		} catch (ReservationDejaFacturee e) {
+			// TODO Auto-generated catch block
+			messageException = e.getMessage();
+		}
 	}
 	public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
-	
-	public void getFactureById(){
-		facture = factureService.getFactureById(idFacture);
-		calculerCoutFacture();
-				
+	public void attrListener(ActionEvent event){
+		/*Sélectionne une ligne du tableau*/
+		facture = (Facture) event.getComponent().getAttributes().get("fac");
+	}
+	public void consulterFacture(){
+		
+		coutFacture = factureService.calculerCoutFacture(facture.getIdFacture());		
 		/*Appel une autre page xhtml avec options de présentations dans un hashmap*/
 		Map<String,Object> options = new HashMap<String, Object>();
 		options.put("resizable", false);
@@ -275,6 +287,19 @@ public class FactureBean {
 	public void setIdFacture1(Long idFacture1) {
 		this.idFacture1 = idFacture1;
 	}
+	public List<Facture> getTabFacturesFiltered() {
+		return tabFacturesFiltered;
+	}
+	public void setTabFacturesFiltered(List<Facture> tabFacturesFiltered) {
+		this.tabFacturesFiltered = tabFacturesFiltered;
+	}
+	public String getMessageException() {
+		return messageException;
+	}
+	public void setMessageException(String messageException) {
+		this.messageException = messageException;
+	}
+	
 	
 	
 }

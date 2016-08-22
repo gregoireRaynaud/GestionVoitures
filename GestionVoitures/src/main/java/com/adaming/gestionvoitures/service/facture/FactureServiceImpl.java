@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.adaming.gestionvoitures.dao.facture.IFactureDao;
 import com.adaming.gestionvoitures.entities.Facture;
+import com.adaming.gestionvoitures.exception.ReservationDejaFacturee;
 
 @Transactional
 //@Component
@@ -28,7 +29,7 @@ public class FactureServiceImpl implements IFactureService{
 	}
 
 	@Override
-	public Facture addFacture(Facture f, Long idReservation, Long idAgence) {
+	public Facture addFacture(Facture f, Long idReservation, Long idAgence) throws ReservationDejaFacturee {
 		// TODO Auto-generated method stub
 		return daoFacture.addFacture(f, idReservation, idAgence);
 	}

@@ -117,18 +117,19 @@ public class AgenceBean {
 		return "updateAgence.xhtml";
 	}
 	public void updateAgence(){
+		agence.setAddrespostal(age.getAddrespostal());
+		agence.setNumerotel(age.getNumerotel());
+		agence.setDenomination(age.getDenomination());
+		agence.setFormJuridique(age.getFormJuridique());
+		agence.setActivite(age.getActivite());
+		agence.setAdressSiege(age.getAdressSiege());
+		agence.setDateCommencement(age.getDateCommencement());
+		agence.setVille(age.getVille());
+		agence.setDeuxiemTel(age.getDeuxiemTel());
+		agence.setTva(age.getTva());
+		agence.setChoixMonnais(age.getChoixMonnais());
 		
-		Agence a = new Agence(addrespostal, numerotel, denomination, formJuridique, activite, adressSiege, dateCommencement, ville, deuxiemTel, tva, choixMonnais);
-		agence.setAddrespostal(addrespostal);
-		agence.setNumerotel(numerotel);
-		agence.setDenomination(denomination);
-		agence.setFormJuridique(formJuridique);
-		agence.setActivite(activite);
-		agence.setAdressSiege(adressSiege);
-		agence.setAdressSiege(adressSiege);
-		agence.setDateCommencement(dateCommencement);
-		
-		agenceService.updateAgence(a);
+		agenceService.updateAgence(agence);
 		addMessage("Agence modifiée!");
 	}
 	@PostConstruct

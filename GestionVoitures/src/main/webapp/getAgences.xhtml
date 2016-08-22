@@ -13,7 +13,11 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:include src="navbar.xhtml"></ui:include>
 <h:form>
     <p:dataTable id="table1" var="age" value="#{AgenceBean.tabAgences}" widgetVar="agenceTable"
-                 emptyMessage="Aucune agence trouvée avec ces critères." filteredValue="#{AgenceBean.tabAgencesFiltered}">
+                 emptyMessage="Aucune agence trouvée avec ces critères." filteredValue="#{AgenceBean.tabAgencesFiltered}"
+                 rows="5"
+                 paginator="true"
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="5,10,15">
  
         <f:facet name="header">
             <p:outputPanel>

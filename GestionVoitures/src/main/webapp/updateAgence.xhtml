@@ -20,46 +20,46 @@ xmlns:b="http://bootsfaces.net/ui">
 
 <b:panel title="Modifier l'agence #{AgenceBean.agence.idAgence}" look="primary" style="text-decoration:none;">
  
-        <h:panelGrid columns="3" cellpadding="5">
+        <h:panelGrid columns="1" cellpadding="3">
 
             <p:outputLabel value="Adresse postale: "/>
-			<p:inputText id="txt1_2"  requiredMessage="Veuillez entrer une adresse." required="true" value="#{AgenceBean.age.addrespostal}"/>			
+			<p:inputText id="txt1_2"  requiredMessage="Veuillez entrer une adresse." required="true" value="#{AgenceBean.age.addrespostal}" style="width:500px"/>			
 			<p:message for="txt1_2"/>
             
             <p:outputLabel value="Numéro de téléphone: "/>
-			<p:inputText id="txt2_2"  requiredMessage="Veuillez indiquer un N° de Téléphone." required="true" value="#{AgenceBean.age.numerotel}"/>
+			<p:inputText id="txt2_2"  requiredMessage="Veuillez indiquer un N° de Téléphone." required="true" value="#{AgenceBean.age.numerotel}" style="width:500px"/>
 			<p:message for="txt2_2"/>
             
             <p:outputLabel value="Dénomination: "/>
-			<p:inputText id="txt3_2" requiredMessage="Veuillez indiquer une dénomination." required="true" value="#{AgenceBean.age.denomination}"/>
+			<p:inputText id="txt3_2" requiredMessage="Veuillez indiquer une dénomination." required="true" value="#{AgenceBean.age.denomination}" style="width:500px"/>
 			<p:message for="txt3_2"/>
             
             <p:outputLabel value="Forme Juridique: "/>
-			<p:inputText id="txt4_2" requiredMessage="Veuillez indiquer une forme juridique." required="true" value="#{AgenceBean.age.formJuridique}"/>
+			<p:inputText id="txt4_2" requiredMessage="Veuillez indiquer une forme juridique." required="true" value="#{AgenceBean.age.formJuridique}" style="width:500px"/>
 			<p:message for="txt4_2"/>
             
             <p:outputLabel value="Activité: "/>
-			<p:inputText id="txt5_2" requiredMessage="Veuillez indiquer une activité." required="true" value="#{AgenceBean.age.activite}"/>
+			<p:inputText id="txt5_2" requiredMessage="Veuillez indiquer une activité." required="true" value="#{AgenceBean.age.activite}" style="width:500px"/>
 			<p:message for="txt5_2"/>
             
             <p:outputLabel value="Adresse Siège: "/>
-			<p:inputText id="txt6_2" requiredMessage="Veuillez indiquer l'adresse du siège." required="true" value="#{AgenceBean.age.adressSiege}"/>
+			<p:inputText id="txt6_2" requiredMessage="Veuillez indiquer l'adresse du siège." required="true" value="#{AgenceBean.age.adressSiege}" style="width:500px"/>
 			<p:message for="txt6_2"/>
             
             <p:outputLabel value="Ville: "/>
-			<p:inputText id="txt7_2" requiredMessage="Veuillez indiquer une ville." required="true" value="#{AgenceBean.age.ville}"/>
+			<p:inputText id="txt7_2" requiredMessage="Veuillez indiquer une ville." required="true" value="#{AgenceBean.age.ville}" style="width:500px"/>
 			<p:message for="txt7_2"/>
             
             <p:outputLabel value="Numéro de téléphone secondaire: "/>
-			<p:inputText id="txt8_2" requiredMessage="Veuillez indiquer un N° de téléphone secondaire." required="true" value="#{AgenceBean.age.deuxiemTel}"/>
+			<p:inputText id="txt8_2" requiredMessage="Veuillez indiquer un N° de téléphone secondaire." required="true" value="#{AgenceBean.age.deuxiemTel}" style="width:500px"/>
 			<p:message for="txt8_2"/>
 			
             <p:outputLabel value="TVA: "/>
-			<p:inputText id="txt9_2" requiredMessage="Veuillez indiquer un taux de TVA." required="true" value="#{AgenceBean.age.tva}"/>
+			<p:inputText id="txt9_2" requiredMessage="Veuillez indiquer un taux de TVA." required="true" value="#{AgenceBean.age.tva}" style="width:500px"/>
 			<p:message for="txt9_2"/>
 			
 			<p:outputLabel value="Devise locale: " />
-            <p:selectOneMenu id="txt10_2" value="#{AgenceBean.age.choixMonnais}" requiredMessage="Veuillez préciser la devise locale." required="true" style="width:230px">
+            <p:selectOneMenu id="txt10_2" value="#{AgenceBean.age.choixMonnais}" requiredMessage="Veuillez préciser la devise locale." required="true" style="width:500px">
                 <f:selectItem itemLabel="Selectionner une devise" itemValue="" noSelectionOption="true" />
                 <f:selectItem itemLabel="Dollar" itemValue="dollar"/>
                 <f:selectItem itemLabel="Euro" itemValue="euro"/>
@@ -70,12 +70,13 @@ xmlns:b="http://bootsfaces.net/ui">
             <p:message for="txt10_2"/>
             
             <p:outputLabel value="Date de Création: *" />
-            <p:calendar id="txt11_2" value="#{AgenceBean.age.dateCommencement}" effect="fold" requiredMessage="Veuillez entrer une date de création" required="true" label="Date d'ouverture"/>
+            <p:calendar id="txt11_2" value="#{AgenceBean.age.dateCommencement}" effect="fold" requiredMessage="Veuillez entrer une date de création" required="true" label="Date d'ouverture" style="width:500px"/>
             <p:message for="txt11_2" />
          
         </h:panelGrid>
+        <p:separator/>
         <p:growl showDetail="true" globalOnly="true"/>
-		<b:commandButton look="primary" value="Ajouter" ajax="false" update="@(form) @(growl)" icon="ui-icon-disk" action="#{AgenceBean.updateAgence}"/>
+		<b:commandButton look="primary" value="Modifier" ajax="false" update="@(form) @(growl)" icon="ui-icon-disk" action="#{AgenceBean.updateAgence}"/>
 </b:panel>    
 
 </h:form>

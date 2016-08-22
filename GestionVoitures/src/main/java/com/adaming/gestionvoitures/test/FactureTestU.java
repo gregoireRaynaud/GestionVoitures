@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.adaming.gestionvoitures.entities.Facture;
+import com.adaming.gestionvoitures.exception.ReservationDejaFacturee;
 import com.adaming.gestionvoitures.service.facture.IFactureService;
 
 public class FactureTestU {
@@ -31,7 +32,7 @@ public class FactureTestU {
 	}
 
 	@Test
-	public void testAddFacture() {
+	public void testAddFacture() throws ReservationDejaFacturee {
 		Facture f = new Facture(new Date());
 		service.addFacture(f, null, null);
 		assertNotNull(f.getIdFacture());

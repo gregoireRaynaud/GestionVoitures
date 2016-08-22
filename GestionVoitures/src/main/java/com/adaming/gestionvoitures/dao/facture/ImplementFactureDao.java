@@ -1,5 +1,6 @@
 package com.adaming.gestionvoitures.dao.facture;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -14,6 +15,7 @@ import com.adaming.gestionvoitures.entities.Agence;
 import com.adaming.gestionvoitures.entities.Facture;
 import com.adaming.gestionvoitures.entities.Reservation;
 import com.adaming.gestionvoitures.entities.Voiture;
+import com.adaming.gestionvoitures.exception.ReservationDejaFacturee;
 
 @Repository(value="daoFacture")
 public class ImplementFactureDao implements IFactureDao {
@@ -24,8 +26,21 @@ public class ImplementFactureDao implements IFactureDao {
 	Logger log = Logger.getLogger("ImplementFactureDao");
 
 	@Override
-	public Facture addFacture(Facture f, Long idReservation, Long idAgence) {
+	public Facture addFacture(Facture f, Long idReservation, Long idAgence) throws ReservationDejaFacturee {
 		Reservation r = em.find(Reservation.class, idReservation);
+		
+		/*Check si la réservation est déja associée à une facture*/
+		Query query = em.createQuery("from Facture as f");
+		List<Facture> tabFacture = query.getResultList();
+		List<Long> tabIdReservation = new ArrayList<Long>();
+		for(Facture f2: tabFacture){
+			tabIdReservation.add(f2.getReservation().getIdreservation());
+		}
+		if(tabIdReservation.contains(r.getIdreservation())){
+			throw new ReservationDejaFacturee("Cette réservation a déjà été facturée.");
+		}
+		/*-------------------------------------------------------*/
+		
 		f.setReservation(r);
 		em.persist(f);
 		Agence a = em.find(Agence.class, idAgence);
