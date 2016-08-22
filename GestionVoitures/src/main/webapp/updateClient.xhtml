@@ -4,7 +4,8 @@
 xmlns:h="http://xmlns.jcp.org/jsf/html"
 xmlns:p="http://primefaces.org/ui"
 xmlns:f="http://java.sun.com/jsf/core"
-xmlns:ui="http://java.sun.com/jsf/facelets">
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Modifier un client</title>
@@ -14,91 +15,71 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<ui:include src="navbar.xhtml"></ui:include>
 
+	
 	<h:form>
-		<p:panel header="Modifier un client" style="margin-bottom:5px;">
+		<b:panel
+			title="Modifier le client #{ClientBean.client.idClient}"
+			look="primary" style="text-decoration:none;">
 			<h:panelGrid columns="1" cellpadding="3">
-				<p:outputLabel value="Sélectionnez un client: " />
-				<p:selectOneMenu id="id" value="#{ClientBean.idClient}"
-					style="width:150px">
-					<f:selectItem itemLabel="Choisissez un client" itemValue=""
-						noSelectionOption="true" />
-					<f:selectItems value="#{ClientBean.clients}" var="c"
-						itemValue="#{c.idClient}" itemLabel="#{c.nomClient}" />
-				</p:selectOneMenu>
-				<h:outputText
-					rendered="#{ClientBean.idClient} eq #{'Veuillez choisir un client'}"
-					value="#{ClientBean.idClient}" />
-				<p:message for="id" style="color: red"></p:message>
-			</h:panelGrid>
 
-			<p:separator />
-
-			<p:commandButton ajax="false" value="Selectionner" icon="ui-icon-check"
-				action="#{ClientBean.getClientById()}" />
-
-		</p:panel>
-	</h:form>
-	<h:form>
-		<p:growl id="msgs" showDetail="true" />
-
-		<p:panel header="Modifier un client" style="margin-bottom:5px;">
-			<h:panelGrid columns="1" cellpadding="3">
 				<p:outputLabel value="Nom : " />
-				<p:inputText id="nom" placeholder="#{ClientBean.client.nomClient}"
+				<p:inputText id="nom"
 					requiredMessage="nom obligatoire" required="true"
-					value="#{ClientBean.nomClient}" style="width:500px" />
+					value="#{ClientBean.client.nomClient}" style="width:500px" />
 				<p:message for="nom" style="color: red" />
 
 				<p:outputLabel value="Prénom : " />
-				<p:inputText id="prenom" placeholder="#{ClientBean.client.prenomClient}" requiredMessage="prénom obligatoire"
-					required="true" value="#{ClientBean.prenomClient}"
-					style="width:500px" />
+				<p:inputText id="prenom"
+					requiredMessage="prénom obligatoire" required="true"
+					value="#{ClientBean.client.prenomClient}" style="width:500px" />
 				<p:message for="prenom" style="color: red" />
 
 				<p:outputLabel value="Date de naissance : " />
-				<p:calendar id="inline" value="#{ClientBean.dateDeNaissance}" mode="inline" />
+				<p:calendar id="inline" value="#{ClientBean.client.dateDeNaissance}" pattern="dd/MM/yyyy" />
 
 				<p:outputLabel value="Numéro de téléphone : " />
-				<p:inputText id="numeroTel" placeholder="#{ClientBean.client.numeroTel}"
+				<p:inputText id="numeroTel"
 					requiredMessage="numéro de téléphone obligatoire" required="true"
-					value="#{ClientBean.numeroTel}" style="width:500px" />
+					value="#{ClientBean.client.numeroTel}" style="width:500px" />
 				<p:message for="numeroTel" style="color: red" />
 
 				<p:outputLabel value="Numéro de permis : " />
-				<p:inputText id="numeroPermis" placeholder="#{ClientBean.client.numeroPermis}"
+				<p:inputText id="numeroPermis"
 					requiredMessage="numéro de permis obligatoire" required="true"
-					value="#{ClientBean.numeroPermis}" style="width:500px" />
+					value="#{ClientBean.client.numeroPermis}" style="width:500px" />
 				<p:message for="numeroPermis" style="color: red" />
 
 				<p:outputLabel value="Adresse : " />
-				<p:inputText id="adresse" placeholder="#{ClientBean.client.adressePostale}" requiredMessage="Adresse obligatoire"
-					required="true" value="#{ClientBean.adressePostale}"
-					style="width:500px" />
+				<p:inputText id="adresse"
+					requiredMessage="Adresse obligatoire" required="true"
+					value="#{ClientBean.client.adressePostale}" style="width:500px" />
 				<p:message for="adresse" style="color: red" />
 
 				<p:outputLabel value="Adresse email: " />
-				<p:inputText id="mail" placeholder="#{ClientBean.client.mail}" requiredMessage="Adresse email obligatoire"
-					required="true" value="#{ClientBean.mail}" style="width:500px" />
+				<p:inputText id="mail"
+					requiredMessage="Adresse email obligatoire" required="true"
+					value="#{ClientBean.client.mail}" style="width:500px" />
 				<p:message for="mail" style="color: red" />
 
 				<p:outputLabel value="Pays : " />
-				<p:inputText id="pays" placeholder="#{ClientBean.client.pays}" requiredMessage="Pays obligatoire"
-					required="true" value="#{ClientBean.pays}" style="width:500px" />
+				<p:inputText id="pays"
+					requiredMessage="Pays obligatoire" required="true"
+					value="#{ClientBean.client.pays}" style="width:500px" />
 				<p:message for="pays" style="color: red" />
 
 				<p:outputLabel value="Date de délivrance du permis : " />
-				<p:calendar id="inline" value="#{ClientBean.dateDeDelivrance}" mode="inline" />
+				<p:calendar id="inline" value="#{ClientBean.client.dateDeDelivrance}" pattern="dd/MM/yyyy"/>
 
 				<p:outputLabel value="Lieu de naissance : " />
-				<p:inputText id="lieuDeNaissance" placeholder="#{ClientBean.client.lieuDeNaissance}"
+				<p:inputText id="lieuDeNaissance"
 					requiredMessage="lieu de naissance obligatoire" required="true"
-					value="#{ClientBean.lieuDeNaissance}" style="width:500px" />
+					value="#{ClientBean.client.lieuDeNaissance}" style="width:500px" />
 				<p:message for="lieuDeNaissance" style="color: red" />
 
 				<p:outputLabel value="Permis délivré par : " />
-				<p:inputText id="delivrePar" placeholder="#{ClientBean.client.delivrerPar}" requiredMessage="Valeur obligatoire"
-					required="true" value="#{ClientBean.delivrerPar}"
-					style="width:500px" />
+				<p:inputText id="delivrePar"
+					requiredMessage="Valeur obligatoire" required="true"
+					value="#{ClientBean.client.delivrerPar}" style="width:500px" />
 				<p:message for="delivrePar" style="color: red" />
 
 			</h:panelGrid>
@@ -106,9 +87,9 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 			<p:separator />
 
 			<p:commandButton value="Modifier" update="msgs" icon="ui-icon-check"
-				action="#{ClientBean.updateClient()}" />
+				action="#{ClientBean.updateClient}" />
 
-		</p:panel>
+			</b:panel>
 	</h:form>
 
 </h:body>

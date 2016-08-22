@@ -6,13 +6,15 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
-
-
+import javax.faces.event.ActionEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.adaming.gestionvoitures.entities.Client;
+import com.adaming.gestionvoitures.entities.ClientDecorator;
+import com.adaming.gestionvoitures.entities.Voiture;
 import com.adaming.gestionvoitures.service.client.IClientService;
 import com.adaming.gestionvoitures.service.facture.IFactureService;
 
@@ -29,8 +31,10 @@ public class ClientBean {
 	//Service
 	@Autowired
 	private IClientService clientService;
+	@Autowired
+	private IFactureService factureService;
 	
-	//Attributs	
+	//Attributs
 	private Long idClient;
 	private String nomClient;
 	private String prenomClient;
@@ -44,11 +48,10 @@ public class ClientBean {
 	private String lieuDeNaissance;
 	private String delivrerPar;
 	
-	private List<Client> clients;
-	private List<Client> clientsByMc;
+	//private List<ClientDecorator> filteredCustomer;
+	private List<ClientDecorator> clientsD = new ArrayList<ClientDecorator>();
 	private Client client;
-	private String mc;
-	private List<Double> listeCouts;
+	private ClientDecorator clientD;
 	
 	
 	//Constructeur par défaut
@@ -88,6 +91,15 @@ public class ClientBean {
 	public void setDateDeNaissance(Date dateDeNaissance) {
 		this.dateDeNaissance = dateDeNaissance;
 	}
+	
+	public ClientDecorator getClientD() {
+		return clientD;
+	}
+
+	public void setClientD(ClientDecorator clientD) {
+		this.clientD = clientD;
+	}
+
 	public String getNumeroTel() {
 		return numeroTel;
 	}
@@ -136,30 +148,6 @@ public class ClientBean {
 	public void setDelivrerPar(String delivrerPar) {
 		this.delivrerPar = delivrerPar;
 	}
-	
-	public List<Client> getClients() {
-		return clients;
-	}
-
-	public void setClients(List<Client> clients) {
-		this.clients = clients;
-	}
-
-	public List<Client> getClientsByMc() {
-		return clientsByMc;
-	}
-
-	public void setClientsByMc(List<Client> clientsByMc) {
-		this.clientsByMc = clientsByMc;
-	}
-
-	public String getMc() {
-		return mc;
-	}
-
-	public void setMc(String mc) {
-		this.mc = mc;
-	}
 
 	public Client getClient() {
 		return client;
@@ -169,13 +157,21 @@ public class ClientBean {
 		this.client = client;
 	}
 
-	public List<Double> getListeCouts() {
-		return listeCouts;
+	public List<ClientDecorator> getClientsD() {
+		return clientsD;
 	}
 
-	public void setListeCouts(List<Double> listeCouts) {
-		this.listeCouts = listeCouts;
+	public void setClientsD(List<ClientDecorator> clientsD) {
+		this.clientsD = clientsD;
 	}
+
+	/*public List<ClientDecorator> getFilteredCustomer() {
+		return filteredCustomer;
+	}
+
+	public void setFilteredCustomer(List<ClientDecorator> filteredCustomer) {
+		this.filteredCustomer = filteredCustomer;
+	}*/
 
 	//Autres méthodes
 	//Ajouter un client
@@ -196,7 +192,13 @@ public class ClientBean {
 	//Get Clients
 	@PostConstruct
 	public void getC(){
-		clients = clientService.getClients();
+		//clients = clientService.getClients();
+		List<Client> tabC = clientService.getClients();
+		for(Client c:tabC){
+			ClientDecorator cd = new ClientDecorator(c);
+			cd.setDepenses(factureService.calculerCoutFacturesByClient(c.getIdClient()));
+			clientsD.add(cd);
+		}
 	}
 	
 	//Update Client
@@ -218,15 +220,20 @@ public class ClientBean {
 		return "getClients.xhtml";		
 	}
 	
-	//Get Clients par mot-clef
-	@PostConstruct
-	public void getCByMc(){
-		clientsByMc = clientService.getClientByMc(mc);
-	}
-	
 	//Get Client By Id
 	public void getClientById(){
 		client = clientService.getClientById(idClient);
 	}
 	
+	//Méthode pour capturer un client depuis le tableau des clients
+	public void attrListener(ActionEvent event){
+		clientD = (ClientDecorator) event.getComponent().getAttributes().get("c");
+	}
+	
+	//Redirection vers la page updateClient
+	public String RedirectUpdateClient(){
+		client = clientD.getClient();
+		return "updateClient.xhtml";
+//		return "getClients.xhtml";
+	}
 }
