@@ -19,7 +19,7 @@ xmlns:b="http://bootsfaces.net/ui">
 	 
 	 <h:panelGrid columns="1" cellpadding="3">
 
-		<h:outputLabel for="voiture" value="Voiture : " />
+		<p:outputLabel for="voiture" value="Voiture : " />
 		<p:selectOneMenu id="voiture" value="#{ReservationBean.idVoiture}" style="width:500px">
         	<f:selectItem itemLabel="Choisir" itemValue="" />
             <f:selectItems value="#{ReservationBean.tabVoiture}" var="v" itemValue="#{v.idvoiture}"
@@ -27,7 +27,7 @@ xmlns:b="http://bootsfaces.net/ui">
         </p:selectOneMenu>
 		<p:message for="voiture" style="color: red"></p:message>
 		
-		<h:outputLabel for="client" value="Client : " />
+		<p:outputLabel for="client" value="Client : " />
 		<p:selectOneMenu id="client" value="#{ReservationBean.idClient}" style="width:500px">
         	<f:selectItem itemLabel="Choisir" itemValue="" />
             <f:selectItems value="#{ReservationBean.tabClient}" var="c" itemValue="#{c.idClient}"

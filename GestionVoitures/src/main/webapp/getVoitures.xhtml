@@ -19,11 +19,11 @@ xmlns:b="http://bootsfaces.net/ui">
 
 <h:form>
 
-<p:dataTable styleClass="table table-bordered" var="v" value="#{VoitureGetBean.tabVoiture}" rows="10"
+<p:dataTable var="v" value="#{VoitureGetBean.tabVoiture}" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15"
-                         emptyMessage="No cars found with given criteria"
+                         emptyMessage="Pas de voiture trouvée avec les critères donnés"
                          widgetVar="carsTable">
 
 	<f:facet name="header">

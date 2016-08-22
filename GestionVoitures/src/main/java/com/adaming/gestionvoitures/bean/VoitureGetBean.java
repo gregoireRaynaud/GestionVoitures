@@ -1,5 +1,6 @@
 package com.adaming.gestionvoitures.bean;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -19,16 +20,16 @@ import org.springframework.stereotype.Component;
 import com.adaming.gestionvoitures.entities.Voiture;
 import com.adaming.gestionvoitures.service.voiture.IVoitureService;
 
+@SuppressWarnings("serial")
 @Component("VoitureGetBean")
 @Scope("session")
-public class VoitureGetBean {
+public class VoitureGetBean implements Serializable{
 
 	@Autowired
 	IVoitureService voitureService;
 	
 	private Voiture v;
 	private List<Voiture> tabVoiture;
-	private List<Voiture> filteredCars;
 	private Voiture voiture;
 	@Size(min=2,max=20, message="Veuillez entrer un model entre 2 et 20 lettres")
 	private String modelVoiture;
@@ -54,14 +55,13 @@ public class VoitureGetBean {
 		//Voiture v = new Voiture(voiture.getModelVoiture(), immatricule, kilometrage, prixVoiture, typeVoiture, typeCarburant, etatVoiture);
 		//v.setIdvoiture(voiture.getIdvoiture());
 		voitureService.updateVoiture(v);
-		getVoitures();
-		return "redirect:successUpdateVoiture.xhtml";
+		return "successUpdateVoiture.xhtml";
 	}
 	
 	public String deleteVoiture(){
 		voitureService.deleteVoiture(voiture.getIdvoiture());
 		getVoitures();
-		return "redirect:successDeleteVoiture.xhtml";
+		return "successDeleteVoiture.xhtml";
 	}
 	
 	 public void attrListener(ActionEvent event){
@@ -89,7 +89,6 @@ public class VoitureGetBean {
 	
 	public VoitureGetBean() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	
@@ -111,14 +110,6 @@ public class VoitureGetBean {
 
 	public void setTabVoiture(List<Voiture> tabVoiture) {
 		this.tabVoiture = tabVoiture;
-	}
-
-	public List<Voiture> getFilteredCars() {
-		return filteredCars;
-	}
-
-	public void setFilteredCars(List<Voiture> filteredCars) {
-		this.filteredCars = filteredCars;
 	}
 
 	public Voiture getVoiture() {

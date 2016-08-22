@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Ajouter un entretien</title>
@@ -12,51 +13,49 @@
 		href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
 </h:head>
 <h:body>
-	<ui:include src="navbar.xhtml"></ui:include>
-	<h:form>
-		<p:growl id="msgs" showDetail="true" />
 
-		<p:panel header="Ajouter un entretien" style="margin-bottom:5px;">
+	<ui:include src="navbar.xhtml"></ui:include>
+	
+	<h:form>
+
+		<b:panel title="Ajouter un entretien" look="primary" style="text-decoration:none;">
 			<h:panelGrid columns="1" cellpadding="3">
 
-				<p:outputLabel for="Voiture" value="Voiture : " />
-				<p:selectOneMenu id="Voiture" value="#{EntretienBean.idVoiture}"
-					style="width:150px">
-					<f:selectItem itemLabel="Choisissez une voiture" itemValue=""
-						noSelectionOption="true" />
+				<p:outputLabel for="voiture" value="Voiture :" />
+				<p:selectOneMenu id="voiture" value="#{EntretienBean.idVoiture}"
+					style="width:500px">
+					<f:selectItem itemLabel="Choisissez une voiture" itemValue=""/>
 					<f:selectItems value="#{EntretienBean.voitures}" var="v"
-						itemLabel="#{v.immatricule}" itemValue="#{v.idvoiture}" />
+						itemValue="#{v.idvoiture}" itemLabel="#{v.immatricule}" />
 				</p:selectOneMenu>
+				<p:message for="voiture" style="color: red"></p:message>
 
 
-				<h:outputLabel for="type" value="Type: *" />
-				<h:selectOneMenu id="type" value="#{EntretienBean.type}"
-					required="true" label="Type">
-					<f:selectItem itemLabel="Séléctionner un type" itemValue=""
-						noSelectionOption="true" />
+				<p:outputLabel for="type" value="Entretien :" />
+				<p:selectOneMenu id="type" value="#{EntretienBean.type}" style="width:500px">
+					<f:selectItem itemLabel="Séléctionner un entretien" itemValue=""/>
 					<f:selectItem itemLabel="Chaine distribution"
 						itemValue="CHAINE_DISTRIBUTION" />
 					<f:selectItem itemLabel="Filtre huile" itemValue="FILTRE_HUILE" />
 					<f:selectItem itemLabel="Vidange" itemValue="VIDANGE" />
-				</h:selectOneMenu>
+				</p:selectOneMenu>
 				<p:message for="type" />
-				<h:outputText value="#{EntretienBean.type}" />
 
 
-				<p:outputLabel value="TypeEntretien : " />
+				<p:outputLabel for="typeEntretien" value="Type d'entretien : " />
 				<p:inputText id="typeEntretien"
-					requiredMessage="type d'entretien obligatoire" required="true"
 					value="#{EntretienBean.typeEntretien}" style="width:500px" />
 				<p:message for="typeEntretien" style="color: red" />
+				
 
-				<p:outputLabel value="Date: " />
-				<p:calendar id="inline" value="#{EntretienBean.dateEntretien}" mode="inline" />
+				<p:outputLabel for="inline" value="Date :" />
+				<p:calendar id="inline" value="#{EntretienBean.dateEntretien}" pattern="MM/dd/yyyy" />
+				<p:message for="inline" style="color: red"></p:message>
 
 				<!-- On ne peut pas saisir le kilométrage -->
 
-				<p:outputLabel value="prix : " />
-				<p:inputText id="prix" requiredMessage="prix obligatoire"
-					required="true" value="#{EntretienBean.prixEntretien}"
+				<p:outputLabel for="prix" value="Prix : " />
+				<p:inputText id="prix" value="#{EntretienBean.prixEntretien}"
 					style="width:500px" />
 				<p:message for="prix" style="color: red" />
 
@@ -64,11 +63,12 @@
 
 			<p:separator />
 
-			<p:commandButton value="Ajouter" update="msgs" icon="ui-icon-check"
-				action="#{EntretienBean.addEntretien()}" />
+			<b:commandButton look="primary" value="Ajouter" icon="ui-icon-check" action="#{EntretienBean.addEntretien()}"/>
 
-		</p:panel>
+		</b:panel>
 	</h:form>
+	
+	
 
 </h:body>
 </html>

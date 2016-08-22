@@ -10,6 +10,7 @@ xmlns:b="http://bootsfaces.net/ui">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Ajouter une voiture</title>
 <h:link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
+
 </h:head>
 <h:body>
 
@@ -40,8 +41,7 @@ xmlns:b="http://bootsfaces.net/ui">
 				<p:message for="prix" style="color: red"></p:message>
 
 				<p:outputLabel value="Type :" />
-				<p:selectOneMenu id="type" value="#{VoitureBean.typeVoiture}"
-					style="width:500px">
+				<p:selectOneMenu id="type" value="#{VoitureBean.typeVoiture}" style="width:500px">
 					<f:selectItem itemLabel="Choisir" itemValue="" />
 					<f:selectItem itemLabel="Citadine" itemValue="Citadine" />
 					<f:selectItem itemLabel="Compact" itemValue="Compact" />
@@ -79,7 +79,7 @@ xmlns:b="http://bootsfaces.net/ui">
 
 			<p:separator />
 
-			 <b:commandButton look="primary" value="Ajouter" ajax="false" action="#{VoitureBean.addVoiture()}"/>
+			 <b:commandButton update="@(form)" look="primary" value="Ajouter" ajax="false" action="#{VoitureBean.addVoiture()}"/>
 
 		
 		</b:panel>

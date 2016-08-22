@@ -6,7 +6,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
+import javax.faces.event.ActionEvent;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -36,20 +39,28 @@ public class EntretienBean {
 		
 	//Attributs	
 	private Long idEntretien;
+	@NotNull(message="Veuillez entrer un type d'entretien")
 	private String typeEntretien;
+	@NotNull(message="Veuillez choisir une date d'entretien")
 	private Date dateEntretien;
 	private Double Kilometrage;//kilometrage de la voiture au moment de l'entretien
+	@NotNull(message="Veuillez entrer un prix d'entretien")
 	private Integer prixEntretien;	
 	
 	private  Voiture voiture;
+	@NotNull(message="Veuillez choisir un entretien")
 	private String type;
 	private List<Entretien> entretiens;
 	private List<ChaineDistribution> chaineDistributions;
 	private List<FiltreHuile> filtreHuiles;
 	private List<Vidange> vidanges;
 	private List<Voiture> voitures;
+	@NotNull(message="Veuillez choisir une voiture")
 	private Long idVoiture;
 	private Entretien entretien;
+	private Entretien ent;
+	
+	private List<Entretien> filteredCars;
 	
 	//Constructeur par défaut
 	public EntretienBean() {
@@ -96,6 +107,17 @@ public class EntretienBean {
 
 	public void setKilometrage(Double kilometrage) {
 		Kilometrage = kilometrage;
+	}
+	
+
+	
+
+	public Entretien getEnt() {
+		return ent;
+	}
+
+	public void setEnt(Entretien ent) {
+		this.ent = ent;
 	}
 
 	public Integer getPrixEntretien() {
@@ -149,6 +171,15 @@ public class EntretienBean {
 	public List<Vidange> getVidanges() {
 		return vidanges;
 	}
+	
+
+	public List<Entretien> getFilteredCars() {
+		return filteredCars;
+	}
+
+	public void setFilteredCars(List<Entretien> filteredCars) {
+		this.filteredCars = filteredCars;
+	}
 
 	public void setVidanges(List<Vidange> vidanges) {
 		this.vidanges = vidanges;
@@ -191,13 +222,13 @@ public class EntretienBean {
 	public String addEntretien(){
 		voitures = voitureService.getVoitures();
 		voiture = voitureService.getVoitureById(idVoiture);
-		if(voiture==null){
-			return "getClientsByMc";
-		}
-		if(type==null){
-			return "index.xhtml";
-		}
-		voiture = voitureService.getVoitureById(1L);
+		System.out.println("<---------------------- id : " + idVoiture);
+////		if(voiture==null){
+////			return "getClientsByMc";
+////		}
+////		if(type==null){
+////			return "index.xhtml";
+////		}
 		if(type.equals("CHAINE_DISTRIBUTION")){
 			Entretien e = new ChaineDistribution(typeEntretien,dateEntretien,
 					voiture.getKilometrage(),prixEntretien);
@@ -215,7 +246,7 @@ public class EntretienBean {
 		}
 
 		getE();
-		return "getEntretiens.xhtml";
+		return "successSaveEntretien.xhtml";
 	}
 
 	//Get Entretiens
@@ -262,13 +293,9 @@ public class EntretienBean {
 	
 	//Update Entretien
 	public String updateEntretien(){
-		Entretien e = entretien;
-		e.setTypeEntretien(typeEntretien);
-		e.setDateEntretien(dateEntretien);
-		e.setPrixEntretien(prixEntretien);
-		entretienService.updateEntretien(e);
+		entretienService.updateEntretien(entretien);
 		getE();
-		return "getEntretiens.xhtml";
+		return "successUpdateEntretien.xhtml";
 	}
 	
 	//Get Id de tous les entretiens
@@ -296,4 +323,14 @@ public class EntretienBean {
 	public void getEntretienById(){
 		entretien = entretienService.getEntretienById(idEntretien);
 	}
+	
+	public void attrListener(ActionEvent event){
+		entretien = (Entretien) event.getComponent().getAttributes().get("entretien");
+ }
+	
+	public String RedirectUpdateEntretien(){
+		ent = entretienService.getEntretienById(entretien.getIdEntretien());
+		return "updateEntretien.xhtml";
+	}
+	
 }

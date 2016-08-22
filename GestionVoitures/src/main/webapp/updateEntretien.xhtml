@@ -4,7 +4,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Modifier un entretien</title>
@@ -16,46 +17,24 @@
 	<ui:include src="navbar.xhtml"></ui:include>
 
 	<h:form>
-		<p:panel header="Modifier un entretien" style="margin-bottom:5px;">
+	<b:panel title="Modifier l'entretien #{EntretienBean.entretien.idEntretien}" look="primary" style="text-decoration:none;">
 			<h:panelGrid columns="1" cellpadding="3">
-				<p:outputLabel value="Selectionnez un entretien: " />
-				<p:selectOneMenu id="id" value="#{EntretienBean.idEntretien}"
-					style="width:150px">
-					<f:selectItem itemLabel="Choisissez un entretien" itemValue=""
-						noSelectionOption="true" />
-					<f:selectItems value="#{EntretienBean.entretiens}" var="e"
-					itemValue="#{e.idEntretien}" itemLabel="#{e.idEntretien}"/>
-				</p:selectOneMenu>
-				<h:outputText
-					rendered="#{EntretienBean.idEntretien} eq #{'Veuillez choisir un entretien'}"
-					value="#{EntretienBean.idEntretien}" />
-				<p:message for="id" style="color: red"></p:message>
-			</h:panelGrid>
-			<p:separator />
-			<p:commandButton ajax="false" value="Sélectionner" icon="ui-icon-check"
-				action="#{EntretienBean.getEntretienById()}" />
-		</p:panel>
-	</h:form>
-	<h:form>
-		<p:panel header="Modifier un entretien" style="margin-bottom:5px;">
-			<h:panelGrid columns="1" cellpadding="3">
-				<p:outputLabel value="TypeEntretien : " />
+			
+				<p:outputLabel value="Type d'entretien : " />
 				<p:inputText id="typeEntretien"
-					placeholder="#{EntretienBean.entretien.typeEntretien}"
 					requiredMessage="type d'entretien obligatoire" required="true"
-					value="#{EntretienBean.typeEntretien}" style="width:500px" />
+					value="#{EntretienBean.entretien.typeEntretien}" style="width:500px" />
 				<p:message for="typeEntretien" style="color: red" />
 
 				<p:outputLabel value="Date: " />
-				<p:calendar id="inline" value="#{EntretienBean.dateEntretien}" mode="inline" />
+				<p:calendar id="inline" value="#{EntretienBean.entretien.dateEntretien}" pattern="dd-MM-yyyy" />
 
 				<!-- On ne peut pas modifier le kilométrage -->
 
 				<p:outputLabel value="prix : " />
 				<p:inputText id="prix"
-					placeholder="#{EntretienBean.entretien.prixEntretien}"
 					requiredMessage="prix obligatoire" required="true"
-					value="#{EntretienBean.prixEntretien}" style="width:500px" />
+					value="#{EntretienBean.entretien.prixEntretien}" style="width:500px" />
 				<p:message for="prix" style="color: red" />
 
 			</h:panelGrid>
@@ -65,7 +44,7 @@
 			<p:commandButton value="Modifier" icon="ui-icon-check"
 				action="#{EntretienBean.updateEntretien()}" />
 
-		</p:panel>
+		</b:panel>
 	</h:form>
 </h:body>
 </html>
