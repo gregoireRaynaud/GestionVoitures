@@ -33,6 +33,7 @@ public class VoitureUpdateBean {
 	@NotNull
 	private Double kilometrage;
 	private String alerte;
+	private List<Double> tabAlerte;
 	private String exception = "";
 	
 	@PostConstruct
@@ -43,24 +44,28 @@ public class VoitureUpdateBean {
 	
 	@PostConstruct
 	public void getVoitures(){
-		tabVoiture = voitureService.getVoitures();
+		tabVoiture = voitureService.rentreVoiture();
 	}
 	
 	public void getVoitureById(){
 		voiture = voitureService.getVoitureById(idVoiture);
-		saveV = voiture;
 	}
 	
 	public String updateVoiture(){
 		try {
-			if(saveV.getKilometrage() < voiture.getKilometrage()){
-				throw new VoitureDisponibleException("Vous ne pouvez pas entrer un kilométrage inférieur au précendent kilométrage enregistré");
-			}
+			saveV = voitureService.getVoitureById(idVoiture);
+			System.out.println("<---------------- save : " + saveV.getKilometrage());
 			exception = "";
+			System.out.println("<---------------- voiture : " + voiture.getKilometrage());
 			Voiture v = voiture;
 			v.setKilometrage(voiture.getKilometrage());
+			System.out.println("<---------------- v : " + v.getKilometrage());
+			System.out.println("<---------------- test : " + (saveV.getKilometrage() > v.getKilometrage()));
+			if(saveV.getKilometrage() > v.getKilometrage()){
+				throw new VoitureDisponibleException("Vous ne pouvez pas entrer un kilométrage inférieur au précendent kilométrage enregistré");
+			}
 			voitureService.updateVoiture(v);
-			alerte = voitureService.alerteEntretien(idVoiture);
+			tabAlerte = voitureService.alerteEntretien(idVoiture);
 			return "succesRetour.xhtml-redirect=true";
 		} catch (VoitureDisponibleException e) {
 			exception = e.getMessage();
@@ -133,6 +138,14 @@ public class VoitureUpdateBean {
 
 	public void setSaveV(Voiture saveV) {
 		this.saveV = saveV;
+	}
+
+	public List<Double> getTabAlerte() {
+		return tabAlerte;
+	}
+
+	public void setTabAlerte(List<Double> tabAlerte) {
+		this.tabAlerte = tabAlerte;
 	}
 
 	

@@ -4,7 +4,8 @@
 xmlns:h="http://xmlns.jcp.org/jsf/html"
 xmlns:p="http://primefaces.org/ui"
 xmlns:f="http://java.sun.com/jsf/core"
-xmlns:ui="http://java.sun.com/jsf/facelets">
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Succès de la modification du kilometrage</title>
@@ -23,7 +24,30 @@ font-family: Verdana,Arial,sans-serif; width: 98.4%;">
 <div style="text-align: center; color: black; background-color: #F2D6BB; border-color: red;
 border: 1px solid; padding: 10px 10px 10px 10px; border-radius: 5px; font-size: 90%; 
 font-family: Verdana,Arial,sans-serif; width: 98.4%; margin-top: 50px;">
-<h:outputText value="#{VoitureUpdateBean.alerte}"></h:outputText>
+<h:outputText value="Entretien à prévoir :" style="font-size: 40px"></h:outputText>
+<table style="position: relative; margin: auto">
+	<tr>
+		<td style="padding: 10px; text-align: right">Vidange : </td>
+		<td style="padding: 10px; text-align: left">
+			<h:outputText rendered="#{VoitureUpdateBean.tabAlerte.get(0) lt 0.0}" value="#{VoitureUpdateBean.tabAlerte.get(0)} km" style="color: red"></h:outputText>
+			<h:outputText rendered="#{VoitureUpdateBean.tabAlerte.get(0) ge 0.0}" value="#{VoitureUpdateBean.tabAlerte.get(0)} km"></h:outputText>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding: 10px; text-align: right">Chaîne de distribution : </td>
+		<td style="padding: 10px; text-align: left">
+			<h:outputText rendered="#{VoitureUpdateBean.tabAlerte.get(1) lt 0.0}" value="#{VoitureUpdateBean.tabAlerte.get(1)} km" style="color: red"></h:outputText>
+			<h:outputText rendered="#{VoitureUpdateBean.tabAlerte.get(1) ge 0.0}" value="#{VoitureUpdateBean.tabAlerte.get(1)} km"></h:outputText>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding: 10px; text-align: right">Filtre à huile : </td>
+		<td style="padding: 10px; text-align: left">
+			<h:outputText rendered="#{VoitureUpdateBean.tabAlerte.get(2) lt 0.0}" value="#{VoitureUpdateBean.tabAlerte.get(2)} km" style="color: red"></h:outputText>
+			<h:outputText rendered="#{VoitureUpdateBean.tabAlerte.get(2) ge 0.0}" value="#{VoitureUpdateBean.tabAlerte.get(2)} km"></h:outputText>
+		</td>
+	</tr>
+</table>
 </div>
 
 

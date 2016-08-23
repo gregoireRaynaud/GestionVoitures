@@ -16,6 +16,7 @@ public interface IVoitureService {
 	public List<Voiture> disponibiliteVoiture() throws VoitureDisponibleException;
 	public List<Voiture> disponibiliteVoiture(Date dDebut, Date dFin) throws VoitureDisponibleException;
 	public List<Voiture> rentreVoiture();
-	public String alerteEntretien(Long idVoiture);
+//	public String alerteEntretien(Long idVoiture);
+	public List<Double> alerteEntretien(Long idVoiture);
 	
 }
