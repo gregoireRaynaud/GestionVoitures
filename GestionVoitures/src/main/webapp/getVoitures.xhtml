@@ -19,7 +19,7 @@ xmlns:b="http://bootsfaces.net/ui">
 
 <h:form>
 
-<b:dataTable styleClass="table table-striped" var="v" value="#{VoitureGetBean.tabVoiture}" rows="10"
+<b:dataTable styleClass="table table-striped" var="v" value="#{VoitureGetBean.tabVoitureD}" rows="10"
                          widgetVar="carsTable"
 						  page-length="10"
 						  page-length-menu="5,10,25,50"
@@ -27,35 +27,39 @@ xmlns:b="http://bootsfaces.net/ui">
 						  style="text-align: center; vertical-align: center !important">
 
 	<b:dataTableColumn label="Id">
-		<h:outputText value="#{v.idvoiture}" />
+		<h:outputText value="#{v.voiture.idvoiture}" />
 	</b:dataTableColumn>
 	
 	<b:dataTableColumn label="Model">
-		<h:outputText value="#{v.modelVoiture}" />
+		<h:outputText value="#{v.voiture.modelVoiture}" />
 	</b:dataTableColumn>
 	
 	<b:dataTableColumn label="Immatricule">
-		<h:outputText value="#{v.immatricule}" />
+		<h:outputText value="#{v.voiture.immatricule}" />
 	</b:dataTableColumn>
 	
 	<b:dataTableColumn label="Kilometrage">
-		<h:outputText value="#{v.kilometrage}" />
+		<h:outputText value="#{v.voiture.kilometrage}" />
 	</b:dataTableColumn>
 	
 	<b:dataTableColumn label="Prix">
-		<h:outputText value="#{v.prixVoiture}" />
+		<h:outputText value="#{v.voiture.prixVoiture}" />
 	</b:dataTableColumn>
 	
 	<b:dataTableColumn label="Voiture">
-		<h:outputText value="#{v.typeVoiture}" />
+		<h:outputText value="#{v.voiture.typeVoiture}" />
 	</b:dataTableColumn>
 	
 	<b:dataTableColumn label="Carburant">
-		<h:outputText value="#{v.typeCarburant}" />
+		<h:outputText value="#{v.voiture.typeCarburant}" />
 	</b:dataTableColumn>
 	
 	<b:dataTableColumn label="Etat">
-		<h:outputText value="#{v.etatVoiture}" />
+		<h:outputText value="#{v.voiture.etatVoiture}" />
+	</b:dataTableColumn>
+	
+	<b:dataTableColumn label="Chiffre d'affaires">
+		<h:outputText value="#{v.chiffreDAffaires}" />
 	</b:dataTableColumn>
 	
 	<h:column label="Modification">

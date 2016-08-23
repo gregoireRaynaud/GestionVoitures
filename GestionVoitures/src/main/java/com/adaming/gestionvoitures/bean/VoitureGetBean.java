@@ -1,6 +1,7 @@
 package com.adaming.gestionvoitures.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.adaming.gestionvoitures.entities.Voiture;
+import com.adaming.gestionvoitures.entities.VoitureDecorator;
+import com.adaming.gestionvoitures.service.facture.IFactureService;
 import com.adaming.gestionvoitures.service.voiture.IVoitureService;
 
 @SuppressWarnings("serial")
@@ -27,17 +30,22 @@ public class VoitureGetBean implements Serializable{
 
 	@Autowired
 	IVoitureService voitureService;
+	@Autowired
+	private IFactureService factureService;
 	
 	private Voiture v;
 	private List<Voiture> tabVoiture;
 	private Voiture voiture;
+	private VoitureDecorator voitureD;
+	private List<VoitureDecorator> tabVoitureD = new ArrayList<VoitureDecorator>();
+	
 	@Size(min=2,max=20, message="Veuillez entrer un model entre 2 et 20 lettres")
 	private String modelVoiture;
-	@Size(min=7, max=7, message="Veuillez entrer une immatriculation de 7 caractères")
+	@Size(min=7, max=7, message="Veuillez entrer une immatriculation de 7 caractï¿½res")
     private String immatricule;
 	@Min(0) 
 	@Max(1000000)
-	@NotNull(message="Veuillez entrer le kilométrage")
+	@NotNull(message="Veuillez entrer le kilomï¿½trage")
     private Double kilometrage;
 	@Min(0) 
 	@Max(100000)
@@ -47,10 +55,11 @@ public class VoitureGetBean implements Serializable{
     private String typeVoiture;
 	@NotNull(message="Veuillez choisir un type de carburant")
     private String typeCarburant;
-	@NotNull(message="Veuillez choisir un état")
+	@NotNull(message="Veuillez choisir un ï¿½tat")
     private String etatVoiture;
 	private Long idVoiture;
 	private int test = 0;
+	
 	
 	public String updateVoiture(){
 		//Voiture v = new Voiture(voiture.getModelVoiture(), immatricule, kilometrage, prixVoiture, typeVoiture, typeCarburant, etatVoiture);
@@ -66,20 +75,27 @@ public class VoitureGetBean implements Serializable{
 	}
 	
 	 public void attrListener(ActionEvent event){
-			voiture = (Voiture) event.getComponent().getAttributes().get("v");
+		voitureD = (VoitureDecorator) event.getComponent().getAttributes().get("v");
 	 }
 	
 	@PostConstruct
 	public String getVoitures(){
-		tabVoiture = voitureService.getVoitures();
+		/*tabVoiture = voitureService.getVoitures();
+		return "redirect:getVoitures.xhtml";*/
+		List<Voiture> tabV = voitureService.getVoitures();
+		for(Voiture v:tabV){
+			VoitureDecorator vd = new VoitureDecorator(v);
+			vd.setChiffreDAffaires(factureService.calculerCoutFacturesByVoiture(v.getIdvoiture()));
+			tabVoitureD.add(vd);
+		}
 		return "redirect:getVoitures.xhtml";
 	}
 	
 	public String RedirectUpdateVoiture(){
 		//voitureService.updateVoiture(voiture);
 		//return "updateVoiture.xhtml";
-		v = voitureService.getVoitureById(voiture.getIdvoiture());
-		System.out.println(v.getModelVoiture());
+		v = voitureD.getVoiture();
+		//System.out.println(v.getModelVoiture());
 		return "updateVoiture.xhtml";
 	}
 	
@@ -191,6 +207,26 @@ public class VoitureGetBean implements Serializable{
 
 	public void setTest(int test) {
 		this.test = test;
+	}
+
+	public List<VoitureDecorator> getVoitureD() {
+		return tabVoitureD;
+	}
+
+	public void setVoitureD(List<VoitureDecorator> tabVoitureD) {
+		this.tabVoitureD = tabVoitureD;
+	}
+
+	public List<VoitureDecorator> getTabVoitureD() {
+		return tabVoitureD;
+	}
+
+	public void setTabVoitureD(List<VoitureDecorator> tabVoitureD) {
+		this.tabVoitureD = tabVoitureD;
+	}
+
+	public void setVoitureD(VoitureDecorator voitureD) {
+		this.voitureD = voitureD;
 	}
 	
 	
