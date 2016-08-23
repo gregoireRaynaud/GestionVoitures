@@ -16,97 +16,60 @@
 
 	<ui:include src="navbar.xhtml"></ui:include>
 
-<!-- 	Select pour la redirection vers les tableaux par type -->
-<!-- 	<h:form> -->
-<!-- 		<p:panel id="panel" header="Afficher les entretiens par type" -->
-<!-- 			style="margin-bottom:10px;"> -->
-<!-- 			<p:messages id="messages" /> -->
-
-<!-- 			<h:outputLabel for="type" value="Type: *" /> -->
-<!-- 			<h:selectOneMenu id="type" value="#{EntretienBean.type}" -->
-<!-- 				required="true" label="Type"> -->
-<!-- 				<f:selectItem itemLabel="Séléctionner un type" itemValue="" -->
-<!-- 					noSelectionOption="true" /> -->
-<!-- 				<f:selectItem itemLabel="Chaine distribution" -->
-<!-- 					itemValue="CHAINE_DISTRIBUTION" /> -->
-<!-- 				<f:selectItem itemLabel="Filtre huile" itemValue="FILTRE_HUILE" /> -->
-<!-- 				<f:selectItem itemLabel="Vidange" itemValue="VIDANGE" /> -->
-<!-- 			</h:selectOneMenu> -->
-<!-- 		</p:panel> -->
-
-<!-- 		<p:commandButton value="Afficher" ajax="false" icon="ui-icon-check" -->
-<!-- 			action="#{EntretienBean.redirect()}" /> -->
-
-<!-- 	</h:form> -->
 
 
-	<!-- Tableau des entretiens -->
-	
-<b:panel title="Historique des entretiens" look="primary">
 
-<h:form>
-	
-	<p:dataTable styleClass="table table-bordered" var="entretien" value="#{EntretienBean.entretiens}" rows="10"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15"
-                         emptyMessage="Aucun entretien trouvé pour les critères donnés"
-                         widgetVar="carsTable">
-	
-	<f:facet name="header">
-            <p:outputPanel>
-                <h:outputText value="Rechercher dans le tableau :" />
-                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter un mot clé"/>
-            </p:outputPanel>
-    </f:facet>
-	
-	<p:column headerText="Id" filterBy="#{entretien.idEntretien}" filterMatchMode="exact" sortBy="#{entretien.idEntretien}">
-        <h:outputText value="#{entretien.idEntretien}" />
-    </p:column>
-    
-    <p:column headerText="Type d'entretien" filterBy="#{entretien.typeEntretien}" filterMatchMode="exact" sortBy="#{entretien.typeEntretien}">
-        <h:outputText value="#{entretien.typeEntretien}" />
-    </p:column>
-    
-    <p:column headerText="Entretien" filterBy="#{entretien.getType()}" filterMatchMode="exact" sortBy="#{entretien.getType()}">
-        <f:facet name="filter">
-        	<p:selectOneMenu onchange="PF('carsTable').filter()" style="width:85%">
-	        	<f:selectItem itemLabel="Choisir" itemValue="" noSelectionOption="true"/>
-	            <f:selectItem itemLabel="CHAINE_DISTRIBUTION" itemValue="CHAINE_DISTRIBUTION" />
-            	<f:selectItem itemLabel="FILTRE_HUILE" itemValue="FILTRE_HUILE" />
-            	<f:selectItem itemLabel="VIDANGE" itemValue="VIDANGE" />
-        </p:selectOneMenu>
-        </f:facet>
-        <h:outputText value="#{entretien.getType()}" />
-    </p:column>
-    
-    <p:column headerText="Date" sortBy="#{entretien.dateEntretien}">
-        <h:outputText value="#{entretien.dateEntretien}" />
-    </p:column>
+	<b:panel title="Historique des entretiens" look="primary">
 
-	<p:column headerText="Kilometrage" filterBy="#{entretien.kilometrage}" filterMatchMode="contains" sortBy="#{entretien.kilometrage}">
-        <h:outputText value="#{entretien.kilometrage}" />
-    </p:column>
-    
-    <p:column headerText="Prix" filterBy="#{entretien.prixEntretien}" filterMatchMode="contains" sortBy="#{entretien.prixEntretien}">
-        <h:outputText value="#{entretien.prixEntretien}" />
-    </p:column>
-    
-    <p:column headerText="Imm. voiture" filterBy="#{entretien.voiture.getImmatricule()}" filterMatchMode="contains" sortBy="#{entretien.voiture.getImmatricule()}">
-        <h:outputText value="#{entretien.voiture.getImmatricule()}" />
-    </p:column>
-    
-    <p:column headerText="Modification" style="text-align: center">
-    	<p:commandButton ajax="false" actionListener="#{EntretienBean.attrListener}" action="#{EntretienBean.RedirectUpdateEntretien}" icon="ui-icon-pencil" style="border: 1px solid #acdd4a; background: #6eac2c">
-    		<f:attribute name="entretien" value="#{entretien}" />
-    	</p:commandButton>
-    </p:column>
+		<h:form>
 
-	</p:dataTable>
-	
-</h:form>
-	
-</b:panel>
+			<b:dataTable styleClass="table table-striped" var="entretien"
+				value="#{EntretienBean.entretiens}" rows="10" widgetVar="carsTable"
+				page-length="10" page-length-menu="5,10,25,50" lang="fr"
+				style="text-align: center; vertical-align: center !important">
+
+				<b:dataTableColumn label="Id">
+					<h:outputText value="#{entretien.idEntretien}" />
+				</b:dataTableColumn>
+
+				<b:dataTableColumn label="Type d'entretien">
+					<h:outputText value="#{entretien.typeEntretien}" />
+				</b:dataTableColumn>
+
+				<b:dataTableColumn label="Entretien">
+					<h:outputText value="#{entretien.getType()}" />
+				</b:dataTableColumn>
+
+				<b:dataTableColumn label="Date">
+					<h:outputText value="#{entretien.dateEntretien}" />
+				</b:dataTableColumn>
+
+				<b:dataTableColumn label="Kilometrage">
+					<h:outputText value="#{entretien.kilometrage}" />
+				</b:dataTableColumn>
+
+				<b:dataTableColumn label="Prix">
+					<h:outputText value="#{entretien.prixEntretien}" />
+				</b:dataTableColumn>
+
+				<b:dataTableColumn label="Imm. voiture">
+					<h:outputText value="#{entretien.voiture.getImmatricule()}" />
+				</b:dataTableColumn>
+
+				<h:column label="Modification">
+					<p:commandButton ajax="false" icon="ui-icon-pencil"
+						style="border: 1px solid #27DBC3; background: #27DBC3; padding: 5px 20px; margin-right: 10px"
+						actionListener="#{EntretienBean.attrListener}"
+						action="#{EntretienBean.RedirectUpdateEntretien}">
+						<f:attribute name="entretien" value="#{entretien}" />
+					</p:commandButton>
+				</h:column>
+
+			</b:dataTable>
+
+		</h:form>
+
+	</b:panel>
 
 </h:body>
 </html>

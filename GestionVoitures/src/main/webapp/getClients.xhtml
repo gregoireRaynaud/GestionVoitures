@@ -21,108 +21,74 @@
 
 		<h:form>
 
-			<p:dataTable styleClass="table table-bordered" var="clientD"
-				value="#{ClientBean.clientsD}" rows="10" paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="5,10,15"
-				emptyMessage="Aucun client ne correspond à la recherche"
-				widgetVar="customersTable">
+			<b:dataTable styleClass="table table-striped" var="clientD"
+				value="#{ClientBean.clientsD}" rows="10" 
+				widgetVar="customersTable" page-length="10"
+				page-length-menu="5,10,25,50" lang="fr"
+				style="text-align: center; vertical-align: center !important">
 
-				<f:facet name="header">
-					<p:outputPanel>
-						<h:outputText value="Rechercher dans le tableau :" />
-						<p:inputText id="globalFilter"
-							onkeyup="PF('customersTable').filter()" style="width:150px"
-							placeholder="Enter un mot clé" />
-					</p:outputPanel>
-				</f:facet>
+				<b:dataTableColumn label="Id">
+				<h:outputText value="#{clientD.client.idClient}" />
+				</b:dataTableColumn>
 
-				<p:column headerText="Id" filterBy="#{clientD.client.idClient}"
-					filterMatchMode="exact" sortBy="#{clientD.client.idClient}">
-					<h:outputText value="#{clientD.client.idClient}" />
-				</p:column>
-
-				<p:column headerText="Nom" filterBy="#{clientD.client.nomClient}"
-					filterMatchMode="contains" sortBy="#{clientD.client.nomClient}">
+				<b:dataTableColumn label="Nom">
 					<h:outputText value="#{clientD.client.nomClient}" />
-				</p:column>
+				</b:dataTableColumn>
 
-				<p:column headerText="Prénom"
-					filterBy="#{clientD.client.prenomClient}"
-					filterMatchMode="contains" sortBy="#{clientD.client.prenomClient}">
+				<b:dataTableColumn label="Prénom">
 					<h:outputText value="#{clientD.client.prenomClient}" />
-				</p:column>
+				</b:dataTableColumn>
 
-				<p:column headerText="Date de naissance"
-					filterBy="#{clientD.client.dateDeNaissance}"
-					filterMatchMode="contains"
-					sortBy="#{clientD.client.dateDeNaissance}">>
+				<b:dataTableColumn label="Date de naissance">
 					<h:outputText value="#{clientD.client.dateDeNaissance}" />
-				</p:column>
+				</b:dataTableColumn>
 
-				<p:column headerText="Num. de Tel."
-					filterBy="#{clientD.client.numeroTel}" filterMatchMode="contains"
-					sortBy="#{clientD.client.numeroTel}">
+				<b:dataTableColumn label="Num. de Tel.">
 					<h:outputText value="#{clientD.client.numeroTel}" />
-				</p:column>
+				</b:dataTableColumn>
 
-				<p:column headerText="Num. de permis"
-					filterBy="#{clientD.client.numeroPermis}"
-					filterMatchMode="contains" sortBy="#{clientD.client.numeroPermis}">
+				<b:dataTableColumn label="Num. de permis">
 					<h:outputText value="#{clientD.client.numeroPermis}" />
-				</p:column>
+				</b:dataTableColumn>
 
-				<p:column headerText="Adresse postale"
-					filterBy="#{clientD.client.adressePostale}"
-					filterMatchMode="contains"
-					sortBy="#{clientD.client.adressePostale}">
+				<b:dataTableColumn label="Adresse postale">
 					<h:outputText value="#{clientD.client.adressePostale}" />
-				</p:column>
+				</b:dataTableColumn>
 
-				<p:column headerText="Mail" filterBy="#{clientD.client.mail}"
-					filterMatchMode="contains" sortBy="#{clientD.client.mail}">
+				<b:dataTableColumn label="Mail">
 					<h:outputText value="#{clientD.client.mail}" />
-				</p:column>
+				</b:dataTableColumn>
 
-				<p:column headerText="Pays" filterBy="#{clientD.client.pays}"
-					filterMatchMode="contains" sortBy="#{clientD.client.pays}">
+				<b:dataTableColumn label="Pays">
 					<h:outputText value="#{clientD.client.pays}" />
-				</p:column>
+				</b:dataTableColumn>
 
-				<p:column headerText="Date de délivrance"
-					filterBy="#{clientD.client.dateDeDelivrance}"
-					filterMatchMode="contains"
-					sortBy="#{clientD.client.dateDeDelivrance}">
+				<b:dataTableColumn label="Date de délivrance">
 					<h:outputText value="#{clientD.client.dateDeDelivrance}" />
-				</p:column>
+				</b:dataTableColumn>
 
-				<p:column headerText="Lieu de naissance"
-					filterBy="#{clientD.client.lieuDeNaissance}"
-					filterMatchMode="contains"
-					sortBy="#{clientD.client.lieuDeNaissance}">
+				<b:dataTableColumn label="Lieu de naissance">
 					<h:outputText value="#{clientD.client.lieuDeNaissance}" />
-				</p:column>
+				</b:dataTableColumn>
 
-				<p:column headerText="Permis délivré par"
-					filterBy="#{clientD.client.delivrerPar}" filterMatchMode="contains"
-					sortBy="#{clientD.client.delivrerPar}">
+				<b:dataTableColumn label="Permis délivré par">
 					<h:outputText value="#{clientD.client.delivrerPar}" />
-				</p:column>
+				</b:dataTableColumn>
 
-				<p:column headerText="Dépenses" filterBy="#{clientD.depenses}"
-					filterMatchMode="contains" sortBy="#{clientD.depenses}">
+				<b:dataTableColumn label="Dépenses">
 					<h:outputText value="#{clientD.depenses}" />
-				</p:column>
+				</b:dataTableColumn>
 
-				<p:column headerText="Modification" style="text-align: center">
-					<p:commandButton ajax="false"
+
+				<h:column label="Modification">
+					<p:commandButton ajax="false" icon="ui-icon-pencil"
+						style="border: 1px solid #27DBC3; background: #27DBC3; padding: 5px 20px; margin-right: 10px"
 						actionListener="#{ClientBean.attrListener}"
-						action="#{ClientBean.RedirectUpdateClient}" icon="ui-icon-pencil"
-						style="border: 1px solid #acdd4a; background: #6eac2c">
+						action="#{ClientBean.RedirectUpdateClient}">
 						<f:attribute name="c" value="#{clientD}" />
 					</p:commandButton>
-				</p:column>
-			</p:dataTable>
+				</h:column>
+			</b:dataTable>
 
 		</h:form>
 
