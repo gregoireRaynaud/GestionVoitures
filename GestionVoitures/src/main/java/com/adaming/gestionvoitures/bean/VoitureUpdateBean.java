@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.adaming.gestionvoitures.entities.Voiture;
+import com.adaming.gestionvoitures.exception.VoitureDisponibleException;
 import com.adaming.gestionvoitures.service.voiture.IVoitureService;
 
 @Component("VoitureUpdateBean")
@@ -28,9 +29,11 @@ public class VoitureUpdateBean {
 	private Long idVoiture;
 	private List<Voiture> tabVoiture;
 	private Voiture voiture;
+	private Voiture saveV;
 	@NotNull
 	private Double kilometrage;
 	private String alerte;
+	private String exception = "";
 	
 	@PostConstruct
 	public String init(){
@@ -45,14 +48,24 @@ public class VoitureUpdateBean {
 	
 	public void getVoitureById(){
 		voiture = voitureService.getVoitureById(idVoiture);
+		saveV = voiture;
 	}
 	
 	public String updateVoiture(){
-		Voiture v = voiture;
-		v.setKilometrage(voiture.getKilometrage());
-		voitureService.updateVoiture(v);
-		alerte = voitureService.alerteEntretien(idVoiture);
-		return "succesRetour.xhtml";
+		try {
+			if(saveV.getKilometrage() < voiture.getKilometrage()){
+				throw new VoitureDisponibleException("Vous ne pouvez pas entrer un kilométrage inférieur au précendent kilométrage enregistré");
+			}
+			exception = "";
+			Voiture v = voiture;
+			v.setKilometrage(voiture.getKilometrage());
+			voitureService.updateVoiture(v);
+			alerte = voitureService.alerteEntretien(idVoiture);
+			return "succesRetour.xhtml-redirect=true";
+		} catch (VoitureDisponibleException e) {
+			exception = e.getMessage();
+			return "updateKmVoiture.xhtml";
+		}
 	}
 	
 	public VoitureUpdateBean() {
@@ -104,6 +117,22 @@ public class VoitureUpdateBean {
 
 	public void setAlerte(String alerte) {
 		this.alerte = alerte;
+	}
+
+	public String getException() {
+		return exception;
+	}
+
+	public void setException(String exception) {
+		this.exception = exception;
+	}
+
+	public Voiture getSaveV() {
+		return saveV;
+	}
+
+	public void setSaveV(Voiture saveV) {
+		this.saveV = saveV;
 	}
 
 	

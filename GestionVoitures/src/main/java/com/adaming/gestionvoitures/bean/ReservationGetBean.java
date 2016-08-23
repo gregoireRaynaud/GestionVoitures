@@ -1,5 +1,7 @@
 package com.adaming.gestionvoitures.bean;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -46,18 +48,32 @@ public class ReservationGetBean {
 	
 	public String updateReservation(){
 		try {
+			if(r.getDateRetour().getTime() - r.getDateSortie().getTime() < 0){
+				throw new VoitureDisponibleException("Veuillez entrer une date de retour postérieur à la date de départ");
+			}
+			r.setNombresDeJours(nbJours(r.getDateSortie(), r.getDateRetour()));
 			reservationService.updateReservation(r);
 			exceptionVoiture = "";
-			return "getReservations.xhtml";
+			return "successUpdateReservation.xhtml";
 		} catch (VoitureDisponibleException e) {
 			exceptionVoiture = e.getMessage();
+			return "updateReservation.xhtml";
 		}
-		return "successUpdateReservation.xhtml";
+		
+	}
+	
+	public Integer nbJours(Date date1, Date date2) {
+		Calendar c1 = Calendar.getInstance();
+		c1.setTime(date1);
+		Calendar c2 = Calendar.getInstance();
+		c2.setTime(date2);
+		Integer nbJours = (int) ((c2.getTimeInMillis() - c1.getTimeInMillis())/ 86400000);
+		return nbJours;
 	}
 	
 	public String deleteReservation(){
 		reservationService.deleteReservation(reservation.getIdreservation());
-		return "redirect:getReservations";
+		return "successDeleteReservation.xhtml-redirect=true";
 	}
 	
 	

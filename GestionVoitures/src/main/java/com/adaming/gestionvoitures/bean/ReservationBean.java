@@ -64,6 +64,7 @@ public class ReservationBean {
 	public String getVC(){
 		tabVoiture = voitureService.getVoitures();
 		tabClient = clientService.getClients();
+		excpetionDispo = "";
 		return "redirect:saveReservation.xhtml";
 	}
 	
@@ -76,13 +77,18 @@ public class ReservationBean {
 		etatReservation = voiture.getEtatVoiture();
 		nombresDeJours = nbJours(dateSortie, dateRetour);
 		dateReservation = new Date();
+		excpetionDispo = "";
 		r = new Reservation(prixReservation, dateReservation, dateRetour, dateSortie, nombresDeJours, etatReservation);
 		try {
+			if(dateRetour.getTime() - dateSortie.getTime() < 0){
+				throw new VoitureDisponibleException("Veuillez entrer une date de retour postérieur à la date de départ");
+			}
 			reservationService.addReservation(r, idVoiture, idClient);
+			return "successSaveReservation.xhtml-redirect=true";
 		} catch (VoitureDisponibleException e) {
 			excpetionDispo = e.getMessage();
+			return "saveReservation.xhtml";
 		}
-		return "redirect:successSaveReservation.xhtml";
 	}
 	
 	

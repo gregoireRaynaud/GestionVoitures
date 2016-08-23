@@ -46,6 +46,8 @@ xmlns:b="http://bootsfaces.net/ui">
 	 <p:outputLabel value="Nouveau kilometrage :"/>
 		<p:inputText id="kilometrage" value="#{VoitureUpdateBean.voiture.kilometrage}" style="width:500px" required="true" requiredMessage="Veuillez entrer un kilométrage"/>
 		<p:message for="kilometrage" style="color: red"/>
+		
+		<h:outputText value="#{VoitureUpdateBean.exception}" style="color: red"></h:outputText>
 	 
 	 </h:panelGrid>
 	 

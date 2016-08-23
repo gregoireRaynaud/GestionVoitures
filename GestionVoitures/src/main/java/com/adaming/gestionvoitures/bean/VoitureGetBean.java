@@ -50,6 +50,7 @@ public class VoitureGetBean implements Serializable{
 	@NotNull(message="Veuillez choisir un état")
     private String etatVoiture;
 	private Long idVoiture;
+	private int test = 0;
 	
 	public String updateVoiture(){
 		//Voiture v = new Voiture(voiture.getModelVoiture(), immatricule, kilometrage, prixVoiture, typeVoiture, typeCarburant, etatVoiture);
@@ -61,7 +62,7 @@ public class VoitureGetBean implements Serializable{
 	public String deleteVoiture(){
 		voitureService.deleteVoiture(voiture.getIdvoiture());
 		getVoitures();
-		return "successDeleteVoiture.xhtml";
+		return "successDeleteVoiture.xhtml-redirect=true";
 	}
 	
 	 public void attrListener(ActionEvent event){
@@ -182,6 +183,14 @@ public class VoitureGetBean implements Serializable{
 
 	public void setIdVoiture(Long idVoiture) {
 		this.idVoiture = idVoiture;
+	}
+
+	public int getTest() {
+		return test;
+	}
+
+	public void setTest(int test) {
+		this.test = test;
 	}
 	
 	
