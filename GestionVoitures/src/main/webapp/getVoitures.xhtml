@@ -23,7 +23,8 @@ xmlns:b="http://bootsfaces.net/ui">
                          widgetVar="carsTable"
 						  page-length="10"
 						  page-length-menu="5,10,25,50"
-						  lang="fr">
+						  lang="fr"
+						  style="text-align: center; vertical-align: center !important">
 
 	<b:dataTableColumn label="Id">
 		<h:outputText value="#{v.idvoiture}" />
@@ -57,28 +58,28 @@ xmlns:b="http://bootsfaces.net/ui">
 		<h:outputText value="#{v.etatVoiture}" />
 	</b:dataTableColumn>
 	
-	<b:dataTableColumn label="Modification">
-		<b:commandButton iconAwesome="pencil" look="success"
-						actionListener="#{VoitureGetBean.attrListener}"
-						action="#{VoitureGetBean.RedirectUpdateVoiture}">
+	<h:column label="Modification">
+		<p:commandButton ajax="false" actionListener="#{VoitureGetBean.attrListener}" action="#{VoitureGetBean.RedirectUpdateVoiture}" icon="ui-icon-pencil" style="border: 1px solid #27DBC3; background: #27DBC3; padding: 5px 20px; margin-right: 10px">
     		<f:attribute name="v" value="#{v}" />
-		</b:commandButton>
+		</p:commandButton>
 		<p:commandButton actionListener="#{VoitureGetBean.attrListener}"
-						action="#{VoitureGetBean.deleteVoiture}" icon="ui-icon-close"
-						style="border: 1px solid #cc0000; background: #ff3333">
-			<p:confirm header="Confirmation"
-							message="Etes-vous sûr de vouloir supprimer cette voiture ?"
-							icon="ui-icon-alert" />
+						action="#{VoitureGetBean.deleteVoiture}"
+						ajax="false" icon="ui-icon-close" style="border: 1px solid #FA2F44; background: #FA2F44; padding: 5px 20px">
+<!-- 			<p:confirm header="Confirmation" -->
+<!-- 							message="Etes-vous sûr de vouloir supprimer cette voiture ?" -->
+<!-- 							icon="ui-icon-alert" /> -->
 			<f:attribute name="v" value="#{v}" />
 		</p:commandButton>
+		
+		
 
-		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-			<p:commandButton value="Oui" type="button"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-			<p:commandButton value="Non" type="button"
-							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-		</p:confirmDialog>
-	</b:dataTableColumn>
+<!-- 		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"> -->
+<!-- 			<p:commandButton value="Oui" type="button" -->
+<!-- 							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" /> -->
+<!-- 			<p:commandButton value="Non" type="button" -->
+<!-- 							styleClass="ui-confirmdialog-no" icon="ui-icon-close" /> -->
+<!-- 		</p:confirmDialog> -->
+	</h:column>	
 
 </b:dataTable>
 </h:form>
@@ -244,6 +245,7 @@ xmlns:b="http://bootsfaces.net/ui">
 
 <h:outputText rendered="#{empty VoitureRetourBean.tabVoiture}" value="Aucune voiture rentre aujourd'hui" style="color: red"></h:outputText>
 </b:panel>
+
 
 </h:body>
 </html>
