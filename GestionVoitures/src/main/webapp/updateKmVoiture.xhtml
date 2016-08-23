@@ -20,19 +20,20 @@ xmlns:b="http://bootsfaces.net/ui">
 	 <h:panelGrid columns="1" cellpadding="3">
 	 
 	 <p:outputLabel value="Selectionnez la voiture qui rentre :"/>
-		<p:selectOneMenu id="id" value="#{VoitureUpdateBean.idVoiture}" style="width:500px">
+		<p:selectOneMenu rendered="#{not empty VoitureUpdateBean.tabVoiture}" id="id" value="#{VoitureUpdateBean.idVoiture}" style="width:500px">
         	<f:selectItem itemLabel="Choisir" itemValue="" />
             <f:selectItems value="#{VoitureUpdateBean.tabVoiture}" var="v" itemValue="#{v.idvoiture}"
             	itemLabel="#{v.immatricule}" />
         </p:selectOneMenu>
-        <h:outputText rendered="#{VoitureUpdateBean.idVoiture} eq #{'Veuillez choisir une voiture'}" value="#{VoitureUpdateBean.idVoiture}" />
 		<p:message for="id" style="color: red"></p:message>
+		
+		<h:outputText rendered="#{empty VoitureUpdateBean.tabVoiture}" value="Aucune voiture ne rentre aujourd'hui" style="color: red"></h:outputText>
 	 
 	 </h:panelGrid>
 	 
 	 <p:separator />
 	 
-	 <b:commandButton look="primary" value="Choisir" ajax="false" icon="ui-icon-check" action="#{VoitureUpdateBean.getVoitureById}"/>
+	 <b:commandButton rendered="#{not empty VoitureUpdateBean.tabVoiture}" look="primary" value="Choisir" ajax="false" icon="ui-icon-check" action="#{VoitureUpdateBean.getVoitureById}"/>
 	 
 </b:panel>
 
