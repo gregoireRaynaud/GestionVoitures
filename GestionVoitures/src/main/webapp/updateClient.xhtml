@@ -34,8 +34,10 @@ xmlns:b="http://bootsfaces.net/ui">
 					value="#{ClientBean.client.prenomClient}" style="width:770px" />
 				<p:message for="prenom" style="color: red" />
 
-				<p:outputLabel value="Date de naissance : " />
-				<p:calendar id="dateDeNaissance" value="#{ClientBean.client.dateDeNaissance}" pattern="dd/MM/yyyy" />
+				<p:outputLabel value="Date de délivrance du permis : " />
+				<b:datepicker id="dateDeDelivrance" value="#{ClientBean.dateDeDelivrance}" pattern="dd-MM-yyyy"
+				mode="popup-icon" changeMonth="true" changeYear="true" required="true"
+				 requiredMessage="date obligatoire"></b:datepicker>
 
 				<p:outputLabel value="Numéro de téléphone : " />
 				<p:inputText id="numeroTel"
@@ -68,7 +70,9 @@ xmlns:b="http://bootsfaces.net/ui">
 				<p:message for="pays" style="color: red" />
 
 				<p:outputLabel value="Date de délivrance du permis : " />
-				<p:calendar id="dateDeDelivrance" value="#{ClientBean.client.dateDeDelivrance}" pattern="dd/MM/yyyy"/>
+				<b:datepicker id="dateDeDelivrance" value="#{ClientBean.dateDeDelivrance}" pattern="dd-MM-yyyy"
+				mode="popup-icon" changeMonth="true" changeYear="true" required="true"
+				 requiredMessage="date obligatoire"></b:datepicker>
 
 				<p:outputLabel value="Lieu de naissance : " />
 				<p:inputText id="lieuDeNaissance"

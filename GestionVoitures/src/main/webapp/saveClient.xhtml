@@ -33,7 +33,9 @@
 				<p:message for="prenom" style="color: red" />
 
 				<p:outputLabel value="Date de naissance : " />
-				<p:calendar id="dateDeNaissance" value="#{ClientBean.dateDeNaissance}" pattern="dd-MM-yyyy" />
+				<b:datepicker id="dateDeNaissance" value="#{ClientBean.dateDeNaissance}" pattern="dd-MM-yyyy"
+				mode="popup-icon" changeMonth="true" changeYear="true" required="true"
+				 requiredMessage="date obligatoire"></b:datepicker>
 
 				<p:outputLabel value="Numéro de téléphone : " />
 				<p:inputText id="numeroTel"
@@ -64,7 +66,9 @@
 				<p:message for="pays" style="color: red" />
 
 				<p:outputLabel value="Date de délivrance du permis : " />
-				<p:calendar id="dateDeDelivrance" value="#{ClientBean.dateDeDelivrance}" pattern="dd-MM-yyyy" />
+				<b:datepicker id="dateDeDelivrance" value="#{ClientBean.dateDeDelivrance}" pattern="dd-MM-yyyy"
+				mode="popup-icon" changeMonth="true" changeYear="true" required="true"
+				 requiredMessage="date obligatoire"></b:datepicker>
 
 				<p:outputLabel value="Lieu de naissance : " />
 				<p:inputText id="lieuDeNaissance"
