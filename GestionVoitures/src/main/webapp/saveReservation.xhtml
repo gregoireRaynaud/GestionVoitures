@@ -14,63 +14,78 @@ xmlns:b="http://bootsfaces.net/ui">
 
 <ui:include src="navbar.xhtml"></ui:include>
 
-<h:form>	 
-	 <b:panel title="Ajouter une réservation" look="primary" style="width: 800px; margin: auto; background-color: #BFF5EF">
-	 
-	 <h:panelGrid columns="1" cellpadding="3">
+<h:form>
+		<b:panel title="Ajouter une réservation" look="primary"
+			style="width: 800px; margin: auto; background-color: #BFF5EF">
 
-		<p:outputLabel for="voiture" value="Voiture : " />
-		<p:selectOneMenu id="voiture" value="#{ReservationBean.idVoiture}" style="width:770px">
-        	<f:selectItem itemLabel="Choisir" itemValue="" />
-            <f:selectItems value="#{ReservationBean.tabVoiture}" var="v" itemValue="#{v.idvoiture}"
-            	itemLabel="#{v.immatricule}" />
-        </p:selectOneMenu>
-		<p:message for="voiture" style="color: red"></p:message>
-		
-		<p:outputLabel for="client" value="Client : " />
-		<p:selectOneMenu id="client" value="#{ReservationBean.idClient}" style="width:770px">
-        	<f:selectItem itemLabel="Choisir" itemValue="" />
-            <f:selectItems value="#{ReservationBean.tabClient}" var="c" itemValue="#{c.idClient}"
-            	itemLabel="#{c.nomClient} #{c.prenomClient}" />
-        </p:selectOneMenu>
-		<p:message for="client" style="color: red"></p:message>
+			<h:panelGrid columns="1" cellpadding="3">
 
-		</h:panelGrid>
-		
-		<p:separator />
-		
-		<b:commandButton look="primary" value="Choisir" ajax="false" icon="ui-icon-check" action="#{ReservationBean.choix}"/>
-		
-		<p:separator />
-	
-		<h:panelGrid columns="1" cellpadding="3" rendered="#{not empty ReservationBean.voiture}">
-		
-		<p:outputLabel value="Etat de la voiture :"/>
-		<h:outputText value="#{ReservationBean.voiture.etatVoiture}" style="width:770px"/>
-		
-		<p:outputLabel value="Prix :"/>
-		<p:inputText id="prix" value="#{ReservationBean.prixReservation}" style="width:770px"/>
-		<p:message for="prix" style="color: red"></p:message>
-		
-		<p:outputLabel value="Date de départ :"/>
-		<p:calendar id="dateD" value="#{ReservationBean.dateSortie}" pattern="MM/dd/yyyy HH:mm" style="width:770px"/>
-		<p:message for="dateD" style="color: red"></p:message>
-		
-		<p:outputLabel value="Date de retour :"/>
-		<p:calendar id="dateR" value="#{ReservationBean.dateRetour}" pattern="MM/dd/yyyy HH:mm" style="width:770px"/>
-		<p:message for="dateR" style="color: red"></p:message>
-		
-		<h:outputText value="#{ReservationBean.excpetionDispo}" style="color: red"></h:outputText>
-		
-		</h:panelGrid>
-		
-		<p:separator rendered="#{not empty ReservationBean.voiture}"/>
-		
-		<b:commandButton look="primary" rendered="#{not empty ReservationBean.voiture}" value="Ajouter" ajax="false" icon="ui-icon-disk" action="#{ReservationBean.saveReservation}"/>
+				<p:outputLabel for="voiture" value="Voiture : " />
+				<p:selectOneMenu id="voiture" value="#{ReservationBean.idVoiture}"
+					style="width:770px">
+					<f:selectItem itemLabel="Choisir" itemValue="" />
+					<f:selectItems value="#{ReservationBean.tabVoiture}" var="v"
+						itemValue="#{v.idvoiture}" itemLabel="#{v.immatricule}" />
+				</p:selectOneMenu>
+				<p:message for="voiture" style="color: red"></p:message>
 
-	</b:panel>
-	
-</h:form>	
+				<p:outputLabel for="client" value="Client : " />
+				<p:selectOneMenu id="client" value="#{ReservationBean.idClient}"
+					style="width:770px">
+					<f:selectItem itemLabel="Choisir" itemValue="" />
+					<f:selectItems value="#{ReservationBean.tabClient}" var="c"
+						itemValue="#{c.idClient}"
+						itemLabel="#{c.nomClient} #{c.prenomClient}" />
+				</p:selectOneMenu>
+				<p:message for="client" style="color: red"></p:message>
+
+			</h:panelGrid>
+
+			<p:separator />
+
+			<b:commandButton look="primary" value="Choisir" ajax="false"
+				icon="ui-icon-check" action="#{ReservationBean.choix}" />
+
+			<p:separator />
+
+			<h:panelGrid columns="1" cellpadding="3"
+				rendered="#{not empty ReservationBean.voiture}">
+
+				<p:outputLabel value="Etat de la voiture :" />
+				<h:outputText value="#{ReservationBean.voiture.etatVoiture}"
+					style="width:770px" />
+
+				<p:outputLabel value="Prix :" />
+				<p:inputText id="prix" value="#{ReservationBean.prixReservation}"
+					style="width:770px" />
+				<p:message for="prix" style="color: red"></p:message>
+
+				<p:outputLabel value="Date de départ :" />
+				<p:calendar id="dateD" value="#{ReservationBean.dateSortie}"
+					pattern="MM/dd/yyyy HH:mm" style="width:770px" />
+				<p:message for="dateD" style="color: red"></p:message>
+
+				<p:outputLabel value="Date de retour :" />
+				<p:calendar id="dateR" value="#{ReservationBean.dateRetour}"
+					pattern="MM/dd/yyyy HH:mm" style="width:770px" />
+				<p:message for="dateR" style="color: red"></p:message>
+
+				<h:outputText value="#{ReservationBean.excpetionDispo}"
+					style="color: red"></h:outputText>
+
+			</h:panelGrid>
+
+			<p:separator rendered="#{not empty ReservationBean.voiture}" />
+
+			<b:commandButton update="@(form)" look="primary"
+				rendered="#{not empty ReservationBean.voiture}" value="Ajouter"
+				ajax="false" action="#{ReservationBean.saveReservation}" />
+
+
+
+		</b:panel>
+
+	</h:form>	
 
 
 </h:body>
