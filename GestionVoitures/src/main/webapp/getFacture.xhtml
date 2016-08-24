@@ -10,11 +10,13 @@ xmlns:b="http://bootsfaces.net/ui">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Consulter une Facture</title>
 </h:head>
-<h:body>
+<h:body style="background-image: url(resources/img/fond.jpg)">
 
 <ui:include src="navbar.xhtml"></ui:include>
 
 <h:form>
+<b:panel title="Liste des factures" look="primary">
+
     <b:dataTable id="table1" var="fac" value="#{FactureBean.tabFactures}" widgetVar="factureTable"
                  emptyMessage="Aucune facture trouvée avec ces critères." filteredValue="#{FactureBean.tabFacturesFiltered}"
                  page-length="5"
@@ -31,17 +33,39 @@ xmlns:b="http://bootsfaces.net/ui">
             <h:outputText value="#{fac.deFacturation}" />
         </b:dataTableColumn>
         
-        <b:dataTableColumn filterBy="#{fac.reservation.idreservation}" label="Id de Réservation" filterMatchMode="contains">
-            <h:outputText value="#{fac.reservation.idreservation}" />
+        <b:dataTableColumn filterBy="#{fac.reservation.idreservation}" label="Début de réservation" filterMatchMode="contains">
+            <h:outputText value="#{fac.reservation.dateSortie}">
+            	<f:convertDateTime type="date" pattern="dd-MM-yyyy, HH:mm" />
+            </h:outputText>
+        </b:dataTableColumn>
+        
+        <b:dataTableColumn filterBy="#{fac.reservation.idreservation}" label="Fin de réservation" filterMatchMode="contains">
+            <h:outputText value="#{fac.reservation.dateRetour}">
+            	<f:convertDateTime type="date" pattern="dd-MM-yyyy, HH:mm" />
+            </h:outputText>
+        </b:dataTableColumn>
+        
+        <b:dataTableColumn filterBy="#{fac.reservation.idreservation}" label="Prix de réservation" filterMatchMode="contains">
+            <h:outputText value="#{fac.reservation.prixReservation}" />
+        </b:dataTableColumn>
+        
+        <b:dataTableColumn filterBy="#{fac.reservation.idreservation}" label="Voiture" filterMatchMode="contains">
+            <h:outputText value="#{fac.reservation.voiture.immatricule}" />
+        </b:dataTableColumn>
+        
+        <b:dataTableColumn filterBy="#{fac.reservation.idreservation}" label="Client" filterMatchMode="contains">
+            <h:outputText value="#{fac.reservation.client.nomClient}" />
         </b:dataTableColumn>
         
         <h:column label="Consulter/Imprimer">
-    	<p:commandButton actionListener="#{FactureBean.attrListener}" action="#{FactureBean.consulterFacture}" icon="fa fa-file-pdf-o" style="border: 1px solid #acdd4a; background: #6eac2c">
+    	<p:commandButton actionListener="#{FactureBean.attrListener}" action="#{FactureBean.consulterFacture}" icon="ui-icon-print" style="border: 1px solid #27DBC3; background: #27DBC3; padding: 5px 20px; margin-right: 10px">
     		<f:attribute name="fac" value="#{fac}"/>
     	</p:commandButton>        
     	</h:column>
  
     </b:dataTable>
+    
+</b:panel>
 </h:form>
 
 

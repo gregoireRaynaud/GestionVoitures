@@ -12,18 +12,18 @@
 	<h:link type="text/css" rel="stylesheet"
 		href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
 </h:head>
-<h:body>
+<h:body style="background-image: url(resources/img/fond.jpg)">
 
 	<ui:include src="navbar.xhtml"></ui:include>
 
 	<h:form>
-	<b:panel title="Modifier l'entretien #{EntretienBean.entretien.idEntretien}" look="primary" style="text-decoration:none;">
+	<b:panel title="Modifier l'entretien #{EntretienBean.entretien.idEntretien}" look="primary" style="width: 800px; margin: auto; background-color: #BFF5EF">
 			<h:panelGrid columns="1" cellpadding="3">
 			
 				<p:outputLabel value="Type d'entretien : " />
 				<p:inputText id="typeEntretien"
 					requiredMessage="type d'entretien obligatoire" required="true"
-					value="#{EntretienBean.entretien.typeEntretien}" style="width:500px" />
+					value="#{EntretienBean.entretien.typeEntretien}" style="width:770px" />
 				<p:message for="typeEntretien" style="color: red" />
 
 				<p:outputLabel value="Date: " />
@@ -34,14 +34,14 @@
 				<p:outputLabel value="prix : " />
 				<p:inputText id="prix"
 					requiredMessage="prix obligatoire" required="true"
-					value="#{EntretienBean.entretien.prixEntretien}" style="width:500px" />
+					value="#{EntretienBean.entretien.prixEntretien}" style="width:770px" />
 				<p:message for="prix" style="color: red" />
 
 			</h:panelGrid>
 
 			<p:separator />
 
-			<p:commandButton value="Modifier" icon="ui-icon-check"
+			<p:commandButton ajax="false" value="Modifier" icon="ui-icon-check"
 				action="#{EntretienBean.updateEntretien()}" />
 
 		</b:panel>

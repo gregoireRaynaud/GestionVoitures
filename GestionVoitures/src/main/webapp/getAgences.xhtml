@@ -10,9 +10,12 @@ xmlns:b="http://bootsfaces.net/ui">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Liste des Agences</title>
 </h:head>
-<h:body>
+<h:body  style="background-image: url(resources/img/fond.jpg)">
 <ui:include src="navbar.xhtml"></ui:include>
 <h:form>
+
+<b:panel title="Liste des agences" look="primary">
+
     <b:dataTable id="table1" var="age" value="#{AgenceBean.tabAgences}" widgetVar="agenceTable"
                  emptyMessage="Aucune agence trouvée avec ces critères." filteredValue="#{AgenceBean.tabAgencesFiltered}"
                  page-length="5"
@@ -49,7 +52,9 @@ xmlns:b="http://bootsfaces.net/ui">
         </b:dataTableColumn>
         
         <b:dataTableColumn filterBy="#{age.dateCommencement}" label="Date de commencement" filterMatchMode="contains">
-            <h:outputText value="#{age.dateCommencement}" />
+            <h:outputText value="#{age.dateCommencement}">
+					<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+			</h:outputText>
         </b:dataTableColumn>
         
         <b:dataTableColumn filterBy="#{age.ville}" label="Ville" filterMatchMode="contains">
@@ -69,12 +74,15 @@ xmlns:b="http://bootsfaces.net/ui">
         </b:dataTableColumn>
         
         <h:column label="Modification">
-    	<b:commandButton actionListener="#{AgenceBean.attrListener}" action="#{AgenceBean.redirectUpdateAgence}" iconAwesome="pencil" style="border: 1px solid #acdd4a; background: #6eac2c">
+    	<p:commandButton ajax="false" actionListener="#{AgenceBean.attrListener}" action="#{AgenceBean.redirectUpdateAgence}" icon="ui-icon-pencil" style="border: 1px solid #27DBC3; background: #27DBC3; padding: 5px 20px; margin-right: 10px">
     		<f:attribute name="age" value="#{age}" />
-    	</b:commandButton>        
+    	</p:commandButton>        
     	</h:column>
     	
     </b:dataTable>
+    
+</b:panel>
+
 </h:form>
 
 </h:body>

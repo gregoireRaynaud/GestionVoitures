@@ -69,25 +69,17 @@ public class AgenceBean {
 		listMonnaie.add("Livre-Sterling");
 		listMonnaie.add("Dinar");
 		listMonnaie.add("Yen");
+		tabAgences = agenceService.getAgences();
 	}
 	
-	public void addAgence(){
+	public String addAgence(){
 		Agence a = new Agence(addrespostal, numerotel, denomination, formJuridique, activite, adressSiege, dateCommencement, ville, deuxiemTel, tva, choixMonnais);
 		agenceService.addAgence(a);
 		addMessage("Agence enregistrée!");
 		
-		addrespostal = null;
-		numerotel = null;
-		denomination = null;
-		formJuridique = null;
-		activite = null;
-		adressSiege = null;
-		dateCommencement = null;
-		ville = null;
-		deuxiemTel = null;
-		tva = null;
-		choixMonnais = null;
+		return "successSaveAgence.xhtml";
 	}
+	
 	public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -116,7 +108,7 @@ public class AgenceBean {
 		age = agenceService.getAgenceById(agence.getIdAgence());
 		return "updateAgence.xhtml";
 	}
-	public void updateAgence(){
+	public String updateAgence(){
 		agence.setAddrespostal(age.getAddrespostal());
 		agence.setNumerotel(age.getNumerotel());
 		agence.setDenomination(age.getDenomination());
@@ -131,11 +123,13 @@ public class AgenceBean {
 		
 		agenceService.updateAgence(agence);
 		addMessage("Agence modifiée!");
+		return "successUpdateAgence.xhtml";
 	}
 	@PostConstruct
 	public void getAgences(){
 		tabAgences = agenceService.getAgences();
 	}
+	
 	@PostConstruct
 	public String redirectPage(){		
 		return "facture";

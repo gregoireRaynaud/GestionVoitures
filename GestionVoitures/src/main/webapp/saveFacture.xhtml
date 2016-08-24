@@ -10,31 +10,45 @@ xmlns:b="http://bootsfaces.net/ui">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Ajouter une Facture</title>
 </h:head>
-<h:body>
+<h:body style="background-image: url(resources/img/fond.jpg)">
 
 <ui:include src="navbar.xhtml"></ui:include>
 
 <h:form>
-    <b:panel title="Ajouter une facture" look="primary" style="text-decoration:none;">
+    <b:panel title="Ajouter une facture" look="primary" style="width: 800px; margin: auto; background-color: #BFF5EF">
        
         <h:panelGrid columns="1" cellpadding="3">
             <p:outputLabel value="Date de Facturation: *" />
-            <p:calendar id="txt1" value="#{FactureBean.deFacturation}" effect="fold" label="Date de Facturation" style="width:500px"/>
+            <p:calendar id="txt1" value="#{FactureBean.deFacturation}" effect="fold" label="Date de Facturation" style="width:770px"/>
             <p:message for="txt1"/>
             
-            <p:outputLabel value="Reservation associée: *" />
-        	<p:selectOneMenu id="txt2" value="#{FactureBean.idReservation}"  label="Réservation: " effect="fold" editable="true" style="width:500px">
-            	<f:selectItem itemLabel="Selectionner une réservation" itemValue="" noSelectionOption="true" /> 
-            	<f:selectItems value="#{FactureBean.tabReservations}" var="resa" itemValue="#{resa.idreservation}" itemLabel="#{resa.idreservation}"/>
-        	</p:selectOneMenu>
-        	<p:message for="txt2"/>
+<!--             <p:outputLabel value="Reservation associée: *" /> -->
+<!--         	<p:selectOneMenu id="txt2" value="#{FactureBean.idReservation}"  label="Réservation: " effect="fold" editable="true" style="width:770px"> -->
+<!--             	<f:selectItem itemLabel="Selectionner une réservation" itemValue="" noSelectionOption="true" />  -->
+<!--             	<f:selectItems value="#{FactureBean.tabReservations}" var="resa" itemValue="#{resa.idreservation}" itemLabel="Du #{resa.dateSortie} au #{resa.dateRetour}, voiture #{resa.voiture.immatricule}, client #{resa.client.nomClient}"/> -->
+<!--         	</p:selectOneMenu> -->
+<!--         	<p:message for="txt2"/> -->
         	
-        	<p:outputLabel value="Agence associée: " />
-        	<p:selectOneMenu id="txt3" value="#{FactureBean.idAgence}" label="Agence: " effect="fold" editable="true" style="width:500px">
-            	<f:selectItem itemLabel="Selectionner une agence" itemValue="" noSelectionOption="true" /> 
-            	<f:selectItems value="#{FactureBean.tabAgences}" var="ag" itemValue="#{ag.idAgence}" itemLabel="#{ag.idAgence}"/>
-        	</p:selectOneMenu>
-        	<p:message for="txt3" />
+        	<p:outputLabel for="txt2" value="Reservation associée :" />
+		<p:selectOneMenu id="txt2" value="#{FactureBean.idReservation}" style="width:770px">
+        	<f:selectItem itemLabel="Selectionner une réservation" itemValue="" />
+            <f:selectItems value="#{FactureBean.tabReservations}" var="resa" itemValue="#{resa.idreservation}" itemLabel="Du #{resa.dateSortie} au #{resa.dateRetour}, voiture #{resa.voiture.immatricule}, client #{resa.client.nomClient}"/>
+        </p:selectOneMenu>
+		<p:message for="txt2" style="color: red"></p:message>
+        	
+<!--         	<p:outputLabel value="Agence associée: " /> -->
+<!--         	<p:selectOneMenu id="txt3" value="#{FactureBean.idAgence}" label="Agence: " effect="fold" editable="true" style="width:770px"> -->
+<!--             	<f:selectItem itemLabel="Selectionner une agence" itemValue="" noSelectionOption="true" />  -->
+<!--             	<f:selectItems value="#{FactureBean.tabAgences}" var="ag" itemValue="#{ag.idAgence}" itemLabel="#{ag.denomination}"/> -->
+<!--         	</p:selectOneMenu> -->
+<!--         	<p:message for="txt3" /> -->
+        	
+        	<p:outputLabel for="txt3" value="Agence associée :" />
+		<p:selectOneMenu id="txt3" value="#{FactureBean.idAgence}" style="width:770px">
+        	<f:selectItem itemLabel="Selectionner une agence" itemValue="" />
+            <f:selectItems value="#{FactureBean.tabAgences}" var="ag" itemValue="#{ag.idAgence}" itemLabel="Du #{ag.denomination}"/>
+        </p:selectOneMenu>
+		<p:message for="txt3" style="color: red"></p:message>
         	
         	<h:outputText value="#{FactureBean.messageException}" style="color: red"></h:outputText>
          

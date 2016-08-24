@@ -12,18 +12,18 @@ xmlns:b="http://bootsfaces.net/ui">
 	<h:link type="text/css" rel="stylesheet"
 		href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
 </h:head>
-<h:body>
+<h:body style="background-image: url(resources/img/fond.jpg)">
 
 	<ui:include src="navbar.xhtml"></ui:include>
 	
 	<h:form>
 
-		<b:panel title="Ajouter un entretien" look="primary" style="text-decoration:none;">
+		<b:panel title="Ajouter un entretien" look="primary" style="width: 800px; margin: auto; background-color: #BFF5EF">
 			<h:panelGrid columns="1" cellpadding="3">
 
 				<p:outputLabel for="voiture" value="Voiture :" />
 				<p:selectOneMenu id="voiture" value="#{EntretienBean.idVoiture}"
-					style="width:500px">
+					style="width:770px">
 					<f:selectItem itemLabel="Choisissez une voiture" itemValue=""/>
 					<f:selectItems value="#{EntretienBean.voitures}" var="v"
 						itemValue="#{v.idvoiture}" itemLabel="#{v.immatricule}" />
@@ -32,7 +32,7 @@ xmlns:b="http://bootsfaces.net/ui">
 
 
 				<p:outputLabel for="type" value="Entretien :" />
-				<p:selectOneMenu id="type" value="#{EntretienBean.type}" style="width:500px">
+				<p:selectOneMenu id="type" value="#{EntretienBean.type}" style="width:770px">
 					<f:selectItem itemLabel="Séléctionner un entretien" itemValue=""/>
 					<f:selectItem itemLabel="Chaine distribution"
 						itemValue="CHAINE_DISTRIBUTION" />
@@ -44,7 +44,7 @@ xmlns:b="http://bootsfaces.net/ui">
 
 				<p:outputLabel for="typeEntretien" value="Type d'entretien : " />
 				<p:inputText id="typeEntretien"
-					value="#{EntretienBean.typeEntretien}" style="width:500px" />
+					value="#{EntretienBean.typeEntretien}" style="width:770px" />
 				<p:message for="typeEntretien" style="color: red" />
 				
 
@@ -56,7 +56,7 @@ xmlns:b="http://bootsfaces.net/ui">
 
 				<p:outputLabel for="prix" value="Prix : " />
 				<p:inputText id="prix" value="#{EntretienBean.prixEntretien}"
-					style="width:500px" />
+					style="width:770px" />
 				<p:message for="prix" style="color: red" />
 
 			</h:panelGrid>

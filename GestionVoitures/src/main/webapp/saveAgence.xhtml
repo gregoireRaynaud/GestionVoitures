@@ -10,52 +10,52 @@ xmlns:b="http://bootsfaces.net/ui">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Ajouter une Agence</title>
 </h:head>
-<h:body>
+<h:body  style="background-image: url(resources/img/fond.jpg)">
 
 <ui:include src="navbar.xhtml"></ui:include>
 <h:form>
-    <b:panel title="Ajouter une agence" look="primary" style="text-decoration:none;">
+    <b:panel title="Ajouter une agence" look="primary" style="width: 800px; margin: auto; background-color: #BFF5EF">
 
         <h:panelGrid columns="1" cellpadding="3">
   
             <p:outputLabel value="Addresse postale: "/>
-			<p:inputText id="txt1" value="#{AgenceBean.addrespostal}" style="width:500px"/>
+			<p:inputText id="txt1" value="#{AgenceBean.addrespostal}" style="width:770px"/>
 			<p:message for="txt1" style="color: red"/>
             
             <p:outputLabel value="Numéro de téléphone: "/>
-			<p:inputText id="txt2" value="#{AgenceBean.numerotel}" style="width:500px"/>
+			<p:inputText id="txt2" value="#{AgenceBean.numerotel}" style="width:770px"/>
 			<p:message for="txt2" style="color: red"/>
             
             <p:outputLabel value="Dénomination: "/>
-			<p:inputText id="txt3" value="#{AgenceBean.denomination}" style="width:500px"/>
+			<p:inputText id="txt3" value="#{AgenceBean.denomination}" style="width:770px"/>
 			<p:message for="txt3" style="color: red"/>
             
             <p:outputLabel value="Forme Juridique: "/>
-			<p:inputText id="txt4" value="#{AgenceBean.formJuridique}" style="width:500px"/>
+			<p:inputText id="txt4" value="#{AgenceBean.formJuridique}" style="width:770px"/>
 			<p:message for="txt4" style="color: red"/>
             
             <p:outputLabel value="Activité: "/>
-			<p:inputText id="txt5" value="#{AgenceBean.activite}" style="width:500px"/>
+			<p:inputText id="txt5" value="#{AgenceBean.activite}" style="width:770px"/>
 			<p:message for="txt5" style="color: red"/>
 
             <p:outputLabel value="Adresse Siège: "/>
-			<p:inputText id="txt6" value="#{AgenceBean.adressSiege}" style="width:500px"/>
+			<p:inputText id="txt6" value="#{AgenceBean.adressSiege}" style="width:770px"/>
 			<p:message for="txt6" style="color: red"/>
             
             <p:outputLabel value="Ville: "/>
-			<p:inputText id="txt7" value="#{AgenceBean.ville}" style="width:500px"/>
+			<p:inputText id="txt7" value="#{AgenceBean.ville}" style="width:770px"/>
 			<p:message for="txt7" style="color: red"/>
             
             <p:outputLabel value="Numéro de téléphone secondaire: "/>
-			<p:inputText id="txt8" value="#{AgenceBean.deuxiemTel}" style="width:500px"/>
+			<p:inputText id="txt8" value="#{AgenceBean.deuxiemTel}" style="width:770px"/>
 			<p:message for="txt8" style="color: red"/>
 			
             <p:outputLabel value="TVA: "/>
-			<p:inputText id="txt9" value="#{AgenceBean.tva}" style="width:500px"/>
+			<p:inputText id="txt9" value="#{AgenceBean.tva}" style="width:770px"/>
 			<p:message for="txt9" style="color: red"/>
 			
 			<p:outputLabel value="Devise locale: " />
-            <p:selectOneMenu id="txt10" value="#{AgenceBean.choixMonnais}" style="width:500px">
+            <p:selectOneMenu id="txt10" value="#{AgenceBean.choixMonnais}" style="width:770px">
                 <f:selectItem itemLabel="Selectionner une devise" itemValue="" noSelectionOption="true" />
                 <f:selectItem itemLabel="Dollar" itemValue="dollar"/>
                 <f:selectItem itemLabel="Euro" itemValue="euro"/>

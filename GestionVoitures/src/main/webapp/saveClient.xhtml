@@ -4,87 +4,88 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Ajouter un client</title>
 	<h:link type="text/css" rel="stylesheet"
 		href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
 </h:head>
-<h:body>
+<h:body  style="background-image: url(resources/img/fond.jpg)">
 
 	<ui:include src="navbar.xhtml"></ui:include>
 
 	<h:form>
 
-		<p:panel header="Ajouter un client" style="margin-bottom:5px;">
+		<b:panel title="Ajouter une voiture" look="primary" style="width: 800px; margin: auto; background-color: #BFF5EF">
 			<h:panelGrid columns="1" cellpadding="3">
 
 				<p:outputLabel value="Nom : " />
 				<p:inputText id="nom" requiredMessage="nom obligatoire"
-					required="true" value="#{ClientBean.nomClient}" style="width:500px" />
+					required="true" value="#{ClientBean.nomClient}" style="width:770px" />
 				<p:message for="nom" style="color: red" />
 
 				<p:outputLabel value="Prénom : " />
 				<p:inputText id="prenom" requiredMessage="prénom obligatoire"
 					required="true" value="#{ClientBean.prenomClient}"
-					style="width:500px" />
+					style="width:770px" />
 				<p:message for="prenom" style="color: red" />
 
 				<p:outputLabel value="Date de naissance : " />
-				<p:calendar id="dateDeNaissance" value="#{ClientBean.dateDeNaissance}" mode="inline" />
+				<p:calendar id="dateDeNaissance" value="#{ClientBean.dateDeNaissance}" pattern="dd-MM-yyyy" />
 
 				<p:outputLabel value="Numéro de téléphone : " />
 				<p:inputText id="numeroTel"
 					requiredMessage="numéro de téléphone obligatoire" required="true"
-					value="#{ClientBean.numeroTel}" style="width:500px" />
+					value="#{ClientBean.numeroTel}" style="width:770px" />
 				<p:message for="numeroTel" style="color: red" />
 
 				<p:outputLabel value="Numéro de permis : " />
 				<p:inputText id="numeroPermis"
 					requiredMessage="numéro de permis obligatoire" required="true"
-					value="#{ClientBean.numeroPermis}" style="width:500px" />
+					value="#{ClientBean.numeroPermis}" style="width:770px" />
 				<p:message for="numeroPermis" style="color: red" />
 
 				<p:outputLabel value="Adresse : " />
 				<p:inputText id="adresse" requiredMessage="Adresse obligatoire"
 					required="true" value="#{ClientBean.adressePostale}"
-					style="width:500px" />
+					style="width:770px" />
 				<p:message for="adresse" style="color: red" />
 
 				<p:outputLabel value="Adresse email: " />
 				<p:inputText id="mail" requiredMessage="Adresse email obligatoire"
-					required="true" value="#{ClientBean.mail}" style="width:500px" />
+					required="true" value="#{ClientBean.mail}" style="width:770px" />
 				<p:message for="mail" style="color: red" />
 
 				<p:outputLabel value="Pays : " />
 				<p:inputText id="pays" requiredMessage="Pays obligatoire"
-					required="true" value="#{ClientBean.pays}" style="width:500px" />
+					required="true" value="#{ClientBean.pays}" style="width:770px" />
 				<p:message for="pays" style="color: red" />
 
 				<p:outputLabel value="Date de délivrance du permis : " />
-				<p:calendar id="dateDeDelivrance" value="#{ClientBean.dateDeDelivrance}" mode="inline" />
+				<p:calendar id="dateDeDelivrance" value="#{ClientBean.dateDeDelivrance}" pattern="dd-MM-yyyy" />
 
 				<p:outputLabel value="Lieu de naissance : " />
 				<p:inputText id="lieuDeNaissance"
 					requiredMessage="lieu de naissance obligatoire" required="true"
-					value="#{ClientBean.lieuDeNaissance}" style="width:500px" />
+					value="#{ClientBean.lieuDeNaissance}" style="width:770px" />
 				<p:message for="lieuDeNaissance" style="color: red" />
 
 				<p:outputLabel value="Permis délivré par : " />
 				<p:inputText id="delivrePar" requiredMessage="Valeur obligatoire"
 					required="true" value="#{ClientBean.delivrerPar}"
-					style="width:500px" />
+					style="width:770px" />
 				<p:message for="delivrePar" style="color: red" />
 
 			</h:panelGrid>
 
 			<p:separator />
 
-			<p:commandButton value="Ajouter" icon="ui-icon-check"
+			<p:commandButton ajax="false" value="Ajouter" icon="ui-icon-check"
 				action="#{ClientBean.addClient()}" />
 
-		</p:panel>
+		</b:panel>
 	</h:form>
 </h:body>
 </html>

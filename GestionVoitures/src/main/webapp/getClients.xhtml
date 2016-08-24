@@ -13,7 +13,7 @@
 	<h:link type="text/css" rel="stylesheet"
 		href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
 </h:head>
-<h:body>
+<h:body style="background-image: url(resources/img/fond.jpg)">
 
 	<ui:include src="navbar.xhtml"></ui:include>
 
@@ -25,7 +25,7 @@
 				value="#{ClientBean.clientsD}" rows="10" 
 				widgetVar="customersTable" page-length="10"
 				page-length-menu="5,10,25,50" lang="fr"
-				style="text-align: center; vertical-align: center !important">
+				style="text-align: center">
 
 				<b:dataTableColumn label="Id">
 				<h:outputText value="#{clientD.client.idClient}" />

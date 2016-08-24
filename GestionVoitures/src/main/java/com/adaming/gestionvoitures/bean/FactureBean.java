@@ -63,7 +63,7 @@ public class FactureBean {
 	private List<Agence> tabAgences;
 	
 	/*METHODES*/
-	public void addFacture() throws ObjectNotFoundException{
+	public String addFacture() throws ObjectNotFoundException{
 		Facture f = new Facture(deFacturation);
 		try {
 			factureService.addFacture(f, idReservation, idAgence);
@@ -72,9 +72,11 @@ public class FactureBean {
 			deFacturation = null;
 			idReservation = null;
 			idAgence = null;
+			return "successSaveFacture.xhtml";
 		} catch (ReservationDejaFacturee e) {
 			// TODO Auto-generated catch block
 			messageException = e.getMessage();
+			return "saveFacture.xhtml";
 		}
 	}
 	public void addMessage(String summary) {
