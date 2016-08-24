@@ -66,6 +66,7 @@ public class VoitureGetBean implements Serializable{
 		//Voiture v = new Voiture(voiture.getModelVoiture(), immatricule, kilometrage, prixVoiture, typeVoiture, typeCarburant, etatVoiture);
 		//v.setIdvoiture(voiture.getIdvoiture());
 		voitureService.updateVoiture(v);
+		getVoitures();
 		return "successUpdateVoiture.xhtml";
 	}
 	
@@ -73,7 +74,8 @@ public class VoitureGetBean implements Serializable{
 		voitureService.deleteVoiture(voitureD.getVoiture().getIdvoiture());
 		FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Succès",  "La voiture a bien été supprimée") );
-		return "getVoitures.xhtml";
+        getVoitures();
+		return "redirect:getVoitures.xhtml";
 	}
 	
 	 public void attrListener(ActionEvent event){
@@ -85,6 +87,7 @@ public class VoitureGetBean implements Serializable{
 		/*tabVoiture = voitureService.getVoitures();
 		return "redirect:getVoitures.xhtml";*/
 		List<Voiture> tabV = voitureService.getVoitures();
+		tabVoitureD.clear();
 		for(Voiture v:tabV){
 			VoitureDecorator vd = new VoitureDecorator(v);
 			vd.setChiffreDAffaires(factureService.calculerCoutFacturesByVoiture(v.getIdvoiture()));

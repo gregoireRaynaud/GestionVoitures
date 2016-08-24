@@ -64,6 +64,7 @@ public class VoitureBean{
     public String addVoiture(){
     	Voiture v = new Voiture(modelVoiture, immatricule, kilometrage, prixVoiture, typeVoiture, typeCarburant, etatVoiture);
     	voitureService.addVoiture(v);
+    	getVoitures();
     	return "successSaveVoiture.xhtml";
     }
     

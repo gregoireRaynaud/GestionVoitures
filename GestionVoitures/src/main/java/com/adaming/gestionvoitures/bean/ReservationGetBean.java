@@ -56,6 +56,7 @@ public class ReservationGetBean {
 			r.setNombresDeJours(nbJours(r.getDateSortie(), r.getDateRetour()));
 			reservationService.updateReservation(r);
 			exceptionVoiture = "";
+			getRe();
 			return "successUpdateReservation.xhtml";
 		} catch (VoitureDisponibleException e) {
 			exceptionVoiture = e.getMessage();
@@ -77,6 +78,7 @@ public class ReservationGetBean {
 		reservationService.deleteReservation(reservation.getIdreservation());
 		FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Succès",  "La réservation a bien été supprimée") );
+        getRe();
 		return "getReservations.xhtml";
 	}
 	
