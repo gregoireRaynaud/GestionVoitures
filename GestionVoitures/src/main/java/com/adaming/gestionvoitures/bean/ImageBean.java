@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
  
-@ManagedBean
+
 /**
  * Nom : ImageBean
  * package com.adaming.gestionvoitures.bean;
@@ -13,6 +13,8 @@ import javax.faces.bean.ManagedBean;
  * @author Grégoire RAYNAUD
  * Date : 23/08/2016
  */
+
+@ManagedBean
 public class ImageBean {
 	private List<String> images;
     

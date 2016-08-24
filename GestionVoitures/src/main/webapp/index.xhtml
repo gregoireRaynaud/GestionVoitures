@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
 
 <head>
 
@@ -12,16 +13,58 @@
 <link type="text/css" rel="stylesheet"
 	href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-glass-x" />
 </head>
-<h:body style="background-color:rgb(50,150,200)">
+<!-- <h:body style="background-color:rgb(50,150,200)"> -->
+<h:body style="background-image: url(resources/img/fond.jpg)">
 
 	<ui:include src="navbar.xhtml"></ui:include>
 
-	<!-- Gallerie d'images -->
-	<p:imageSwitch effect="shuffle">
-		<ui:repeat value="#{ImageBean.images}" var="image">
-			<p:graphicImage name="./ressources/img/#{image}" />
-		</ui:repeat>
-	</p:imageSwitch>
+ <h1 style="text-align: center;
+ 	padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: -5px;
+    margin-bottom: 20px;
+    color: #1e1e1e;
+    background-color: #27DBC3;
+    font-family: 'Cambria', serif;
+    font-size: 35px;
+    letter-spacing: .10em">Des marques réputées. Un choix démesuré. Des économies insensées !</h1>
+
+<!-- Galerie d'image -->
+<b:carousel id="tiovivo" style="width:850px; margin: auto; border: 1px solid white" interval="5000">
+   <b:carouselItem >
+     <img src="resources/img/voiture6.jpg" alt="Valladolid" style="width: 850px; height: 500px" />
+     <b:carouselCaption>
+       <h4>Plus de 500 agences en France</h4>
+     </b:carouselCaption>
+   </b:carouselItem>
+   <b:carouselItem >
+     <img src="resources/img/voiture7.jpg" alt="Valladolid" style="width: 850px; height: 500px" />
+     <b:carouselCaption>
+       <h4>Location de voiture à prix imbattable</h4>
+     </b:carouselCaption>
+   </b:carouselItem>
+   <b:carouselItem >
+     <img src="resources/img/voiture8.jpg" alt="Valladolid" style="width: 850px; height: 500px" />
+     <b:carouselCaption>
+       <h4>Un large choix dans toute la France</h4>
+     </b:carouselCaption>
+   </b:carouselItem>
+   <b:carouselItem >
+     <img src="resources/img/voiture9.jpg" alt="Valladolid" style="width: 850px; height: 500px" />
+     <b:carouselCaption>
+       <h4>Votre satidfaction, notre objectif</h4>
+     </b:carouselCaption>
+   </b:carouselItem>
+   <b:carouselItem >
+     <img src="resources/img/voiture10.jpg" alt="Valladolid" style="width: 850px; height: 500px" />
+     <b:carouselCaption>
+       <h4>Le plus dur, c'est de choisir</h4>
+     </b:carouselCaption>
+   </b:carouselItem>
+   
+ </b:carousel>
+
+<ui:include src="footer.xhtml"></ui:include>
 
 </h:body>
 </html>

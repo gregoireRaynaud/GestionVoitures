@@ -12,36 +12,36 @@ xmlns:b="http://bootsfaces.net/ui">
 <h:link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
 
 </h:head>
-<h:body>
+<h:body  style="background-image: url(resources/img/fond.jpg)">
 
 <ui:include src="navbar.xhtml"></ui:include>
 
 
 	<h:form>
-		<b:panel title="Ajouter une voiture" look="primary" style="text-decoration:none;">
+		<b:panel title="Ajouter une voiture" look="primary" style="width: 800px; margin: auto; background-color: #BFF5EF">
 			<h:panelGrid columns="1" cellpadding="3">
 
 				<p:outputLabel for="model" value="Model : " />
-				<p:inputText id="model" value="#{VoitureBean.modelVoiture}" style="width:500px" />
+				<p:inputText id="model" value="#{VoitureBean.modelVoiture}" style="width:770px" />
 				<p:message for="model" style="color: red" />
 
 				<p:outputLabel value="Immatricule :" />
 				<p:inputText id="immatricule" value="#{VoitureBean.immatricule}"
-					style="width:500px" />
+					style="width:770px" />
 				<p:message for="immatricule" style="color: red" />
 
 				<p:outputLabel value="Kilometrage :" />
 				<p:inputText id="kilometrage" value="#{VoitureBean.kilometrage}"
-					style="width:500px" />
+					style="width:770px" />
 				<p:message for="kilometrage" style="color: red" />
 
 				<p:outputLabel value="Prix :" />
 				<p:inputText id="prix" value="#{VoitureBean.prixVoiture}"
-					style="width:500px" />
+					style="width:770px" />
 				<p:message for="prix" style="color: red"></p:message>
 
 				<p:outputLabel value="Type :" />
-				<p:selectOneMenu id="type" value="#{VoitureBean.typeVoiture}" style="width:500px">
+				<p:selectOneMenu id="type" value="#{VoitureBean.typeVoiture}" style="width:770px">
 					<f:selectItem itemLabel="Choisir" itemValue="" />
 					<f:selectItem itemLabel="Citadine" itemValue="Citadine" />
 					<f:selectItem itemLabel="Compact" itemValue="Compact" />
@@ -54,7 +54,7 @@ xmlns:b="http://bootsfaces.net/ui">
 
 				<p:outputLabel value="Type de carburant :" />
 				<p:selectOneMenu id="typeC" value="#{VoitureBean.typeCarburant}"
-					style="width:500px">
+					style="width:770px">
 					<f:selectItem itemLabel="Choisir" itemValue="" />
 					<f:selectItem itemLabel="Essence" itemValue="Essence" />
 					<f:selectItem itemLabel="Diesel" itemValue="Diesel" />
@@ -65,7 +65,7 @@ xmlns:b="http://bootsfaces.net/ui">
 
 				<p:outputLabel value="Etat :" />
 				<p:selectOneMenu id="etat" value="#{VoitureBean.etatVoiture}"
-					style="width:500px">
+					style="width:770px">
 					<f:selectItem itemLabel="Choisir" itemValue="" />
 					<f:selectItem itemLabel="Neuf" itemValue="Neuf" />
 					<f:selectItem itemLabel="Très bon état" itemValue="Très bon état" />

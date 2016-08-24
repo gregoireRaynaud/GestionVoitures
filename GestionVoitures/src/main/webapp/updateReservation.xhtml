@@ -10,17 +10,17 @@ xmlns:b="http://bootsfaces.net/ui">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Modifier une réservation</title>
 </h:head>
-<h:body>
+<h:body style="background-image: url(resources/img/fond.jpg)">
 
 <ui:include src="navbar.xhtml"></ui:include>
 
 <h:form>
 	 
-	 <b:panel title="Modifier la réservation #{ReservationGetBean.reservation.idreservation}" look="primary" style="text-decoration:none;">
+	 <b:panel title="Modifier la réservation #{ReservationGetBean.reservation.idreservation}" look="primary" style="width: 800px; margin: auto; background-color: #BFF5EF">
 	 <h:panelGrid columns="1" cellpadding="3">
 		
 		<p:outputLabel value="Prix :"/>
-		<p:inputText id="prix" value="#{ReservationGetBean.r.prixReservation}" style="width:500px" required="true" requiredMessage="Veuillez remplir le champ"/>
+		<p:inputText id="prix" value="#{ReservationGetBean.r.prixReservation}" style="width:770px" required="true" requiredMessage="Veuillez remplir le champ"/>
 		<p:message for="prix" style="color: red"/>
 		
 		<p:outputLabel value="Date de départ :"/>

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -69,9 +70,10 @@ public class VoitureGetBean implements Serializable{
 	}
 	
 	public String deleteVoiture(){
-		voitureService.deleteVoiture(voiture.getIdvoiture());
-		getVoitures();
-		return "successDeleteVoiture.xhtml-redirect=true";
+		voitureService.deleteVoiture(voitureD.getVoiture().getIdvoiture());
+		FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Succès",  "La voiture a bien été supprimée") );
+		return "getVoitures.xhtml";
 	}
 	
 	 public void attrListener(ActionEvent event){

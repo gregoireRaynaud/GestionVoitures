@@ -11,13 +11,15 @@ xmlns:b="http://bootsfaces.net/ui">
 <title>Liste des voitures</title>
 <h:link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
 </h:head>
-<h:body>
+<h:body  style="background-image: url(resources/img/fond.jpg)">
 
 <ui:include src="navbar.xhtml"></ui:include>
 
-<b:panel title="Liste de toutes les voitures" look="primary" collapsed="true">
+<p:growl id="growl" showDetail="true" sticky="true" />
 
 <h:form>
+
+<b:panel title="Liste de toutes les voitures" look="primary" collapsed="true">
 
 <b:dataTable styleClass="table table-striped" var="v" value="#{VoitureGetBean.tabVoitureD}" rows="10"
                          widgetVar="carsTable"
@@ -25,6 +27,8 @@ xmlns:b="http://bootsfaces.net/ui">
 						  page-length-menu="5,10,25,50"
 						  lang="fr"
 						  style="text-align: center; vertical-align: center !important">
+
+
 
 	<b:dataTableColumn label="Id">
 		<h:outputText value="#{v.voiture.idvoiture}" />
@@ -66,7 +70,7 @@ xmlns:b="http://bootsfaces.net/ui">
 		<p:commandButton ajax="false" actionListener="#{VoitureGetBean.attrListener}" action="#{VoitureGetBean.RedirectUpdateVoiture}" icon="ui-icon-pencil" style="border: 1px solid #27DBC3; background: #27DBC3; padding: 5px 20px; margin-right: 10px">
     		<f:attribute name="v" value="#{v}" />
 		</p:commandButton>
-		<p:commandButton actionListener="#{VoitureGetBean.attrListener}"
+		<p:commandButton update="growl" ajax="true" actionListener="#{VoitureGetBean.attrListener}"
 						action="#{VoitureGetBean.deleteVoiture}"
 						icon="ui-icon-close" style="border: 1px solid #FA2F44; background: #FA2F44; padding: 5px 20px">
 			<p:confirm header="Confirmation"
@@ -75,8 +79,6 @@ xmlns:b="http://bootsfaces.net/ui">
 			<f:attribute name="v" value="#{v}" />
 		</p:commandButton>
 		
-		
-
 		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 			<p:commandButton value="Oui" type="button"
 							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
@@ -86,9 +88,10 @@ xmlns:b="http://bootsfaces.net/ui">
 	</h:column>	
 
 </b:dataTable>
-</h:form>
 
 </b:panel>
+
+</h:form>
 
 <b:panel title="Liste des voitures disponibles aujourd'hui" look="primary" collapsed="true">
 	<h:form>

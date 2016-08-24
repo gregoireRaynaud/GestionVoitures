@@ -10,9 +10,11 @@ xmlns:b="http://bootsfaces.net/ui">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Liste des réservations</title>
 </h:head>
-<h:body>
+<h:body style="background-image: url(resources/img/fond.jpg)">
 
 <ui:include src="navbar.xhtml"></ui:include>
+
+<p:growl id="growl" showDetail="true" sticky="true" />
 
 <b:panel title="Liste des réservations" look="primary">
 
@@ -72,7 +74,7 @@ xmlns:b="http://bootsfaces.net/ui">
 		<p:commandButton ajax="false" actionListener="#{ReservationGetBean.attrListener}" action="#{ReservationGetBean.RedirectUpdateReservation}" icon="ui-icon-pencil" style="border: 1px solid #27DBC3; background: #27DBC3; padding: 5px 20px; margin-right: 10px">
     		<f:attribute name="r" value="#{r}" />
 		</p:commandButton>
-		<p:commandButton actionListener="#{ReservationGetBean.attrListener}"
+		<p:commandButton update="growl" ajax="true" actionListener="#{ReservationGetBean.attrListener}"
 						action="#{ReservationGetBean.deleteReservation}"
 						icon="ui-icon-close" style="border: 1px solid #FA2F44; background: #FA2F44; padding: 5px 20px">
 			<p:confirm header="Confirmation"

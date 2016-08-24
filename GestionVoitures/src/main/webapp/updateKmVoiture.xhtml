@@ -10,17 +10,17 @@ xmlns:b="http://bootsfaces.net/ui">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Retour d'une voiture</title>
 </h:head>
-<h:body>
+<h:body  style="background-image: url(resources/img/fond.jpg)">
 
 <ui:include src="navbar.xhtml"></ui:include>
 
 <h:form>
 
-<b:panel title="Retour d'une voiture" look="primary" style="text-decoration:none;">
+<b:panel title="Retour d'une voiture" look="primary" style="width: 800px; margin: auto; background-color: #BFF5EF">
 	 <h:panelGrid columns="1" cellpadding="3">
 	 
 	 <p:outputLabel value="Selectionnez la voiture qui rentre :"/>
-		<p:selectOneMenu rendered="#{not empty VoitureUpdateBean.tabVoiture}" id="id" value="#{VoitureUpdateBean.idVoiture}" style="width:500px">
+		<p:selectOneMenu rendered="#{not empty VoitureUpdateBean.tabVoiture}" id="id" value="#{VoitureUpdateBean.idVoiture}" style="width:770px">
         	<f:selectItem itemLabel="Choisir" itemValue="" />
             <f:selectItems value="#{VoitureUpdateBean.tabVoiture}" var="v" itemValue="#{v.idvoiture}"
             	itemLabel="#{v.immatricule}" />
@@ -41,11 +41,11 @@ xmlns:b="http://bootsfaces.net/ui">
 
 <h:form>
 
-<b:panel title="Entrer le nouveau kilométrage de la voiture" look="primary" style="text-decoration:none;" rendered="#{not empty VoitureUpdateBean.voiture}">
+<b:panel title="Entrer le nouveau kilométrage de la voiture" look="primary" style="width: 800px; margin: auto; background-color: #BFF5EF" rendered="#{not empty VoitureUpdateBean.voiture}">
 	 <h:panelGrid columns="1" cellpadding="3">
 	 
 	 <p:outputLabel value="Nouveau kilometrage :"/>
-		<p:inputText id="kilometrage" value="#{VoitureUpdateBean.voiture.kilometrage}" style="width:500px" required="true" requiredMessage="Veuillez entrer un kilométrage"/>
+		<p:inputText id="kilometrage" value="#{VoitureUpdateBean.voiture.kilometrage}" style="width:770px" required="true" requiredMessage="Veuillez entrer un kilométrage"/>
 		<p:message for="kilometrage" style="color: red"/>
 		
 		<h:outputText value="#{VoitureUpdateBean.exception}" style="color: red"></h:outputText>
