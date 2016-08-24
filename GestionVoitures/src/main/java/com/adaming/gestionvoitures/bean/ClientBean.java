@@ -35,7 +35,7 @@ public class ClientBean {
 	private IFactureService factureService;
 	
 	//Attributs
-	private Long idClient;
+	//private Long idClient;
 	private String nomClient;
 	private String prenomClient;
 	private Date  dateDeNaissance; 
@@ -67,12 +67,12 @@ public class ClientBean {
 	public void setClientService(IClientService clientService) {
 		this.clientService = clientService;
 	}
-	public Long getIdClient() {
+	/*public Long getIdClient() {
 		return idClient;
 	}
 	public void setIdClient(Long idClient) {
 		this.idClient = idClient;
-	}
+	}*/
 	public String getNomClient() {
 		return nomClient;
 	}
@@ -180,7 +180,7 @@ public class ClientBean {
 				mail,pays,dateDeDelivrance,lieuDeNaissance,delivrerPar);
 		clientService.addClient(c);
 		getC();
-		return "getClients.xhtml";
+		return "successSaveClient.xhtml";
 	}
 	
 	//Redirection vers la page saveClient
@@ -194,6 +194,7 @@ public class ClientBean {
 	public void getC(){
 		//clients = clientService.getClients();
 		List<Client> tabC = clientService.getClients();
+		clientsD = new ArrayList<ClientDecorator>();
 		for(Client c:tabC){
 			ClientDecorator cd = new ClientDecorator(c);
 			cd.setDepenses(factureService.calculerCoutFacturesByClient(c.getIdClient()));
@@ -203,27 +204,15 @@ public class ClientBean {
 	
 	//Update Client
 	public String updateClient(){
-		Client c = client;
-		c.setNomClient(nomClient);
-		c.setPrenomClient(prenomClient);
-		c.setDateDeNaissance(dateDeNaissance);
-		c.setNumeroTel(numeroTel);
-		c.setNumeroPermis(numeroPermis);
-		c.setAdressePostale(adressePostale);
-		c.setMail(mail);
-		c.setPays(pays);
-		c.setDateDeDelivrance(dateDeDelivrance);
-		c.setLieuDeNaissance(lieuDeNaissance);
-		c.setDelivrerPar(delivrerPar);
-		clientService.updateClient(c);
+		clientService.updateClient(client);
 		getC();
-		return "getClients.xhtml";		
+		return "successUpdateClient.xhtml";		
 	}
 	
 	//Get Client By Id
-	public void getClientById(){
+	/*public void getClientById(){
 		client = clientService.getClientById(idClient);
-	}
+	}*/
 	
 	//Méthode pour capturer un client depuis le tableau des clients
 	public void attrListener(ActionEvent event){

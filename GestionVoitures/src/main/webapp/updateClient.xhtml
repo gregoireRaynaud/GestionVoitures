@@ -35,7 +35,7 @@ xmlns:b="http://bootsfaces.net/ui">
 				<p:message for="prenom" style="color: red" />
 
 				<p:outputLabel value="Date de naissance : " />
-				<p:calendar id="inline" value="#{ClientBean.client.dateDeNaissance}" pattern="dd/MM/yyyy" />
+				<p:calendar id="dateDeNaissance" value="#{ClientBean.client.dateDeNaissance}" pattern="dd/MM/yyyy" />
 
 				<p:outputLabel value="Numéro de téléphone : " />
 				<p:inputText id="numeroTel"
@@ -68,7 +68,7 @@ xmlns:b="http://bootsfaces.net/ui">
 				<p:message for="pays" style="color: red" />
 
 				<p:outputLabel value="Date de délivrance du permis : " />
-				<p:calendar id="inline" value="#{ClientBean.client.dateDeDelivrance}" pattern="dd/MM/yyyy"/>
+				<p:calendar id="dateDeDelivrance" value="#{ClientBean.client.dateDeDelivrance}" pattern="dd/MM/yyyy"/>
 
 				<p:outputLabel value="Lieu de naissance : " />
 				<p:inputText id="lieuDeNaissance"
@@ -86,7 +86,7 @@ xmlns:b="http://bootsfaces.net/ui">
 
 			<p:separator />
 
-			<p:commandButton value="Modifier" update="msgs" icon="ui-icon-check"
+			<p:commandButton value="Modifier"  icon="ui-icon-check"
 				action="#{ClientBean.updateClient}" />
 
 			</b:panel>
