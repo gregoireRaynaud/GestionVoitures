@@ -51,7 +51,7 @@ public class ReservationGetBean {
 	public String updateReservation(){
 		try {
 			if(r.getDateRetour().getTime() - r.getDateSortie().getTime() < 0){
-				throw new VoitureDisponibleException("Veuillez entrer une date de retour postérieur à la date de départ");
+				throw new VoitureDisponibleException("Veuillez entrer une date de retour postï¿½rieur ï¿½ la date de dï¿½part");
 			}
 			r.setNombresDeJours(nbJours(r.getDateSortie(), r.getDateRetour()));
 			reservationService.updateReservation(r);
@@ -77,7 +77,7 @@ public class ReservationGetBean {
 	public String deleteReservation(){
 		reservationService.deleteReservation(reservation.getIdreservation());
 		FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Succès",  "La réservation a bien été supprimée") );
+        context.addMessage(null, new FacesMessage("Succï¿½s",  "La rï¿½servation a bien ï¿½tï¿½ supprimï¿½e") );
         getRe();
 		return "getReservations.xhtml";
 	}

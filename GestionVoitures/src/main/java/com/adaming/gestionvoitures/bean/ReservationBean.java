@@ -5,7 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.event.ActionEvent;
+import javax.faces.event.ActionListener;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -44,7 +47,7 @@ public class ReservationBean {
 	@NotNull(message="Veuillez entrer une date de retour")
 	@Future(message="Veuillez entrer une date dans le futur")
 	private Date dateRetour;//date + heure
-	@NotNull(message="Veuillez entrer une date de départ")
+	@NotNull(message="Veuillez entrer une date de dï¿½part")
 	@Future(message="Veuillez entrer une date dans le futur")
 	private Date dateSortie;//date + heure
 	@NotNull(message="Veuillez choisir une voiture")
@@ -52,6 +55,7 @@ public class ReservationBean {
 	private Voiture voiture;
 	@NotNull(message="Veuillez choisir un client")
 	private Long idClient;
+	
 	private Client client;
 	private List<Voiture> tabVoiture;
 	private List<Client> tabClient;
@@ -59,6 +63,7 @@ public class ReservationBean {
 	private Integer nombresDeJours;
 	private String excpetionDispo;
 	private Reservation r;
+	private List<Reservation> tabReservation;
 	
 	@PostConstruct
 	public String getVC(){
@@ -66,6 +71,11 @@ public class ReservationBean {
 		tabClient = clientService.getClients();
 		excpetionDispo = "";
 		return "redirect:saveReservation.xhtml";
+	}
+	
+	@PostConstruct
+	public void getReservation(){
+		tabReservation = reservationService.getReservations();
 	}
 	
 	public void choix(){
@@ -81,9 +91,10 @@ public class ReservationBean {
 		r = new Reservation(prixReservation, dateReservation, dateRetour, dateSortie, nombresDeJours, etatReservation);
 		try {
 			if(dateRetour.getTime() - dateSortie.getTime() < 0){
-				throw new VoitureDisponibleException("Veuillez entrer une date de retour postérieur à la date de départ");
+				throw new VoitureDisponibleException("Veuillez entrer une date de retour postï¿½rieur ï¿½ la date de dï¿½part");
 			}
 			reservationService.addReservation(r, idVoiture, idClient);
+			getReservation();
 			return "successSaveReservation.xhtml-redirect=true";
 		} catch (VoitureDisponibleException e) {
 			excpetionDispo = e.getMessage();
@@ -245,6 +256,14 @@ public class ReservationBean {
 
 	public void setR(Reservation r) {
 		this.r = r;
+	}
+
+	public List<Reservation> getTabReservation() {
+		return tabReservation;
+	}
+
+	public void setTabReservation(List<Reservation> tabReservation) {
+		this.tabReservation = tabReservation;
 	}
 
 	
