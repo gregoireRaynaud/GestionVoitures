@@ -16,7 +16,6 @@
 	<ui:include src="navbar.xhtml"></ui:include>
 
 	<h:form>
-		<p:growl id="msgs" showDetail="true" />
 
 		<p:panel header="Ajouter un client" style="margin-bottom:5px;">
 			<h:panelGrid columns="1" cellpadding="3">
@@ -33,7 +32,7 @@
 				<p:message for="prenom" style="color: red" />
 
 				<p:outputLabel value="Date de naissance : " />
-				<p:calendar id="inline" value="#{ClientBean.dateDeNaissance}" mode="inline" />
+				<p:calendar id="dateDeNaissance" value="#{ClientBean.dateDeNaissance}" mode="inline" />
 
 				<p:outputLabel value="Numéro de téléphone : " />
 				<p:inputText id="numeroTel"
@@ -64,7 +63,7 @@
 				<p:message for="pays" style="color: red" />
 
 				<p:outputLabel value="Date de délivrance du permis : " />
-				<p:calendar id="inline" value="#{ClientBean.dateDeDelivrance}" mode="inline" />
+				<p:calendar id="dateDeDelivrance" value="#{ClientBean.dateDeDelivrance}" mode="inline" />
 
 				<p:outputLabel value="Lieu de naissance : " />
 				<p:inputText id="lieuDeNaissance"
@@ -82,7 +81,7 @@
 
 			<p:separator />
 
-			<p:commandButton value="Ajouter" update="msgs" icon="ui-icon-check"
+			<p:commandButton value="Ajouter" icon="ui-icon-check"
 				action="#{ClientBean.addClient()}" />
 
 		</p:panel>

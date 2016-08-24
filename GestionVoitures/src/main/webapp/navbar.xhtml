@@ -12,76 +12,12 @@
 		href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-start" />
 </h:head>
 <h:body>
-
-	<!-- <p:megaMenu orientation="horizontal" style="margin-top:20px">
-		
-		<p:submenu label="Agence">
-			<p:column>
-				<p:submenu label="Agence">
-					<p:menuitem value="Ajouter une agence" url="#" />
-					<p:menuitem value="Modifier une agence" url="#" />
-					<p:menuitem value="Afficher les agences" url="#" />
-				</p:submenu>
-			</p:column>
-		</p:submenu>
-		
-		<p:submenu label="Client">
-			<p:column>
-				<p:submenu label="Client">
-					<p:menuitem value="Ajouter un client" url="saveClient.xhtml" />
-					<p:menuitem value="Modifier un client" url="updateClient.xhtml" />
-					<p:menuitem value="Afficher les clients" url="getClients.xhtml" />
-				</p:submenu>
-			</p:column>
-		</p:submenu>
-		
-		<p:submenu label="Entretien">
-			<p:column>
-				<p:submenu label="Entretien">
-					<p:menuitem value="Ajouter un entretien" url="saveEntretien.xhtml" />
-					<p:menuitem value="Modifier un entretien" url="updateEntretien.xhtml" />
-					<p:menuitem value="Afficher les entretiens" url="getEntretiens.xhtml" />
-				</p:submenu>
-			</p:column>
-		</p:submenu>
-		
-		<p:submenu label="Facture">
-			<p:column>
-				<p:submenu label="Facture">
-					<p:menuitem value="Ajouter une facture" url="#" />
-					<p:menuitem value="Afficher une facture" url="#" />
-				</p:submenu>
-			</p:column>
-		</p:submenu>
-		
-		<p:submenu label="Réservation">
-			<p:column>
-				<p:submenu label="Réservation">
-					<p:menuitem value="Ajouter une réservation" url="#" />
-					<p:menuitem value="Historique" url="#" />
-					<p:menuitem value="Afficher les réservations" url="#" />
-				</p:submenu>
-			</p:column>
-		</p:submenu>
-		
-		<p:submenu label="Voiture">
-			<p:column>
-				<p:submenu label="Voiture">
-					<p:menuitem value="Ajouter une voiture" url="#" />
-					<p:menuitem value="Modifier un entretien" url="#" />
-					<p:menuitem value="Afficher les entretiens" url="#" />
-				</p:submenu>
-			</p:column>
-		</p:submenu>
-		
-	</p:megaMenu> -->
 	
 	<b:navBar brand="Location de Voiture" brandHref="index.xhtml">       
      <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
        <b:navbarLinks pull="right" styleClass="hidden-xs">
          <b:dropMenu value="Agence" iconAwesome="home">
              <b:navLink value="Ajouter une agence" href="saveAgence.xhtml" iconAwesome="plus"></b:navLink>
-             <b:navLink value="Modifier une agence" href="#" iconAwesome="pencil"></b:navLink>
              <b:navLink value="Liste des agences" href="getAgences.xhtml" iconAwesome="list"></b:navLink>
          </b:dropMenu>
          <b:dropMenu value="Client" iconAwesome="user">
