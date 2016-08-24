@@ -4,7 +4,8 @@
 xmlns:h="http://java.sun.com/jsf/html"
 xmlns:p="http://primefaces.org/ui"
 xmlns:f="http://java.sun.com/jsf/core"
-xmlns:ui="http://java.sun.com/jsf/facelets">
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Liste des Agences</title>
@@ -12,87 +13,68 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:body>
 <ui:include src="navbar.xhtml"></ui:include>
 <h:form>
-    <p:dataTable id="table1" var="age" value="#{AgenceBean.tabAgences}" widgetVar="agenceTable"
+    <b:dataTable id="table1" var="age" value="#{AgenceBean.tabAgences}" widgetVar="agenceTable"
                  emptyMessage="Aucune agence trouvée avec ces critères." filteredValue="#{AgenceBean.tabAgencesFiltered}"
-                 rows="5"
-                 paginator="true"
-                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                 rowsPerPageTemplate="5,10,15">
+                 page-length="5"
+				 page-length-menu="5,10,25,50"
+				 lang="fr"
+				 style="text-align: center; vertical-align: center !important">
  
-        <f:facet name="header">
-            <p:outputPanel>
-                <h:outputText value="Search all fields:" />
-                <p:inputText id="globalFilter" onkeyup="PF('agenceTable').filter()" style="width:150px" placeholder="Enter keyword"/>
-                <p:commandButton id="toggler" type="button" value="Columns" icon="ui-icon-calculator" />
-       			<p:columnToggler datasource="table1" trigger="toggler" />
-            </p:outputPanel>
-            
-        </f:facet>
- 
-        <p:column filterBy="#{age.idAgence}" headerText="Id" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{age.idAgence}" label="Id" filterMatchMode="contains">
             <h:outputText value="#{age.idAgence}" />
-        </p:column>
+        </b:dataTableColumn>
  
-        <p:column filterBy="#{age.addrespostal}" headerText="Adresse Postale" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{age.addrespostal}" label="Adresse Postale" filterMatchMode="contains">
             <h:outputText value="#{age.addrespostal}" />
-        </p:column>
+        </b:dataTableColumn>
         
-        <p:column filterBy="#{age.numerotel}" headerText="N° téléphone" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{age.numerotel}" label="N° téléphone" filterMatchMode="contains">
             <h:outputText value="#{age.numerotel}" />
-        </p:column>
+        </b:dataTableColumn>
         
-        <p:column filterBy="#{age.denomination}" headerText="Dénomination" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{age.denomination}" label="Dénomination" filterMatchMode="contains">
             <h:outputText value="#{age.denomination}" />
-        </p:column>
+        </b:dataTableColumn>
         
-        <p:column filterBy="#{age.formJuridique}" headerText="Forme juridique" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{age.formJuridique}" label="Forme juridique" filterMatchMode="contains">
             <h:outputText value="#{age.formJuridique}" />
-        </p:column>
+        </b:dataTableColumn>
         
-        <p:column filterBy="#{age.activite}" headerText="Activité" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{age.activite}" label="Activité" filterMatchMode="contains">
             <h:outputText value="#{age.activite}" />
-        </p:column>
+        </b:dataTableColumn>
         
-        <p:column filterBy="#{age.adressSiege}" headerText="Adresse Siège" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{age.adressSiege}" label="Adresse Siège" filterMatchMode="contains">
             <h:outputText value="#{age.adressSiege}" />
-        </p:column>
+        </b:dataTableColumn>
         
-        <p:column filterBy="#{age.dateCommencement}" headerText="Date de commencement" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{age.dateCommencement}" label="Date de commencement" filterMatchMode="contains">
             <h:outputText value="#{age.dateCommencement}" />
-        </p:column>
+        </b:dataTableColumn>
         
-        <p:column filterBy="#{age.ville}" headerText="Ville" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{age.ville}" label="Ville" filterMatchMode="contains">
             <h:outputText value="#{age.ville}" />
-        </p:column>
+        </b:dataTableColumn>
         
-        <p:column filterBy="#{age.deuxiemTel}" headerText="Deuxième N° téléphone" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{age.deuxiemTel}" label="Deuxième N° téléphone" filterMatchMode="contains">
             <h:outputText value="#{age.deuxiemTel}" />
-        </p:column>
+        </b:dataTableColumn>
         
-         <p:column filterBy="#{age.tva}" headerText="TVA" footerText="contains" filterMatchMode="contains">
+         <b:dataTableColumn filterBy="#{age.tva}" label="TVA" filterMatchMode="contains">
             <h:outputText value="#{age.tva}" />
-        </p:column>
+        </b:dataTableColumn>
  
-        <p:column filterBy="#{age.choixMonnais}" headerText="Monnaie" footerText="in" filterMatchMode="in">
-            <f:facet name="filter">
-                <p:selectCheckboxMenu label="Monnaie" onchange="PF('agenceTable').filter()" panelStyle="width:125px" scrollHeight="150">
-                    <f:selectItems value="#{AgenceBean.listMonnaie}" />
-                </p:selectCheckboxMenu>
-            </f:facet>
+        <b:dataTableColumn filterBy="#{age.choixMonnais}" label="Monnaie" filterMatchMode="in">
             <h:outputText value="#{age.choixMonnais}" />
-        </p:column>
+        </b:dataTableColumn>
         
-        <p:column headerText="Modification" style="text-align: center">
-    	<p:commandButton ajax="false" actionListener="#{AgenceBean.attrListener}" action="#{AgenceBean.redirectUpdateAgence}" icon="ui-icon-pencil" style="border: 1px solid #acdd4a; background: #6eac2c">
+        <h:column label="Modification">
+    	<b:commandButton actionListener="#{AgenceBean.attrListener}" action="#{AgenceBean.redirectUpdateAgence}" iconAwesome="pencil" style="border: 1px solid #acdd4a; background: #6eac2c">
     		<f:attribute name="age" value="#{age}" />
-    	</p:commandButton>        
-        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-	        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-	        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-    	</p:confirmDialog>
-    	</p:column>
- 
-    </p:dataTable>
+    	</b:commandButton>        
+    	</h:column>
+    	
+    </b:dataTable>
 </h:form>
 
 </h:body>

@@ -4,7 +4,8 @@
 xmlns:h="http://java.sun.com/jsf/html"
 xmlns:p="http://primefaces.org/ui"
 xmlns:f="http://java.sun.com/jsf/core"
-xmlns:ui="http://java.sun.com/jsf/facelets">
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Consulter une Facture</title>
@@ -14,35 +15,33 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:include src="navbar.xhtml"></ui:include>
 
 <h:form>
-    <p:dataTable id="table1" var="fac" value="#{FactureBean.tabFactures}" widgetVar="factureTable"
-                 emptyMessage="Aucune facture trouvée avec ces critères." filteredValue="#{FactureBean.tabFacturesFiltered}">
+    <b:dataTable id="table1" var="fac" value="#{FactureBean.tabFactures}" widgetVar="factureTable"
+                 emptyMessage="Aucune facture trouvée avec ces critères." filteredValue="#{FactureBean.tabFacturesFiltered}"
+                 page-length="5"
+				 page-length-menu="5,10,25,50"
+				 lang="fr"
+				 style="text-align: center; vertical-align: center !important">
  
-        <f:facet name="header">
-            <p:outputPanel>
-                <h:outputText value="Search all fields:" />
-                <p:inputText id="globalFilter" onkeyup="PF('factureTable').filter()" style="width:150px" placeholder="Enter keyword"/>
-            </p:outputPanel>          
-        </f:facet>
  
-        <p:column filterBy="#{fac.idFacture}" headerText="Id Facture" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{fac.idFacture}" label="Id Facture" filterMatchMode="contains">
             <h:outputText value="#{fac.idFacture}" />
-        </p:column>
+        </b:dataTableColumn>
 
-        <p:column filterBy="#{fac.deFacturation}" headerText="Date de facturation" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{fac.deFacturation}" label="Date de facturation" filterMatchMode="contains">
             <h:outputText value="#{fac.deFacturation}" />
-        </p:column>
+        </b:dataTableColumn>
         
-        <p:column filterBy="#{fac.reservation.idreservation}" headerText="Id de Réservation" footerText="contains" filterMatchMode="contains">
+        <b:dataTableColumn filterBy="#{fac.reservation.idreservation}" label="Id de Réservation" filterMatchMode="contains">
             <h:outputText value="#{fac.reservation.idreservation}" />
-        </p:column>
+        </b:dataTableColumn>
         
-        <p:column headerText="Consulter/Imprimer" style="text-align: center">
-    	<p:commandButton ajax="false" actionListener="#{FactureBean.attrListener}" action="#{FactureBean.consulterFacture}" icon="fa fa-file-pdf-o" style="border: 1px solid #acdd4a; background: #6eac2c">
-    		<f:attribute name="fac" value="#{fac}" />
+        <h:column label="Consulter/Imprimer">
+    	<p:commandButton actionListener="#{FactureBean.attrListener}" action="#{FactureBean.consulterFacture}" icon="fa fa-file-pdf-o" style="border: 1px solid #acdd4a; background: #6eac2c">
+    		<f:attribute name="fac" value="#{fac}"/>
     	</p:commandButton>        
-    	</p:column>
+    	</h:column>
  
-    </p:dataTable>
+    </b:dataTable>
 </h:form>
 
 
