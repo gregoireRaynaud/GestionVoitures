@@ -4,6 +4,7 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context 
@@ -11,13 +12,32 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 		http://www.springframework.org/schema/mvc
-		http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
-		
-	
-	
+		http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+			
 	<context:component-scan base-package="com.adaming.gestionvoitures" />
 	<!-- configuration jpa -->
 	
+	<security:http pattern="/Login.xhtml" security="none"/>
+	<security:http pattern="/resources/**" security="none"/>
+	<security:http pattern="/javax.faces.resource/**" security="none"/>   
+	<security:http auto-config="true">
+		<security:intercept-url pattern="/**" access="ROLE_ADMIN"/>
+		<security:form-login login-page="/Login.xhtml" default-target-url="/" 
+		authentication-failure-url="/Login.xhtml?error=1"
+		password-parameter="username" 
+    	username-parameter="password"/>
+		<security:logout logout-success-url="/Login.xhtml"/>
+	</security:http>
+	<security:authentication-manager>
+		<security:authentication-provider>
+        <security:user-service>
+           <security:user name="root" password="root" authorities="ROLE_ADMIN"/>
+        </security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+		
 	<!-- injection Facture -->
 	<bean id="factureDao" class="com.adaming.gestionvoitures.dao.facture.ImplementFactureDao"></bean>
 	<bean id="factureService" class="com.adaming.gestionvoitures.service.facture.FactureServiceImpl">

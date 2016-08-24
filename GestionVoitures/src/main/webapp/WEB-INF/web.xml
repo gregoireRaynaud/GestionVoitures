@@ -47,6 +47,19 @@
     <welcome-file>index.xhtml</welcome-file>
   </welcome-file-list>
   
+  <!-- Spring security request filter -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher> <!-- NÃ©cessaire, sinon le bean n'enverra pas la requÃªte au filter -->
+    	<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+  
+  
  
 
 </web-app>
