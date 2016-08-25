@@ -39,7 +39,7 @@ public class EntretienBean {
 		
 	//Attributs	
 	private Long idEntretien;
-	@NotNull(message="Veuillez entrer un type d'entretien")
+	@NotEmpty(message="Veuillez entrer un type d'entretien")
 	private String typeEntretien;
 	@NotNull(message="Veuillez choisir une date d'entretien")
 	private Date dateEntretien;

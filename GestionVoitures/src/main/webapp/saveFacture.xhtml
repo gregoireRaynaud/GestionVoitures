@@ -29,7 +29,7 @@ xmlns:b="http://bootsfaces.net/ui">
 <!--         	</p:selectOneMenu> -->
 <!--         	<p:message for="txt2"/> -->
         	
-        	<p:outputLabel for="txt2" value="Reservation associée :" />
+        	<p:outputLabel value="Reservation associée :" />
 		<p:selectOneMenu id="txt2" value="#{FactureBean.idReservation}" style="width:770px">
         	<f:selectItem itemLabel="Selectionner une réservation" itemValue="" />
             <f:selectItems value="#{FactureBean.tabReservations}" var="resa" itemValue="#{resa.idreservation}" itemLabel="Du #{resa.dateSortie} au #{resa.dateRetour}, voiture #{resa.voiture.immatricule}, client #{resa.client.nomClient}"/>
@@ -43,7 +43,7 @@ xmlns:b="http://bootsfaces.net/ui">
 <!--         	</p:selectOneMenu> -->
 <!--         	<p:message for="txt3" /> -->
         	
-        	<p:outputLabel for="txt3" value="Agence associée :" />
+        	<p:outputLabel value="Agence associée :" />
 		<p:selectOneMenu id="txt3" value="#{FactureBean.idAgence}" style="width:770px">
         	<f:selectItem itemLabel="Selectionner une agence" itemValue="" />
             <f:selectItems value="#{FactureBean.tabAgences}" var="ag" itemValue="#{ag.idAgence}" itemLabel="Du #{ag.denomination}"/>

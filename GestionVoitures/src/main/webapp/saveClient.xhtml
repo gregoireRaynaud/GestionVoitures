@@ -36,6 +36,7 @@
 				<b:datepicker id="dateDeNaissance" value="#{ClientBean.dateDeNaissance}" pattern="dd-MM-yyyy"
 				mode="popup-icon" changeMonth="true" changeYear="true" required="true"
 				 requiredMessage="date obligatoire"></b:datepicker>
+				 <p:message for="dateDeNaissance" />
 
 				<p:outputLabel value="Numéro de téléphone : " />
 				<p:inputText id="numeroTel"
@@ -69,6 +70,7 @@
 				<b:datepicker id="dateDeDelivrance" value="#{ClientBean.dateDeDelivrance}" pattern="dd-MM-yyyy"
 				mode="popup-icon" changeMonth="true" changeYear="true" required="true"
 				 requiredMessage="date obligatoire"></b:datepicker>
+				 <p:message for="dateDeDelivrance" />
 
 				<p:outputLabel value="Lieu de naissance : " />
 				<p:inputText id="lieuDeNaissance"

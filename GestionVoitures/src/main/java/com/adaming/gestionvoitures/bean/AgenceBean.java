@@ -34,7 +34,7 @@ public class AgenceBean {
 	private Long idAgence;
 	@NotEmpty(message="Veuillez entrer une adresse postale")
 	private String addrespostal;
-	@NotNull(message="Veuillez entrer un numéro de téléphone")
+	@NotEmpty(message="Veuillez entrer un numéro de téléphone")
 	private String numerotel;
 	@NotEmpty(message="Veuillez entrer une dénomination")
 	private String denomination;
@@ -44,10 +44,11 @@ public class AgenceBean {
 	private String activite;
 	@NotEmpty(message="Veuillez préciser l'adresse du siège")
 	private String adressSiege;
+	@NotNull(message="Veuillez préciser une date de commencement")
 	private Date dateCommencement;
 	@NotEmpty(message="Veuillez entrer une ville")
 	private String ville;
-	@NotNull(message="Veuillez entrer le numéro de téléphone secondaire")
+	@NotEmpty(message="Veuillez entrer le numéro de téléphone secondaire")
 	private String deuxiemTel;
 	@NotNull(message="Veuillez préciser le taux de TVA")
 	private Double tva;

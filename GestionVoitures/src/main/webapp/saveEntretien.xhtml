@@ -21,7 +21,7 @@ xmlns:b="http://bootsfaces.net/ui">
 		<b:panel title="Ajouter un entretien" look="primary" style="width: 800px; margin: auto; background-color: #BFF5EF">
 			<h:panelGrid columns="1" cellpadding="3">
 
-				<p:outputLabel for="voiture" value="Voiture :" />
+				<p:outputLabel value="Voiture :" />
 				<p:selectOneMenu id="voiture" value="#{EntretienBean.idVoiture}"
 					style="width:770px">
 					<f:selectItem itemLabel="Choisissez une voiture" itemValue=""/>
@@ -31,7 +31,7 @@ xmlns:b="http://bootsfaces.net/ui">
 				<p:message for="voiture" style="color: red"></p:message>
 
 
-				<p:outputLabel for="type" value="Entretien :" />
+				<p:outputLabel value="Entretien :" />
 				<p:selectOneMenu id="type" value="#{EntretienBean.type}" style="width:770px">
 					<f:selectItem itemLabel="Séléctionner un entretien" itemValue=""/>
 					<f:selectItem itemLabel="Chaine distribution"
@@ -42,19 +42,19 @@ xmlns:b="http://bootsfaces.net/ui">
 				<p:message for="type" />
 
 
-				<p:outputLabel for="typeEntretien" value="Type d'entretien : " />
+				<p:outputLabel value="Type d'entretien : " />
 				<p:inputText id="typeEntretien"
 					value="#{EntretienBean.typeEntretien}" style="width:770px" />
 				<p:message for="typeEntretien" style="color: red" />
 				
 
-				<p:outputLabel for="inline" value="Date :" />
+				<p:outputLabel value="Date :" />
 				<p:calendar id="inline" value="#{EntretienBean.dateEntretien}" pattern="MM/dd/yyyy" />
 				<p:message for="inline" style="color: red"></p:message>
 
 				<!-- On ne peut pas saisir le kilométrage -->
 
-				<p:outputLabel for="prix" value="Prix : " />
+				<p:outputLabel value="Prix : " />
 				<p:inputText id="prix" value="#{EntretienBean.prixEntretien}"
 					style="width:770px" />
 				<p:message for="prix" style="color: red" />
