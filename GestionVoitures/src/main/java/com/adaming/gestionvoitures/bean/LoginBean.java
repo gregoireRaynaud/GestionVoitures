@@ -18,6 +18,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.WebAttributes;
 
 
@@ -54,6 +55,11 @@ public class LoginBean implements PhaseListener{
         dispatcher.forward((ServletRequest) context.getRequest(), (ServletResponse) context.getResponse());
         FacesContext.getCurrentInstance().responseComplete();
         return null;
+    }
+	
+	public String logout(){
+        SecurityContextHolder.clearContext();
+        return "Login.xhtml";
     }
 
 	@Override

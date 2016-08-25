@@ -28,7 +28,7 @@
 		authentication-failure-url="/Login.xhtml?error=1"
 		password-parameter="username" 
     	username-parameter="password"/>
-		<security:logout logout-success-url="/Login.xhtml"/>
+		<security:logout logout-success-url="/Login.xhtml" delete-cookies="true" invalidate-session="true"/>
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider>

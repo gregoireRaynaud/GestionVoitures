@@ -42,6 +42,11 @@
              <b:navLink value="Ajouter une facture" href="saveFacture.xhtml" iconAwesome="plus"></b:navLink>
              <b:navLink value="Afficher une facture" href="getFacture.xhtml"  iconAwesome="file"></b:navLink>
          </b:dropMenu>
+         <h:form style="float:left;position:absolute;right:3%;margin-top:8px;">
+         <b:commandButton look="primary" value="Logout" ajax="false" action="#{LoginBean.logout}" style="color:red;font-weight:bold;">
+         	<b:iconAwesome name="user"/>
+         </b:commandButton>
+         </h:form>
      </b:navbarLinks>
  </b:navBar>
 
