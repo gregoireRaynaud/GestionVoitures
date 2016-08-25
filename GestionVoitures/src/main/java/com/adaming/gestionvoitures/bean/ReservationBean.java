@@ -95,7 +95,7 @@ public class ReservationBean {
 			}
 			reservationService.addReservation(r, idVoiture, idClient);
 			getReservation();
-			return "successSaveReservation.xhtml-redirect=true";
+			return "successSaveReservation.xhtml";
 		} catch (VoitureDisponibleException e) {
 			excpetionDispo = e.getMessage();
 			return "saveReservation.xhtml";

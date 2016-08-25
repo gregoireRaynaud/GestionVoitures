@@ -77,7 +77,7 @@ xmlns:b="http://bootsfaces.net/ui">
 
 			<p:separator rendered="#{not empty ReservationBean.voiture}" />
 
-			<b:commandButton update="@(form)" look="primary"
+			<p:commandButton update="@(form)" look="primary"
 				rendered="#{not empty ReservationBean.voiture}" value="Ajouter"
 				ajax="false" action="#{ReservationBean.saveReservation}" />
 
