@@ -77,7 +77,7 @@ public class ReservationGetBean {
 	public String deleteReservation(){
 		reservationService.deleteReservation(reservation.getIdreservation());
 		FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Succï¿½s",  "La rï¿½servation a bien ï¿½tï¿½ supprimï¿½e") );
+        context.addMessage(null, new FacesMessage("Succès",  "La réservation a bien été supprimée") );
         getRe();
 		return "getReservations.xhtml";
 	}
