@@ -57,8 +57,10 @@ xmlns:h="http://java.sun.com/jsf/html">
 		            <p:outputLabel value="Type Voiture: " />
 		            <h:outputText value="#{FactureBean.facture.reservation.voiture.typeVoiture}" class="info"/>
 		            
+		            <p:separator style="width:350px;height:5px"/>
+		            <br></br>
 		            <p:outputLabel value="Prix: " />
-		            <h:outputText value="#{FactureBean.coutFacture}" class="info"/>
+		            <h:outputText value="#{FactureBean.coutFacture}" class="info" style="color:red;"/>
 		        </h:panelGrid>
 		    </p:fieldset>
 		     
